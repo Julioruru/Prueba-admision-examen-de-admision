@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(node -e \"const {lessons} = require\\('./src/data/lessons.js'\\); console.log\\('lessons count:', lessons.length\\); lessons.forEach\\(l => console.log\\(l.id, '-', l.topics.length, 'topics'\\)\\);\")"
+    ]
+  }
+}

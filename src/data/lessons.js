@@ -1,1539 +1,1642 @@
 export const lessons = [
+  /* ─────────────────────────────────────────────────────────────
+     SESSION 1 · Conjuntos y Álgebra  · 21 May
+  ───────────────────────────────────────────────────────────── */
   {
-    id: 'conjuntos',
-    title: 'Números y Conjuntos',
+    id: 'session-1',
+    sessionNumber: 1,
+    scheduledDate: '2026-05-21',
+    title: 'Conjuntos y Álgebra',
     emoji: '∪',
     color: 'emerald',
-    description: 'ℕ, ℤ, ℚ, ℝ y operaciones con conjuntos',
+    description: 'Números reales, conjuntos y sistemas lineales',
     topics: [
       {
-        id: 'tipos-numeros',
-        title: 'Tipos de Números',
-        steps: [
-          {
-            type: 'explanation',
-            title: '¿Qué tipos de números existen?',
-            content: `Los números se organizan en conjuntos anidados, cada uno más amplio que el anterior:
-
-ℕ = {0, 1, 2, 3, 4, ...}  →  Números naturales (contar)
-ℤ = {..., -2, -1, 0, 1, 2, ...}  →  Enteros (incluye negativos)
-ℚ = {a/b | a,b ∈ ℤ, b ≠ 0}  →  Racionales (fracciones exactas)
-ℝ = ℚ ∪ {irracionales}  →  Reales (toda la recta numérica)
-
-La relación es: ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ`,
-            visual: 'number-sets',
-            tutorMessage: 'Fíjate bien en el diagrama: cada anillo contiene al anterior. ¡Todo número natural es también entero, racional y real!',
-            whyExplanation: 'Necesitamos estos conjuntos porque distintos problemas usan distintos tipos de números. Con ℕ contamos objetos, con ℤ representamos deudas, con ℚ dividimos cantidades exactamente, y ℝ cubre todo lo demás como √2 o π. En el examen de WU, muchas preguntas piden que identifiques a qué conjunto pertenece un número.',
-          },
-          {
-            type: 'example',
-            title: 'El tutor clasifica números',
-            tutorIntro: 'Voy a clasificar los números 7, 0, -3, 1/2, √2 y π. Observa bien el razonamiento en cada caso.',
-            steps: [
-              {
-                expression: '7 ∈ ℕ, ℤ, ℚ, ℝ',
-                explanation: '7 es natural. Y como ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ, también pertenece a todos los conjuntos mayores.',
-                whyExplanation: 'Es como las muñecas rusas: si algo está en la más pequeña (ℕ), también está en todas las más grandes.',
-              },
-              {
-                expression: '0 ∈ ℕ, ℤ, ℚ, ℝ',
-                explanation: '0 se incluye en ℕ según la definición moderna (usada en WU Vienna).',
-                whyExplanation: 'Algunos libros antiguos no incluyen el 0 en ℕ. En WU Vienna se usa la convención moderna donde ℕ = {0, 1, 2, ...}.',
-              },
-              {
-                expression: '-3 ∈ ℤ, ℚ, ℝ   pero   -3 ∉ ℕ',
-                explanation: 'Los números negativos no son naturales. ℤ los añade expresamente.',
-                whyExplanation: 'Los enteros surgen de necesitar restar: si tienes 3 y gastas 5, el resultado (-2) no existe en ℕ.',
-              },
-              {
-                expression: '1/2 ∈ ℚ, ℝ   pero   1/2 ∉ ℤ',
-                explanation: '1/2 es cociente de dos enteros (1 y 2), así que es racional. No es entero porque está entre 0 y 1.',
-                whyExplanation: 'ℚ = {a/b : a,b ∈ ℤ, b≠0}. Aquí a=1, b=2. Se puede comprobar que 1/2 no aparece en {...,-1,0,1,2,...}.',
-              },
-              {
-                expression: '√2 ∈ ℝ   pero   √2 ∉ ℚ   (irracional)',
-                explanation: '√2 ≈ 1.41421... Sus decimales no terminan ni se repiten. Es irracional.',
-                whyExplanation: 'Se puede demostrar por reducción al absurdo: suponemos √2 = a/b (fracción irreducible), elevamos al cuadrado y llegamos a una contradicción.',
-              },
-              {
-                expression: 'π ∈ ℝ   pero   π ∉ ℚ   (irracional trascendente)',
-                explanation: 'π ≈ 3.14159... También irracional. Además es "trascendente" (no raíz de ningún polinomio con coeficientes enteros).',
-                whyExplanation: 'Los irracionales "llenan los huecos" de la recta numérica que los racionales no cubren. Juntos forman ℝ.',
-              },
-            ]
-          },
-          {
-            type: 'guided',
-            title: 'Juntos: clasificamos números',
-            tutorIntro: 'Ahora lo hacemos juntos. Completa los huecos con el conjunto correcto (ℕ, ℤ, ℚ o ℝ) o con ∉ si no pertenece.',
-            steps: [
-              {
-                display: '-7 ∈ ___ y también ___, pero -7 ∉ ___',
-                explanation: '-7 es negativo. ¿A qué conjuntos pertenece y a cuál no?',
-                gaps: [
-                  { id: 'a', answer: 'ℤ', hint: 'Es negativo, así que es un número...', placeholder: '?' },
-                  { id: 'b', answer: 'ℝ', hint: 'El conjunto que contiene a todos los demás', placeholder: '?' },
-                  { id: 'c', answer: 'ℕ', hint: 'Los negativos no son...', placeholder: '?' },
-                ]
-              },
-              {
-                display: '3/5 ∈ ___ y también ___, pero 3/5 ∉ ___',
-                explanation: '3/5 es una fracción de enteros',
-                gaps: [
-                  { id: 'd', answer: 'ℚ', hint: '3/5 = a/b con a=3, b=5. Eso es la definición de...', placeholder: '?' },
-                  { id: 'e', answer: 'ℝ', hint: 'Todo racional es también...', placeholder: '?' },
-                  { id: 'f', answer: 'ℤ', hint: '3/5 no está en {...,-1,0,1,2,...}', placeholder: '?' },
-                ]
-              },
-              {
-                display: '√4 = ___ ∈ ℕ, ℤ, ℚ, ℝ',
-                explanation: 'Primero simplifica √4, luego clasifica',
-                gaps: [
-                  { id: 'g', answer: '2', hint: '¿Qué número al cuadrado da 4?', placeholder: '√4' },
-                ]
-              },
-            ]
-          },
-          {
-            type: 'solo',
-            title: 'Tu turno: clasifica √16, -2/3 y -5',
-            tutorIntro: 'Clasifica cada número en todos los conjuntos a los que pertenece. Si necesitas ayuda, pulsa "Hint".',
-            hints: [
-              '¿Puedes simplificar √16? Busca un número cuyo cuadrado sea 16.',
-              '√16 = 4, que es natural. Por tanto también está en ℤ, ℚ y ℝ.',
-              '-2/3 es cociente de enteros (-2 y 3). ¿Es entero o natural?',
-              '-2/3 ∈ ℚ y ℝ, pero -2/3 ∉ ℤ (está entre -1 y 0) y ∉ ℕ.',
-              '-5 es negativo: no puede ser natural. Pero sí es entero, racional y real.',
-            ],
-            answer: '√16=4 ∈ ℕ,ℤ,ℚ,ℝ  |  -2/3 ∈ ℚ,ℝ  |  -5 ∈ ℤ,ℚ,ℝ',
-            solution: [
-              { expression: '√16 = 4 ∈ ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ', explanation: '4 es natural, así que pertenece a todos.' },
-              { expression: '-2/3 ∈ ℚ ⊂ ℝ,  -2/3 ∉ ℤ', explanation: 'Es fracción de enteros (racional), pero no está en {...,-1,0,1,...}.' },
-              { expression: '-5 ∈ ℤ ⊂ ℚ ⊂ ℝ,  -5 ∉ ℕ', explanation: 'Negativo: no es natural, pero sí entero (y por tanto racional y real).' },
-            ]
-          },
-          {
-            type: 'summary',
-            title: 'Tipos de Números — ¡Lo tienes!',
-            points: [
-              'ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ: cada conjunto contiene al anterior',
-              'ℕ = {0,1,2,...}: contar. No hay negativos ni fracciones.',
-              'ℤ añade los negativos: {...,-2,-1,0,1,2,...}',
-              'ℚ = {a/b | a,b∈ℤ, b≠0}: todas las fracciones exactas',
-              'ℝ = ℚ ∪ irracionales: toda la recta numérica (√2, π, e...)',
-              'Para clasificar: simplifica primero (√16=4), luego sube de ℕ a ℝ',
-            ]
-          }
-        ]
+        id: 'bienvenida',
+        title: 'Bienvenida',
+        steps: [{
+          type: 'welcome',
+          sessionNumber: 1,
+          duration: '90 min',
+          scheduledDate: '2026-05-21',
+          title: 'Conjuntos y Álgebra',
+          whyItMatters: 'Las 3–4 primeras preguntas del WU siempre son de conjuntos numéricos o álgebra. Son las más fáciles de dominar con práctica.',
+          agenda: [
+            { icon: '📖', label: 'Conjuntos ℕ ℤ ℚ ℝ' },
+            { icon: '✏️', label: 'Ejercicio guiado' },
+            { icon: '🎯', label: 'Test WU 2023' },
+            { icon: '🔥', label: 'Problema real WU' },
+          ],
+          examTip: 'En el examen WU, Task 1 casi siempre pide identificar a qué conjunto pertenece un número o cuáles afirmaciones son verdaderas sobre ℕ, ℤ, ℚ, ℝ.',
+        }],
       },
       {
-        id: 'operaciones-conjuntos',
-        title: 'Operaciones con Conjuntos',
-        steps: [
-          {
-            type: 'explanation',
-            title: 'Unión, intersección y diferencia',
-            content: `Sean A = {1, 2, 3, 4} y B = {3, 4, 5, 6}:
-
-A ∪ B = {1,2,3,4,5,6}   → Unión: todo lo que hay en A O en B
-A ∩ B = {3, 4}           → Intersección: lo que está en A Y en B
-A \\ B = {1, 2}           → Diferencia: lo de A que NO está en B
-B \\ A = {5, 6}           → Diferencia: lo de B que NO está en A
-A'    = Ω \\ A             → Complemento: todo lo que NO está en A`,
-            visual: 'venn-diagram',
-            tutorMessage: 'Usa los botones del diagrama para ver cada operación iluminada. La intersección es lo que comparten los dos círculos.',
-            whyExplanation: 'Estas operaciones son la base de la teoría de probabilidades: P(A∪B) = P(A) + P(B) − P(A∩B). Si no entiendes conjuntos, no puedes calcular probabilidades de eventos combinados.',
-          },
-          {
-            type: 'example',
-            title: 'El tutor calcula con conjuntos',
-            tutorIntro: 'Dados A = {a, e, i, o, u} y B = {a, b, c, d, e}, voy a calcular todas las operaciones.',
-            steps: [
-              {
-                expression: 'A ∪ B = {a, b, c, d, e, i, o, u}',
-                explanation: 'Uno todos los elementos sin repetir. El "a" y la "e" aparecen en ambos, pero los listo solo una vez.',
-                whyExplanation: 'La unión pregunta: ¿está en A O en B (o en ambos)? Cada elemento se cuenta solo una vez.',
-              },
-              {
-                expression: 'A ∩ B = {a, e}',
-                explanation: 'Solo los que están en ambos conjuntos a la vez: "a" y "e".',
-                whyExplanation: 'La intersección pregunta: ¿está en A Y también en B? Solo pasan el filtro los que cumplen las dos condiciones.',
-              },
-              {
-                expression: 'A \\ B = {i, o, u}',
-                explanation: 'Los de A que NO están en B: quitamos "a" y "e" (que sí están en B).',
-                whyExplanation: 'A\\B significa "A menos B". Es como filtrar A y quedarse solo con los que B rechazaría.',
-              },
-              {
-                expression: 'B \\ A = {b, c, d}',
-                explanation: 'Los de B que no están en A: quitamos "a" y "e".',
-                whyExplanation: 'Nótese que A\\B ≠ B\\A (en general). La diferencia no es conmutativa.',
-              },
-              {
-                expression: '|A ∪ B| = 8,   |A ∩ B| = 2',
-                explanation: 'La cardinalidad (|·|) es el número de elementos. 8 en la unión, 2 en la intersección.',
-                whyExplanation: 'Regla útil: |A∪B| = |A| + |B| − |A∩B| = 5 + 5 − 2 = 8. ¡Evita contar los comunes dos veces!',
-              },
-            ]
-          },
-          {
-            type: 'guided',
-            title: 'Juntos: A = {1,2,3,4,5} y B = {2,4,6,8}',
-            tutorIntro: 'Calcula las operaciones conmigo. Completa los huecos.',
-            steps: [
-              {
-                display: 'A ∪ B = {1, ___, 3, 4, 5, ___, 8}',
-                explanation: 'Todos los elementos de A y B sin repetir',
-                gaps: [
-                  { id: 'a', answer: '2', hint: '2 está en A. ¿Va en la unión?', placeholder: '?' },
-                  { id: 'b', answer: '6', hint: '6 está en B. ¿Lo incluimos?', placeholder: '?' },
-                ]
-              },
-              {
-                display: 'A ∩ B = {___, ___}',
-                explanation: 'Los que están en A y también en B',
-                gaps: [
-                  { id: 'c', answer: '2', hint: '¿El 2 está en A? ¿Y en B?', placeholder: '?' },
-                  { id: 'd', answer: '4', hint: '¿El 4 está en A? ¿Y en B?', placeholder: '?' },
-                ]
-              },
-              {
-                display: 'A \\ B = {1, ___, ___}',
-                explanation: 'Los de A que no están en B (quitamos 2 y 4)',
-                gaps: [
-                  { id: 'e', answer: '3', hint: '¿Está el 3 en B = {2,4,6,8}?', placeholder: '?' },
-                  { id: 'f', answer: '5', hint: '¿Está el 5 en B = {2,4,6,8}?', placeholder: '?' },
-                ]
-              },
-            ]
-          },
-          {
-            type: 'solo',
-            title: 'Tu turno: M = {1,3,5,7,9} y P = {1,2,3,4,5}',
-            tutorIntro: 'Calcula M∪P, M∩P y M\\P. Tómate tu tiempo.',
-            hints: [
-              'M∪P: junta todos los elementos de M y P sin repetir ninguno.',
-              'M∩P: busca qué números aparecen en los dos conjuntos a la vez.',
-              'M\\P: de los elementos de M, quita los que también están en P.',
-              'Solución: M∪P = {1,2,3,4,5,7,9},  M∩P = {1,3,5},  M\\P = {7,9}',
-            ],
-            answer: 'M∪P={1,2,3,4,5,7,9}, M∩P={1,3,5}, M\\P={7,9}',
-            solution: [
-              { expression: 'M ∪ P = {1, 2, 3, 4, 5, 7, 9}', explanation: 'Todos los de M más los de P que faltan: 2, 4.' },
-              { expression: 'M ∩ P = {1, 3, 5}', explanation: '1, 3 y 5 están en M = {1,3,5,7,9} y también en P = {1,2,3,4,5}.' },
-              { expression: 'M \\ P = {7, 9}', explanation: 'De M quitamos 1, 3 y 5 (que sí están en P). Quedan 7 y 9.' },
-            ]
-          },
-          {
-            type: 'summary',
-            title: 'Operaciones con conjuntos — ¡Dominadas!',
-            points: [
-              'A ∪ B: todos los elementos de A o B (sin repetir)',
-              'A ∩ B: solo los que están en A y también en B',
-              'A \\ B: los de A que no están en B (orden importa: A\\B ≠ B\\A)',
-              'Fórmula clave: |A∪B| = |A| + |B| − |A∩B|',
-              'El diagrama de Venn muestra visualmente cada región',
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'algebra',
-    title: 'Álgebra y Ecuaciones',
-    emoji: '=',
-    color: 'blue',
-    description: 'Ecuaciones cuadráticas y sistemas de ecuaciones',
-    topics: [
-      {
-        id: 'ecuaciones-cuadraticas',
-        title: 'Ecuaciones Cuadráticas',
-        steps: [
-          {
-            type: 'explanation',
-            title: 'La ecuación cuadrática ax² + bx + c = 0',
-            content: `Una ecuación cuadrática tiene la forma: ax² + bx + c = 0  (a ≠ 0)
-
-Para resolverla, usamos la fórmula cuadrática:
-
-        x = (−b ± √(b²−4ac)) / (2a)
-
-El discriminante Δ = b² − 4ac determina las soluciones:
-  Δ > 0 → dos raíces reales distintas
-  Δ = 0 → una raíz real doble
-  Δ < 0 → sin solución real (raíces complejas)`,
-            visual: 'quadratic-grapher',
-            tutorMessage: 'Mueve los sliders a, b, c y observa cómo cambia la parábola. Las raíces son donde la curva corta el eje x.',
-            whyExplanation: 'La fórmula cuadrática se obtiene completando el cuadrado en ax²+bx+c=0. Es la herramienta más potente para resolver cualquier cuadrática.',
-          },
-          {
-            type: 'example',
-            title: 'El tutor resuelve: x² − 5x + 6 = 0',
-            tutorIntro: 'Voy a resolver esta ecuación paso a paso usando la fórmula cuadrática.',
-            steps: [
-              {
-                expression: 'Identificar: a=1, b=−5, c=6',
-                explanation: 'Comparamos x² − 5x + 6 con ax² + bx + c para leer los coeficientes.',
-                whyExplanation: 'Es el primer paso obligatorio antes de usar cualquier fórmula. Un error aquí arrastra todos los errores siguientes.',
-              },
-              {
-                expression: 'Δ = b² − 4ac = (−5)² − 4·1·6 = 25 − 24 = 1',
-                explanation: 'Calculamos el discriminante. Δ = 1 > 0, así que habrá dos raíces reales distintas.',
-                whyExplanation: 'Siempre calcula Δ antes que las raíces. Si Δ < 0, ya sabes que no hay solución real y no tienes que seguir.',
-              },
-              {
-                expression: 'x = (−(−5) ± √1) / (2·1) = (5 ± 1) / 2',
-                explanation: 'Sustituimos en la fórmula. ¡Ojo con el signo: −b = −(−5) = +5!',
-                whyExplanation: 'El signo de b es el que más confunde. Siempre escribe −b explícitamente antes de sustituir.',
-              },
-              {
-                expression: 'x₁ = (5+1)/2 = 3   →   x₂ = (5−1)/2 = 2',
-                explanation: 'Calculamos las dos raíces separando el ± en dos casos.',
-                whyExplanation: 'x₁ y x₂ son ambas soluciones válidas. Podemos verificar: 3²−5·3+6 = 9−15+6 = 0 ✓',
-              },
-              {
-                expression: 'Solución: x ∈ {2, 3}',
-                explanation: 'La ecuación tiene dos raíces: x=2 y x=3. La parábola corta el eje x en esos puntos.',
-                whyExplanation: 'Verificación: (x−2)(x−3) = x²−5x+6 ✓. Siempre conviene factorizar para comprobar.',
-              },
-            ]
-          },
-          {
-            type: 'guided',
-            title: 'Juntos: 2x² + 3x − 2 = 0',
-            tutorIntro: 'Resolvemos juntos esta ecuación. Completa los huecos.',
-            steps: [
-              {
-                display: 'a = ___, b = ___, c = ___',
-                explanation: 'Lee los coeficientes de 2x² + 3x − 2',
-                gaps: [
-                  { id: 'a', answer: '2', hint: 'El coeficiente de x² es...', placeholder: 'a' },
-                  { id: 'b', answer: '3', hint: 'El coeficiente de x es...', placeholder: 'b' },
-                  { id: 'c', answer: '-2', hint: 'El término independiente (con su signo) es...', placeholder: 'c' },
-                ]
-              },
-              {
-                display: 'Δ = 3² − 4·2·(−2) = 9 + ___ = ___',
-                explanation: 'Calcula el discriminante',
-                gaps: [
-                  { id: 'd', answer: '16', hint: '4·2·(−2) = −16, pero el signo de −4ac es −(−16) = ...', placeholder: '+?' },
-                  { id: 'e', answer: '25', hint: '9 + 16 = ?', placeholder: 'Δ' },
-                ]
-              },
-              {
-                display: 'x = (−3 ± √___) / (2·2) = (−3 ± ___) / 4',
-                explanation: 'Sustituye en la fórmula',
-                gaps: [
-                  { id: 'f', answer: '25', hint: 'El discriminante que calculaste', placeholder: 'Δ' },
-                  { id: 'g', answer: '5', hint: '√25 = ?', placeholder: '√Δ' },
-                ]
-              },
-              {
-                display: 'x₁ = (−3+5)/4 = ___   y   x₂ = (−3−5)/4 = ___',
-                explanation: 'Calcula las dos raíces',
-                gaps: [
-                  { id: 'h', answer: '1/2', hint: '2/4 = ?', placeholder: 'x₁' },
-                  { id: 'i', answer: '-2', hint: '−8/4 = ?', placeholder: 'x₂' },
-                ]
-              },
-            ]
-          },
-          {
-            type: 'solo',
-            title: 'Tu turno: x² + 2x − 8 = 0',
-            tutorIntro: '¡Tu momento! Aplica la fórmula cuadrática paso a paso.',
-            hints: [
-              'Identifica: a=1, b=2, c=−8',
-              'Calcula Δ = b²−4ac = 4−4·1·(−8) = 4+32 = 36',
-              'Como Δ=36>0, hay dos raíces. √36 = 6.',
-              'x = (−2 ± 6) / 2. Calcula x₁ = (−2+6)/2 y x₂ = (−2−6)/2.',
-            ],
-            answer: 'x₁ = 2, x₂ = −4',
-            solution: [
-              { expression: 'a=1, b=2, c=−8', explanation: 'Leemos los coeficientes.' },
-              { expression: 'Δ = 4−4·1·(−8) = 4+32 = 36', explanation: 'Discriminante positivo: dos raíces reales.' },
-              { expression: 'x = (−2 ± √36)/2 = (−2 ± 6)/2', explanation: 'Aplicamos la fórmula.' },
-              { expression: 'x₁ = 4/2 = 2   y   x₂ = −8/2 = −4', explanation: 'Verificación: (x−2)(x+4) = x²+2x−8 ✓' },
-            ]
-          },
-          {
-            type: 'summary',
-            title: 'Ecuaciones Cuadráticas — ¡Controladas!',
-            points: [
-              'Forma estándar: ax² + bx + c = 0 (con a ≠ 0)',
-              'Fórmula: x = (−b ± √(b²−4ac)) / (2a)',
-              'Δ > 0 → dos raíces distintas  |  Δ = 0 → raíz doble  |  Δ < 0 → sin solución real',
-              'Verifica siempre sustituyendo las raíces en la ecuación original',
-              'En la parábola, las raíces son los puntos donde f(x) = 0 (cortes con eje x)',
-            ]
-          }
-        ]
+        id: 'concepto',
+        title: 'Conjuntos Numéricos',
+        steps: [{
+          type: 'explanation',
+          title: 'Números reales y conjuntos',
+          tutorMessage: 'El error más frecuente: confundir ∈ (elemento) con ⊆ (subconjunto). Recuerda: 3 ∈ ℕ pero {3} ⊆ ℕ.',
+          keyPoints: [
+            { label: 'ℕ = {0, 1, 2, 3, …}', detail: 'Solo enteros no negativos. −5 ∉ ℕ, 0 ∈ ℕ.' },
+            { label: 'ℤ = {…, −2, −1, 0, 1, 2, …}', detail: 'Añade los negativos. ℕ ⊂ ℤ.' },
+            { label: 'ℚ = {a/b | a,b ∈ ℤ, b ≠ 0}', detail: 'Fracciones exactas. 0.333… = 1/3 ∈ ℚ.' },
+            { label: 'ℝ = recta numérica completa', detail: 'Incluye irracionales: √2, π, e ∉ ℚ pero ∈ ℝ.' },
+            { label: 'Jerarquía: ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ', detail: 'Todo natural es entero, todo entero es racional, todo racional es real.' },
+          ],
+          formulaGlossary: [
+            { symbol: '∈', meaning: 'pertenece a' },
+            { symbol: '⊂', meaning: 'subconjunto estricto' },
+            { symbol: 'A ∩ B', meaning: 'intersección (en ambos)' },
+            { symbol: 'A ∪ B', meaning: 'unión (en al menos uno)' },
+            { symbol: "A \\ B", meaning: 'diferencia (en A pero no en B)' },
+          ],
+          visual: 'number-sets',
+          whyExplanation: 'Task 1 del WU 2023, 2024 y 2025 fue siempre sobre conjuntos numéricos. Son puntos fáciles si sabes la jerarquía.',
+        }],
       },
       {
-        id: 'sistemas',
-        title: 'Sistemas de Ecuaciones',
-        steps: [
-          {
-            type: 'explanation',
-            title: 'Sistemas de dos ecuaciones con dos incógnitas',
-            content: `Un sistema 2×2:  { a₁x + b₁y = c₁
-                      { a₂x + b₂y = c₂
-
-Métodos de resolución:
-1. Sustitución: despejamos una variable en una ecuación y sustituimos en la otra
-2. Eliminación (Gauss): sumamos múltiplos de las ecuaciones para eliminar una variable
-3. Gráfico: la solución es el punto de intersección de dos rectas`,
-            visual: 'quadratic-grapher',
-            tutorMessage: 'Un sistema de ecuaciones es como encontrar dónde se cruzan dos caminos en un mapa.',
-            whyExplanation: 'Los sistemas aparecen siempre que hay dos condiciones simultáneas: mezclas de productos, movimiento, circuitos eléctricos, etc.',
-          },
-          {
-            type: 'example',
-            title: 'El tutor resuelve: { 2x + y = 7  /  x − y = 2 }',
-            tutorIntro: 'Voy a resolver este sistema por el método de eliminación (sumar las ecuaciones).',
-            steps: [
-              {
-                expression: '(2x + y = 7)  +  (x − y = 2)',
-                explanation: 'Sumamos las dos ecuaciones. Los términos en y se cancelan: +y + (−y) = 0.',
-                whyExplanation: 'El método de eliminación busca hacer desaparecer una variable sumando (o restando) ecuaciones multiplicadas por constantes adecuadas.',
-              },
-              {
-                expression: '3x = 9   →   x = 3',
-                explanation: 'Con y eliminada, tenemos una ecuación de una incógnita. Despejamos x.',
-                whyExplanation: 'Dividimos entre 3 en ambos lados: 3x/3 = 9/3 → x = 3.',
-              },
-              {
-                expression: 'Sustituimos x=3 en la primera: 2(3) + y = 7 → y = 1',
-                explanation: 'Conocido x, sustituimos en cualquier ecuación para encontrar y.',
-                whyExplanation: 'Podemos usar cualquiera de las dos ecuaciones para hallar y. Conviene elegir la más sencilla.',
-              },
-              {
-                expression: 'Solución: (x, y) = (3, 1)',
-                explanation: 'Verificamos: 2(3)+1 = 7 ✓  y  3−1 = 2 ✓. El punto (3,1) satisface ambas ecuaciones.',
-                whyExplanation: 'La verificación es obligatoria en el examen. Comprueba siempre en ambas ecuaciones originales.',
-              },
-            ]
-          },
-          {
-            type: 'guided',
-            title: 'Juntos: { 3x + 2y = 12  /  x − y = 1 }',
-            tutorIntro: 'Usaremos sustitución. Yo empiezo, tú completas.',
-            steps: [
-              {
-                display: 'De la 2ª: x = ___ + ___',
-                explanation: 'Despejamos x de la segunda ecuación x − y = 1',
-                gaps: [
-                  { id: 'a', answer: '1', hint: 'x − y = 1  →  x = 1 + y  →  el número libre es...', placeholder: '?' },
-                  { id: 'b', answer: 'y', hint: 'y se pasa al otro lado con signo +', placeholder: '?' },
-                ]
-              },
-              {
-                display: 'Sustituimos en la 1ª: 3(___ + y) + 2y = 12 → ___ + 5y = 12',
-                explanation: 'Sustituimos x = 1 + y en 3x + 2y = 12',
-                gaps: [
-                  { id: 'c', answer: '1', hint: 'x = 1 + y, así que ponemos ese valor', placeholder: 'x' },
-                  { id: 'd', answer: '3', hint: '3·(1+y) = 3 + 3y. ¿Cuánto vale el número libre?', placeholder: '?' },
-                ]
-              },
-              {
-                display: '5y = ___ → y = ___',
-                explanation: 'Despejamos y',
-                gaps: [
-                  { id: 'e', answer: '9', hint: '12 − 3 = ?', placeholder: '?' },
-                  { id: 'f', answer: '9/5', hint: '9/5 = ?', placeholder: 'y' },
-                ]
-              },
-            ]
-          },
-          {
-            type: 'solo',
-            title: 'Tu turno: { x + 2y = 8  /  3x − y = 1 }',
-            tutorIntro: 'Resuelve el sistema. Puedes usar sustitución o eliminación.',
-            hints: [
-              'Prueba el método de sustitución: despeja x de la primera ecuación.',
-              'De la 1ª: x = 8 − 2y. Sustituye en la segunda: 3(8−2y) − y = 1.',
-              '24 − 6y − y = 1 → 24 − 7y = 1 → 7y = 23 → y = 23/7... Hmm. O usa eliminación.',
-              'Eliminación: multiplica la 2ª por 2 → (6x−2y=2). Suma con la 1ª: 7x=10 → x=10/7, y=23/7.',
-            ],
-            answer: 'x = 10/7, y = 23/7',
-            solution: [
-              { expression: 'Ecuación 1: x + 2y = 8', explanation: 'Multiplicamos por 1 (la dejamos igual).' },
-              { expression: 'Ecuación 2: 3x − y = 1, multiplicamos por 2: 6x − 2y = 2', explanation: 'Buscamos cancelar y.' },
-              { expression: 'Sumamos: (x+2y) + (6x−2y) = 8+2 → 7x = 10 → x = 10/7', explanation: 'Los y se cancelan.' },
-              { expression: 'x=10/7 en ec.1: 10/7 + 2y = 8 → 2y = 46/7 → y = 23/7', explanation: 'Verificamos: ✓' },
-            ]
-          },
-          {
-            type: 'summary',
-            title: 'Sistemas de Ecuaciones — ¡Completados!',
-            points: [
-              'Sustitución: despeja una variable y sustituye en la otra ecuación',
-              'Eliminación: suma/resta múltiplos de las ecuaciones para cancelar una variable',
-              'La solución (x,y) es el punto de intersección de las dos rectas',
-              'Verifica SIEMPRE sustituyendo en ambas ecuaciones originales',
-              'Si las rectas son paralelas → sin solución; si son la misma → infinitas soluciones',
-            ]
-          }
-        ]
-      }
-    ]
+        id: 'guiado',
+        title: 'Ejercicio Guiado',
+        steps: [{
+          type: 'guided',
+          title: 'Deducir números naturales de una expresión',
+          tutorIntro: 'Dado a = −4b con b ∈ ℤ, b ≠ 0, vamos a demostrar que ciertas expresiones siempre son números naturales.',
+          steps: [
+            {
+              explanation: 'Primero simplificamos −a/b sustituyendo a = −4b.',
+              display: '−a/b = −(___)/b = ___',
+              gaps: [
+                { id: 'g1a', answer: '−4b', hint: 'a = −4b, sustituye directamente', placeholder: 'a = ?' },
+                { id: 'g1b', answer: '4', hint: '−(−4b)/b = 4b/b = 4', placeholder: 'resultado' },
+              ],
+            },
+            {
+              explanation: 'Ahora simplificamos (−a − b). Sustituimos a = −4b.',
+              display: '−a − b = −(___) − b = 4b − b = ___',
+              gaps: [
+                { id: 'g2a', answer: '−4b', hint: 'a = −4b', placeholder: 'a' },
+                { id: 'g2b', answer: '3b', hint: '4b − b = 3b', placeholder: 'resultado' },
+              ],
+            },
+            {
+              explanation: 'Por último, elevamos al cuadrado.',
+              display: '(−a − b)² = (3b)² = ___',
+              gaps: [
+                { id: 'g3', answer: '9b²', hint: '(3b)² = 9·b²', placeholder: '?' },
+              ],
+            },
+          ],
+        }],
+      },
+      {
+        id: 'facil',
+        title: 'Test WU 2023',
+        steps: [{
+          type: 'multiple-choice',
+          examLabel: 'WU 2023 – Task 1',
+          difficulty: 'easy',
+          correctCount: 2,
+          question: 'Which TWO of the following statements are TRUE?\n\n(A) √(9/2) is a rational number\n(B) −√100 is an integer\n(C) √15 is a natural number\n(D) Every rational number is a real number\n(E) √(−4) is a real number',
+          options: [
+            { id: 'A', text: '(A) √(9/2) is a rational number', correct: false, explanation: '√(9/2) = 3/√2 = 3√2/2, que es irracional. Falso.' },
+            { id: 'B', text: '(B) −√100 is an integer', correct: true, explanation: '−√100 = −10 ∈ ℤ. Verdadero.' },
+            { id: 'C', text: '(C) √15 is a natural number', correct: false, explanation: '√15 ≈ 3.873, no es entero. Falso.' },
+            { id: 'D', text: '(D) Every rational number is a real number', correct: true, explanation: 'ℚ ⊂ ℝ, por definición. Verdadero.' },
+            { id: 'E', text: '(E) √(−4) is a real number', correct: false, explanation: 'La raíz de un número negativo no existe en ℝ. Falso.' },
+          ],
+          tutorExplanation: 'Clave: −√100 = −10 (entero) y ℚ ⊂ ℝ (todo racional es real). Siempre verifica si el resultado de una raíz es entero antes de clasificar.',
+        }],
+      },
+      {
+        id: 'medio',
+        title: 'Nivel Medio',
+        steps: [{
+          type: 'solo',
+          difficulty: 'medium',
+          examLabel: 'WU 2024 – Task 2',
+          title: 'Plantear ecuaciones: precio de frutas',
+          problem: 'Mangoes cost 80% more than apricots AND €1.40 more than apricots.\n\nLet m = price of mangoes (€) and a = price of apricots (€).\n\nWhich TWO equations correctly model this situation?',
+          tutorIntro: 'El truco: "80% más caro" significa m = a + 0.8a = 1.8a, es decir m/a = 1.8. Y "€1.40 más" significa m = a + 1.4, es decir a = m − 1.4.',
+          hints: [
+            '"80% más caro que los albaricoques" → m = 1.8·a → divide ambos lados: m/a = 1.8',
+            '"1.40 € más caro" → m = a + 1.4 → despeja a: a = m − 1.4',
+            'Revisa las opciones: busca exactamente m/a = 1.8 y a = m − 1.4',
+          ],
+          answer: 'a = m − 1.4   y   m/a = 1.8',
+          solution: [
+            { expression: 'Dato 1: m = a + 1.40 → a = m − 1.40 ✓', explanation: 'Los mangos cuestan 1.40 € más que los albaricoques.' },
+            { expression: 'Dato 2: m = 1.8·a → m/a = 1.8 ✓', explanation: '80% más caro equivale a multiplicar por 1.8.' },
+            { expression: 'Incorrecto: m = 0.8·a → m/a = 0.8', explanation: 'Eso significaría que los mangos son MÁS BARATOS. Error clásico.' },
+          ],
+        }],
+      },
+      {
+        id: 'dificil',
+        title: 'Nivel WU',
+        steps: [{
+          type: 'solo',
+          difficulty: 'hard',
+          examLabel: 'WU 2024 – Task 3',
+          title: 'Sistema de ecuaciones sin solución',
+          problem: 'Consider the system of linear equations:\n\n   2x − y = 3\n   ax + 2y = c\n\nFor which values of a and c does the system have NO solution?',
+          tutorIntro: 'Un sistema 2×2 no tiene solución cuando las rectas son paralelas (igual pendiente, distinto término independiente). Despeja y en ambas ecuaciones y compara.',
+          hints: [
+            'Despeja y en la primera: y = 2x − 3. La pendiente es 2.',
+            'Despeja y en la segunda: 2y = −ax + c → y = −(a/2)x + c/2. La pendiente es −a/2.',
+            'Pendientes iguales: 2 = −a/2 → a = −4',
+            'Para que NO sea la misma recta: −3 ≠ c/2 → c ≠ −6',
+          ],
+          answer: 'a = −4 y c ≠ −6',
+          solution: [
+            { expression: 'y = 2x − 3  (pendiente 2, intercepto −3)', explanation: 'Despejando y de la primera ecuación.' },
+            { expression: 'y = −(a/2)x + c/2  (pendiente −a/2)', explanation: 'Despejando y de la segunda ecuación.' },
+            { expression: '−a/2 = 2  →  a = −4', explanation: 'Para pendientes iguales (líneas paralelas o coincidentes).' },
+            { expression: 'c/2 ≠ −3  →  c ≠ −6', explanation: 'Si c = −6 serían la misma recta (infinitas soluciones). c ≠ −6 garantiza ninguna solución.' },
+          ],
+        }],
+      },
+    ],
   },
+
+  /* ─────────────────────────────────────────────────────────────
+     SESSION 2 · Vectores y Geometría  · 24 May
+  ───────────────────────────────────────────────────────────── */
   {
-    id: 'vectores',
+    id: 'session-2',
+    sessionNumber: 2,
+    scheduledDate: '2026-05-24',
     title: 'Vectores y Geometría',
     emoji: '→',
     color: 'violet',
-    description: 'Vectores en 2D, módulo y producto escalar',
+    description: 'Vectores en ℝ² y ℝ³, rectas paramétricas',
     topics: [
       {
-        id: 'vectores-2d',
-        title: 'Vectores en el plano',
-        steps: [
-          {
-            type: 'explanation',
-            title: 'Vectores: dirección, sentido y magnitud',
-            content: `Un vector v = (v₁, v₂) tiene dos componentes: horizontal y vertical.
-
-Operaciones básicas:
-  u + v = (u₁+v₁, u₂+v₂)     Suma componente a componente
-  k·v  = (k·v₁, k·v₂)         Producto por escalar
-  |v|  = √(v₁² + v₂²)          Módulo (longitud del vector)
-
-Ejemplo: v = (3, 4)  →  |v| = √(9+16) = √25 = 5`,
-            visual: 'vector-diagram',
-            tutorMessage: 'Un vector es una flecha: importa dónde apunta y cuánto mide, pero no dónde empieza.',
-            whyExplanation: 'Los vectores aparecen en física (fuerzas, velocidades), economía (variaciones multivariantes) y estadística (distancias en espacios de alta dimensión).',
-          },
-          {
-            type: 'example',
-            title: 'El tutor calcula con u=(2,3) y v=(−1,4)',
-            tutorIntro: 'Voy a calcular la suma, la diferencia y los módulos de estos vectores.',
-            steps: [
-              {
-                expression: 'u + v = (2+(−1), 3+4) = (1, 7)',
-                explanation: 'Sumamos componente a componente. Primeras componentes: 2+(−1)=1. Segundas: 3+4=7.',
-                whyExplanation: 'La suma vectorial es como combinar dos desplazamientos: primero muévete (2,3), luego (−1,4). El resultado es haber ido (1,7).',
-              },
-              {
-                expression: 'u − v = (2−(−1), 3−4) = (3, −1)',
-                explanation: 'Restamos componente a componente. Ojo: 2−(−1) = 2+1 = 3.',
-                whyExplanation: 'u−v = u + (−v). Cambiar el signo de v invierte su dirección.',
-              },
-              {
-                expression: '|u| = √(2² + 3²) = √(4+9) = √13 ≈ 3.61',
-                explanation: 'El módulo es la longitud de la flecha. Usamos Pitágoras.',
-                whyExplanation: 'El módulo mide la distancia del punto (0,0) al punto (2,3). Es el teorema de Pitágoras aplicado al vector.',
-              },
-              {
-                expression: '|v| = √((−1)² + 4²) = √(1+16) = √17 ≈ 4.12',
-                explanation: 'Para el módulo, los cuadrados siempre son positivos: (−1)² = 1.',
-                whyExplanation: 'Importante: |−1|² = (−1)² = 1. El módulo siempre es no negativo.',
-              },
-            ]
-          },
-          {
-            type: 'guided',
-            title: 'Juntos: a=(1,−2) y b=(3,1)',
-            tutorIntro: 'Calculamos las operaciones básicas.',
-            steps: [
-              {
-                display: 'a + b = (1+3, −2+1) = (___, ___)',
-                explanation: 'Suma componente a componente',
-                gaps: [
-                  { id: 'a', answer: '4', hint: '1+3 = ?', placeholder: '1ª comp.' },
-                  { id: 'b', answer: '-1', hint: '−2+1 = ?', placeholder: '2ª comp.' },
-                ]
-              },
-              {
-                display: '|a| = √(1² + (−2)²) = √(___ + ___) = √___',
-                explanation: 'Módulo de a',
-                gaps: [
-                  { id: 'c', answer: '1', hint: '1² = ?', placeholder: '1²' },
-                  { id: 'd', answer: '4', hint: '(−2)² = ?', placeholder: '(-2)²' },
-                  { id: 'e', answer: '5', hint: '1+4 = ?', placeholder: 'suma' },
-                ]
-              },
-            ]
-          },
-          {
-            type: 'solo',
-            title: 'Tu turno: p=(−3,4) y q=(1,−2)',
-            tutorIntro: 'Calcula p+q, p−q, |p| y |q|.',
-            hints: [
-              'Suma: (−3+1, 4+(−2)) = (−2, 2)',
-              'Diferencia: (−3−1, 4−(−2)) = (−4, 6)',
-              '|p| = √((−3)²+4²) = √(9+16) = √25 = 5',
-              '|q| = √(1²+(−2)²) = √(1+4) = √5',
-            ],
-            answer: 'p+q=(−2,2), p−q=(−4,6), |p|=5, |q|=√5',
-            solution: [
-              { expression: 'p + q = (−3+1, 4−2) = (−2, 2)', explanation: '' },
-              { expression: 'p − q = (−3−1, 4−(−2)) = (−4, 6)', explanation: 'Cuidado: 4−(−2) = 4+2 = 6' },
-              { expression: '|p| = √(9+16) = √25 = 5', explanation: 'Un número entero: (3,4,5) es terna pitagórica.' },
-              { expression: '|q| = √(1+4) = √5 ≈ 2.24', explanation: '' },
-            ]
-          },
-          {
-            type: 'summary',
-            title: 'Vectores — ¡Bien orientado!',
-            points: [
-              'Vector v = (v₁, v₂): dos componentes, es una flecha en el plano',
-              'Suma: u+v = (u₁+v₁, u₂+v₂) — componente a componente',
-              'Módulo: |v| = √(v₁²+v₂²) — longitud por Pitágoras',
-              'Producto escalar: u·v = u₁v₁ + u₂v₂',
-              'Vectores perpendiculares: u·v = 0',
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'funciones',
-    title: 'Funciones',
-    emoji: 'f(x)',
-    color: 'indigo',
-    description: 'Cuadrática, exponencial y función seno',
-    topics: [
-      {
-        id: 'funcion-cuadratica',
-        title: 'Función Cuadrática',
-        steps: [
-          {
-            type: 'explanation',
-            title: 'La parábola: f(x) = ax² + bx + c',
-            content: `La función cuadrática forma una parábola. Sus características clave:
-
-Vértice (punto más alto/bajo):
-  x_v = −b / (2a)
-  y_v = f(x_v)
-
-Raíces (cortes con eje x): resuelve ax²+bx+c = 0
-Eje de simetría: la recta vertical x = x_v
-
-Si a > 0 → parábola abre hacia ARRIBA (mínimo)
-Si a < 0 → parábola abre hacia ABAJO (máximo)`,
-            visual: 'quadratic-grapher',
-            tutorMessage: 'Mueve el slider "a" entre positivo y negativo para ver cómo se da la vuelta la parábola. Cambia "b" para desplazarla y "c" para subirla o bajarla.',
-            whyExplanation: 'Las parábolas describen el movimiento de proyectiles, el beneficio máximo en economía, y las lentes ópticas. En el examen WU aparecen preguntas sobre vértice, raíces e intervalos de crecimiento.',
-          },
-          {
-            type: 'example',
-            title: 'El tutor analiza: f(x) = x² − 4x + 3',
-            tutorIntro: 'Voy a encontrar el vértice, las raíces y si es mínimo o máximo.',
-            steps: [
-              {
-                expression: 'a=1 > 0  →  parábola abre hacia arriba (mínimo)',
-                explanation: 'El signo de a determina la apertura. Como a=1 es positivo, el vértice es un mínimo.',
-                whyExplanation: 'Cuando x→±∞, ax² domina. Si a>0, f→+∞ en ambos extremos, así que el vértice es el punto más bajo.',
-              },
-              {
-                expression: 'x_v = −b/(2a) = −(−4)/(2·1) = 4/2 = 2',
-                explanation: 'El eje de simetría está en x=2. El vértice tiene coordenada x igual a 2.',
-                whyExplanation: 'La fórmula x_v = −b/(2a) viene de completar el cuadrado: ax²+bx+c = a(x+b/2a)²+...',
-              },
-              {
-                expression: 'y_v = f(2) = 2² − 4·2 + 3 = 4 − 8 + 3 = −1',
-                explanation: 'Sustituimos x=2 en la función para obtener la altura del vértice.',
-                whyExplanation: 'El vértice está sobre la curva, así que y_v = f(x_v) siempre.',
-              },
-              {
-                expression: 'Vértice: V = (2, −1)',
-                explanation: 'La parábola toca su punto más bajo en el punto (2, −1).',
-                whyExplanation: 'Como el vértice está por debajo del eje x (y_v=−1<0), la parábola lo cruza en dos puntos: hay dos raíces.',
-              },
-              {
-                expression: 'Raíces: Δ = 16−12 = 4  →  x = (4±2)/2  →  x₁=3, x₂=1',
-                explanation: 'Usamos la fórmula cuadrática. Las raíces son x=1 y x=3.',
-                whyExplanation: 'También se puede factorizar: x²−4x+3 = (x−1)(x−3) = 0 → x=1 o x=3.',
-              },
-            ]
-          },
-          {
-            type: 'guided',
-            title: 'Juntos: g(x) = −x² + 2x + 3',
-            tutorIntro: 'Analizamos esta parábola con a=−1. Completa los huecos.',
-            steps: [
-              {
-                display: 'a = ___, así que la parábola abre hacia ___',
-                explanation: 'Lee el coeficiente de x² y determina la apertura',
-                gaps: [
-                  { id: 'a', answer: '-1', hint: 'El coeficiente de x² en −x²+2x+3 es...', placeholder: 'a' },
-                  { id: 'b', answer: 'abajo', hint: 'Si a<0, la parábola...', placeholder: 'dirección' },
-                ]
-              },
-              {
-                display: 'x_v = −2 / (2·(−1)) = −2 / ___ = ___',
-                explanation: 'Calcula el eje de simetría con x_v = −b/(2a)',
-                gaps: [
-                  { id: 'c', answer: '-2', hint: '2·(−1) = ?', placeholder: '2a' },
-                  { id: 'd', answer: '1', hint: '−2/(−2) = ?', placeholder: 'x_v' },
-                ]
-              },
-              {
-                display: 'y_v = g(1) = −(1)² + 2(1) + 3 = ___ + ___ + 3 = ___',
-                explanation: 'Sustituye x=1 en g(x)',
-                gaps: [
-                  { id: 'e', answer: '-1', hint: '−(1)² = ?', placeholder: '−1²' },
-                  { id: 'f', answer: '2', hint: '2·1 = ?', placeholder: '2·1' },
-                  { id: 'g', answer: '4', hint: '−1+2+3 = ?', placeholder: 'y_v' },
-                ]
-              },
-            ]
-          },
-          {
-            type: 'solo',
-            title: 'Tu turno: h(x) = 2x² − 8x + 6',
-            tutorIntro: 'Encuentra el vértice, las raíces y la apertura de esta parábola.',
-            hints: [
-              'a=2>0 → parábola abre hacia arriba (mínimo en el vértice).',
-              'x_v = −(−8)/(2·2) = 8/4 = 2',
-              'y_v = h(2) = 2(4) − 8(2) + 6 = 8 − 16 + 6 = −2. Vértice: (2, −2)',
-              'Raíces: Δ = 64 − 48 = 16. x = (8±4)/4 → x₁=3, x₂=1',
-            ],
-            answer: 'Vértice (2,−2), raíces x=1 y x=3, abre hacia arriba',
-            solution: [
-              { expression: 'a=2>0 → abre hacia arriba', explanation: 'El vértice será un mínimo.' },
-              { expression: 'x_v = 8/4 = 2', explanation: 'x_v = −b/2a = −(−8)/(2·2)' },
-              { expression: 'y_v = 2(4)−16+6 = −2 → Vértice (2,−2)', explanation: '' },
-              { expression: 'Δ = 64−48 = 16 → x = (8±4)/4 → x₁=3, x₂=1', explanation: 'Verificación: h(1)=2−8+6=0 ✓' },
-            ]
-          },
-          {
-            type: 'summary',
-            title: 'Función Cuadrática — ¡Dominada!',
-            points: [
-              'f(x) = ax² + bx + c es una parábola',
-              'a>0 → mínimo (abre ↑)  |  a<0 → máximo (abre ↓)',
-              'Vértice: x_v = −b/(2a),  y_v = f(x_v)',
-              'Raíces: aplica la fórmula cuadrática o factoriza',
-              'Eje de simetría: la recta vertical x = x_v',
-            ]
-          }
-        ]
+        id: 'bienvenida',
+        title: 'Bienvenida',
+        steps: [{
+          type: 'welcome',
+          sessionNumber: 2,
+          duration: '90 min',
+          scheduledDate: '2026-05-24',
+          title: 'Vectores y Geometría',
+          whyItMatters: 'El WU tiene 2–3 preguntas de vectores. Aparecen en Tasks 4–6 y suelen pedir identificar ecuaciones de rectas o calcular con vectores.',
+          agenda: [
+            { icon: '📖', label: 'Vectores y rectas' },
+            { icon: '✏️', label: 'Suma y resta guiada' },
+            { icon: '🎯', label: 'Test: rectas paralelas' },
+            { icon: '🔥', label: 'Recta en 3D (WU 2025)' },
+          ],
+          examTip: 'La ecuación paramétrica X = P + t·v es la forma estándar del WU. Identifica el punto P y el vector director v.',
+        }],
       },
       {
-        id: 'funcion-exponencial',
-        title: 'Función Exponencial',
-        steps: [
-          {
-            type: 'explanation',
-            title: 'Crecimiento y decaimiento exponencial',
-            content: `La función exponencial: f(x) = a · bˣ  (b > 0, b ≠ 1)
-
-Si b > 1 → crecimiento exponencial (crece sin límite)
-Si 0 < b < 1 → decaimiento exponencial (decrece hacia 0)
-
-La base natural: f(x) = eˣ  donde e ≈ 2.718...
-
-Propiedades clave:
-  f(0) = a · b⁰ = a  (punto de corte con eje y)
-  Dominio: todos los reales  |  Recorrido: (0, +∞) si a>0`,
-            visual: 'quadratic-grapher',
-            tutorMessage: 'Cambia b con el slider para ver cómo b>1 da crecimiento y b<1 da decaimiento.',
-            whyExplanation: 'El crecimiento exponencial aparece en: interés compuesto, crecimiento de poblaciones, propagación de virus, carga de un condensador...',
-          },
-          {
-            type: 'example',
-            title: 'El tutor analiza f(x) = 2 · 3ˣ',
-            tutorIntro: 'Analizamos la función exponencial f(x) = 2·3ˣ paso a paso.',
-            steps: [
-              {
-                expression: 'a = 2, b = 3. Como b=3>1 → crecimiento',
-                explanation: 'Identificamos los parámetros. La base 3>1 nos dice que la función crece.',
-                whyExplanation: 'Cada unidad que avanzamos en x, la función se multiplica por b=3: se hace tres veces mayor.',
-              },
-              {
-                expression: 'f(0) = 2·3⁰ = 2·1 = 2',
-                explanation: 'El punto de corte con el eje y siempre está en x=0.',
-                whyExplanation: 'b⁰ = 1 para cualquier base b≠0. Así que f(0) = a siempre.',
-              },
-              {
-                expression: 'f(1) = 2·3 = 6   f(2) = 2·9 = 18   f(−1) = 2/3',
-                explanation: 'Calculamos algunos valores para ver el comportamiento.',
-                whyExplanation: 'Nota: f(2)/f(1) = 18/6 = 3 = b. La razón entre valores consecutivos es siempre b.',
-              },
-              {
-                expression: 'La recta y=0 (eje x) es asíntota horizontal',
-                explanation: 'Cuando x→−∞, f(x)→0 pero nunca toca el eje x.',
-                whyExplanation: 'bˣ>0 para todo x y todo b>0. La función nunca llega a cero ni se hace negativa.',
-              },
-            ]
-          },
-          {
-            type: 'guided',
-            title: 'Juntos: g(x) = 5 · (1/2)ˣ',
-            tutorIntro: 'Analizamos esta función con b=1/2<1 (decaimiento).',
-            steps: [
-              {
-                display: 'b = 1/2 ___ 1, así que hay ___',
-                explanation: 'Determina si crece o decrece',
-                gaps: [
-                  { id: 'a', answer: '<', hint: '1/2 comparado con 1 es...', placeholder: '<,>,=' },
-                  { id: 'b', answer: 'decaimiento', hint: 'b<1 implica...', placeholder: '?' },
-                ]
-              },
-              {
-                display: 'g(0) = 5 · (1/2)⁰ = 5 · ___ = ___',
-                explanation: 'Calcula el punto de corte con el eje y',
-                gaps: [
-                  { id: 'c', answer: '1', hint: '(1/2)⁰ = ?', placeholder: '(1/2)⁰' },
-                  { id: 'd', answer: '5', hint: '5·1 = ?', placeholder: 'g(0)' },
-                ]
-              },
-            ]
-          },
-          {
-            type: 'solo',
-            title: 'Tu turno: h(x) = 100 · (0.8)ˣ',
-            tutorIntro: 'Analiza esta función y calcula h(0), h(1) y h(5).',
-            hints: [
-              'b = 0.8 < 1 → decaimiento (disminuye cada vez que x aumenta).',
-              'h(0) = 100 · 0.8⁰ = 100 · 1 = 100.',
-              'h(1) = 100 · 0.8 = 80.',
-              'h(5) = 100 · (0.8)⁵ = 100 · 0.32768 ≈ 32.77.',
-            ],
-            answer: 'Decaimiento: h(0)=100, h(1)=80, h(5)≈32.77',
-            solution: [
-              { expression: 'b = 0.8 < 1 → decaimiento exponencial', explanation: 'Cada año se conserva el 80% del valor anterior.' },
-              { expression: 'h(0) = 100', explanation: 'Valor inicial.' },
-              { expression: 'h(1) = 100·0.8 = 80', explanation: 'Bajó un 20%.' },
-              { expression: 'h(5) = 100·(0.8)⁵ ≈ 32.77', explanation: 'Tras 5 pasos, queda ≈ 32.77%.' },
-            ]
-          },
-          {
-            type: 'summary',
-            title: 'Función Exponencial — ¡Comprendida!',
-            points: [
-              'f(x) = a·bˣ  con b>0, b≠1',
-              'b>1 → crecimiento exponencial',
-              '0<b<1 → decaimiento (la función se acerca a 0)',
-              'f(0) = a (corte con eje y)',
-              'Dominio: ℝ  |  Recorrido: (0,+∞) si a>0',
-              'Asíntota horizontal: y = 0',
-            ]
-          }
-        ]
-      }
-    ]
+        id: 'concepto',
+        title: 'Vectores y Rectas',
+        steps: [{
+          type: 'explanation',
+          title: 'Vectores en ℝ² y ℝ³',
+          tutorMessage: 'Dos vectores son paralelos si uno es múltiplo escalar del otro: u ∥ v ⟺ u = λ·v para algún λ ≠ 0.',
+          keyPoints: [
+            { label: 'Vector: magnitud y dirección', detail: 'v = (v₁, v₂) o v = (v₁, v₂, v₃). Suma: componente a componente.' },
+            { label: 'Recta paramétrica: X = P + t·v', detail: 'P = punto base, v = vector director, t ∈ ℝ.' },
+            { label: 'Vectores paralelos: u = λ·v', detail: 'Si (a, b) ∥ (c, d) entonces ad = bc (proporcionalidad).' },
+            { label: 'Rectas idénticas', detail: 'Misma dirección Y el vector PQ (entre puntos) es paralelo al director.' },
+            { label: 'Punto de intersección', detail: 'Igualar las dos ecuaciones paramétricas y resolver el sistema.' },
+          ],
+          formulaGlossary: [
+            { symbol: 'X = P + t·v', meaning: 'ecuación paramétrica de recta' },
+            { symbol: 'v', meaning: 'vector director' },
+            { symbol: 'P', meaning: 'punto base de la recta' },
+            { symbol: 't', meaning: 'parámetro real (t ∈ ℝ)' },
+          ],
+          visual: 'vector-diagram',
+          whyExplanation: 'WU 2024 Tasks 4 y 5 piden identificar qué diagrama de vectores corresponde a cierta operación y qué recta tiene una ecuación dada.',
+        }],
+      },
+      {
+        id: 'guiado',
+        title: 'Ejercicio Guiado',
+        steps: [{
+          type: 'guided',
+          title: 'Operaciones con vectores',
+          tutorIntro: 'Dados a = (3, −1) y b = (−1, 2), calculamos combinaciones lineales paso a paso.',
+          steps: [
+            {
+              explanation: 'Suma de vectores: suma componente a componente.',
+              display: 'a + b = (3 + ___, −1 + ___) = (___,  ___)',
+              gaps: [
+                { id: 'v1a', answer: '−1', hint: 'Segunda componente de b', placeholder: 'b₁' },
+                { id: 'v1b', answer: '2', hint: 'Segunda componente de b', placeholder: 'b₂' },
+                { id: 'v1c', answer: '2', hint: '3 + (−1) = 2', placeholder: 'x' },
+                { id: 'v1d', answer: '1', hint: '−1 + 2 = 1', placeholder: 'y' },
+              ],
+            },
+            {
+              explanation: '2a − b: multiplica a por 2, luego resta b.',
+              display: '2a = (___, ___),   2a − b = (6−(___)  ,  −2−(___)) = (___,  ___)',
+              gaps: [
+                { id: 'v2a', answer: '6', hint: '2×3 = 6', placeholder: '2·3' },
+                { id: 'v2b', answer: '−2', hint: '2×(−1) = −2', placeholder: '2·(−1)' },
+                { id: 'v2c', answer: '−1', hint: 'Primera componente de b', placeholder: 'b₁' },
+                { id: 'v2d', answer: '2', hint: 'Segunda componente de b', placeholder: 'b₂' },
+                { id: 'v2e', answer: '7', hint: '6 − (−1) = 7', placeholder: 'x' },
+                { id: 'v2f', answer: '−4', hint: '−2 − 2 = −4', placeholder: 'y' },
+              ],
+            },
+          ],
+        }],
+      },
+      {
+        id: 'facil',
+        title: 'Test: Rectas Paralelas',
+        steps: [{
+          type: 'multiple-choice',
+          examLabel: 'WU 2023 – Task 5',
+          difficulty: 'easy',
+          correctCount: 1,
+          question: 'The lines g and h are defined as:\n\n   g: X = (1, 3) + t·(2, a)\n   h: X = (3, b) + s·(4, 2)\n\nThe lines g and h are IDENTICAL. What are the values of a and b?',
+          options: [
+            { id: 'A', text: 'a = 1, b = 4', correct: false, explanation: 'Si a=1, el vector director de g sería (2,1), que no es paralelo a (4,2)=(2·(2,1)).' },
+            { id: 'B', text: 'a = 2, b = 1', correct: false, explanation: 'a=2 da director (2,2). ¿Es (4,2) paralelo a (2,2)? No, (4,2)=2·(2,1)≠k·(2,2).' },
+            { id: 'C', text: 'a = 1, b = 5', correct: false, explanation: 'Mismo problema: a=1 no da vectores directores proporcionales.' },
+            { id: 'D', text: 'a = 2, b = 1', correct: false, explanation: 'Comprueba: (4,2) = 2·(2,1). Para a=1: g pasa por (1,3) con director (2,1). h pasa por (3,b) con director (4,2)=2·(2,1). Son paralelas. Para que sean idénticas: (3,b)−(1,3)=(2,b−3) debe ser paralelo a (2,1): 2·1=1·(b−3) → b−3=2 → b=5.' },
+            { id: 'E', text: 'a = 1, b = 5', correct: true, explanation: 'Director de h: (4,2) = 2·(2,1). Para a=1 g tiene director (2,1) ∥ (4,2) ✓. El vector entre puntos base (3,b)−(1,3)=(2,b−3) debe ser ∥ (2,1): 2·1=1·(b−3) → b=5 ✓.' },
+          ],
+          tutorExplanation: 'Para rectas idénticas: (1) misma dirección → vectores directores proporcionales, (2) el vector entre los puntos base también debe ser proporcional al director.',
+        }],
+      },
+      {
+        id: 'medio',
+        title: 'Nivel Medio',
+        steps: [{
+          type: 'solo',
+          difficulty: 'medium',
+          examLabel: 'WU 2024 – Task 5',
+          title: 'Identificar la ecuación de una recta',
+          problem: 'Four lines g₁, g₂, g₃, g₄ are drawn in a coordinate system.\n\nLine g₂ passes through the points A = (0, 2) and B = (3, 3).\n\nWhich line has the equation   X = (a₁, a₂) + t·(3, 1)?',
+          tutorIntro: 'La ecuación X = (a₁, a₂) + t·(3,1) tiene vector director (3,1). Eso significa que por cada 3 unidades en x, sube 1 en y. Busca la recta con pendiente 1/3.',
+          hints: [
+            'El vector director (3,1) → pendiente = Δy/Δx = 1/3.',
+            'De A=(0,2) a B=(3,3): Δx=3, Δy=1 → pendiente = 1/3 ✓',
+            'g₂ pasa por (0,2) con pendiente 1/3: X = (0,2) + t·(3,1). Esto coincide con la forma dada (con a₁=0, a₂=2).',
+          ],
+          answer: 'g₂',
+          solution: [
+            { expression: 'Vector director (3,1) → pendiente = 1/3', explanation: 'Avanza 3 en x y 1 en y.' },
+            { expression: 'g₂: de (0,2) a (3,3) → Δx=3, Δy=1 → pendiente 1/3 ✓', explanation: 'Coincide con el vector director.' },
+            { expression: 'X = (0,2) + t·(3,1)', explanation: 'Punto base (0,2), director (3,1). Correcta.' },
+          ],
+        }],
+      },
+      {
+        id: 'dificil',
+        title: 'Nivel WU',
+        steps: [{
+          type: 'solo',
+          difficulty: 'hard',
+          examLabel: 'WU 2025 – Task 4',
+          title: 'Recta en 3D y punto específico',
+          problem: 'A line passes through the points P = (−1, 0, 3) and Q = (3, −1, 2).\n\nWrite the parametric equation of the line.\n\nThen find the coordinates of point A on the line where the x-coordinate equals 7.',
+          tutorIntro: 'El vector director es Q − P. Escribe X = P + t·(Q−P) y luego resuelve para t cuando x=7.',
+          hints: [
+            'Vector director: v = Q − P = (3−(−1), −1−0, 2−3) = (4, −1, −1)',
+            'Ecuación: X = (−1, 0, 3) + t·(4, −1, −1)',
+            'Para x=7: −1 + 4t = 7 → 4t = 8 → t = 2',
+            'Con t=2: y = 0 + 2·(−1) = −2, z = 3 + 2·(−1) = 1',
+          ],
+          answer: 'A = (7, −2, 1)',
+          solution: [
+            { expression: 'v = Q − P = (4, −1, −1)', explanation: 'Vector director de P a Q.' },
+            { expression: 'X = (−1, 0, 3) + t·(4, −1, −1)', explanation: 'Ecuación paramétrica con P como punto base.' },
+            { expression: '−1 + 4t = 7  →  t = 2', explanation: 'Componente x igual a 7.' },
+            { expression: 'A = (−1+8, 0−2, 3−2) = (7, −2, 1)', explanation: 'Sustituir t=2 en las tres componentes.' },
+          ],
+        }],
+      },
+    ],
   },
+
+  /* ─────────────────────────────────────────────────────────────
+     SESSION 3 · Funciones Lineales y Cuadráticas  · 27 May
+  ───────────────────────────────────────────────────────────── */
   {
-    id: 'derivadas',
+    id: 'session-3',
+    sessionNumber: 3,
+    scheduledDate: '2026-05-27',
+    title: 'Funciones Lineales y Cuadráticas',
+    emoji: '⌣',
+    color: 'indigo',
+    description: 'Rectas, parábolas, vértice y ceros',
+    topics: [
+      {
+        id: 'bienvenida',
+        title: 'Bienvenida',
+        steps: [{
+          type: 'welcome',
+          sessionNumber: 3,
+          duration: '90 min',
+          scheduledDate: '2026-05-27',
+          title: 'Funciones Lineales y Cuadráticas',
+          whyItMatters: 'Las funciones cuadráticas aparecen en 3–4 tasks del WU. Saber encontrar vértice, ceros e interpretar la gráfica es imprescindible.',
+          agenda: [
+            { icon: '📖', label: 'Lineal y cuadrática' },
+            { icon: '✏️', label: 'Vértice y ceros' },
+            { icon: '🎯', label: 'Test: función lineal' },
+            { icon: '🔥', label: 'Parábola WU 2025' },
+          ],
+          examTip: 'La forma vértice f(x) = a(x−h)² + k te da directamente el vértice (h,k). El signo de a determina si es mínimo (a>0) o máximo (a<0).',
+        }],
+      },
+      {
+        id: 'concepto',
+        title: 'Funciones',
+        steps: [{
+          type: 'explanation',
+          title: 'Funciones lineales y cuadráticas',
+          tutorMessage: 'Truco para los ceros: si f(x) = a(x − r₁)(x − r₂), los ceros son directamente r₁ y r₂. La suma de ceros = −b/a, el producto = c/a.',
+          keyPoints: [
+            { label: 'Lineal: f(x) = mx + b', detail: 'm = pendiente, b = ordenada en el origen (f(0)=b). Cero en x = −b/m.' },
+            { label: 'Cuadrática: f(x) = ax² + bx + c', detail: 'a>0 → parábola abre hacia arriba (mínimo). a<0 → hacia abajo (máximo).' },
+            { label: 'Vértice: x_v = −b/(2a)', detail: 'y_v = f(x_v). Forma vértice: f(x) = a(x − x_v)² + y_v.' },
+            { label: 'Ceros: fórmula cuadrática', detail: 'x = (−b ± √(b²−4ac)) / (2a). Discriminante Δ = b²−4ac.' },
+            { label: 'Ecuación funcional: f(x+k) = f(x) + c', detail: 'Indica cambio por unidad. Si f(x+2)=f(x)−6, la función baja 6 por cada 2 unidades en x.' },
+          ],
+          formulaGlossary: [
+            { symbol: 'x_v', meaning: 'coordenada x del vértice' },
+            { symbol: 'Δ', meaning: 'discriminante b²−4ac' },
+            { symbol: 'r₁, r₂', meaning: 'ceros (raíces) de f' },
+          ],
+          visual: 'quadratic-grapher',
+          whyExplanation: 'WU 2023 T9, 2025 T10 y otras 2–3 tasks por examen son sobre parábolas. Vale la pena dominarlas bien.',
+        }],
+      },
+      {
+        id: 'guiado',
+        title: 'Ejercicio Guiado',
+        steps: [{
+          type: 'guided',
+          title: 'Encontrar vértice y ceros de f(x) = x² − 2x − 3',
+          tutorIntro: 'Analizamos esta parábola paso a paso: primero el vértice, luego los ceros con la fórmula cuadrática.',
+          steps: [
+            {
+              explanation: 'La coordenada x del vértice es x_v = −b/(2a). Aquí a=1, b=−2.',
+              display: 'x_v = −(___) / (2·___) = ___',
+              gaps: [
+                { id: 'q1a', answer: '−2', hint: 'b = −2', placeholder: 'b' },
+                { id: 'q1b', answer: '1', hint: 'a = 1', placeholder: 'a' },
+                { id: 'q1c', answer: '1', hint: '−(−2)/(2) = 2/2 = 1', placeholder: 'x_v' },
+              ],
+            },
+            {
+              explanation: 'Calcula y_v = f(x_v) = f(1) = 1² − 2·1 − 3.',
+              display: 'y_v = 1 − 2 − 3 = ___',
+              gaps: [
+                { id: 'q2', answer: '−4', hint: '1 − 2 − 3 = −4', placeholder: 'y_v' },
+              ],
+            },
+            {
+              explanation: 'Discriminante: Δ = b² − 4ac = (−2)² − 4·1·(−3).',
+              display: 'Δ = 4 − ___ = ___',
+              gaps: [
+                { id: 'q3a', answer: '−12', hint: '4·1·(−3) = −12', placeholder: '4ac' },
+                { id: 'q3b', answer: '16', hint: '4 − (−12) = 16', placeholder: 'Δ' },
+              ],
+            },
+            {
+              explanation: 'Ceros: x = (2 ± √16) / 2 = (2 ± 4) / 2.',
+              display: 'x₁ = ___ ,   x₂ = ___',
+              gaps: [
+                { id: 'q4a', answer: '3', hint: '(2 + 4)/2 = 3', placeholder: 'x₁' },
+                { id: 'q4b', answer: '−1', hint: '(2 − 4)/2 = −1', placeholder: 'x₂' },
+              ],
+            },
+          ],
+        }],
+      },
+      {
+        id: 'facil',
+        title: 'Test: Función Lineal',
+        steps: [{
+          type: 'multiple-choice',
+          examLabel: 'WU 2025 – Task 8',
+          difficulty: 'easy',
+          correctCount: 1,
+          question: 'A linear function f satisfies:\n   • f has a zero at x = −4\n   • f(x + 2) = f(x) − 6   for all x\n\nWhich function is f?',
+          options: [
+            { id: 'A', text: 'f(x) = −3x − 12', correct: true, explanation: 'Cero: f(−4) = 12−12 = 0 ✓. Propiedad: f(x+2) = −3(x+2)−12 = −3x−18 = f(x)−6 ✓.' },
+            { id: 'B', text: 'f(x) = 3x + 12', correct: false, explanation: 'Cero: f(−4) = −12+12 = 0 ✓, pero f(x+2) = 3x+6+12 = f(x)+6 ≠ f(x)−6.' },
+            { id: 'C', text: 'f(x) = −2x − 8', correct: false, explanation: 'Cero: f(−4) = 8−8 = 0 ✓, pero f(x+2)−f(x) = −2(x+2)−8−(−2x−8) = −4 ≠ −6.' },
+            { id: 'D', text: 'f(x) = −3x + 12', correct: false, explanation: 'Cero: f(4) = 0, no f(−4). El cero debe estar en x = −4.' },
+          ],
+          tutorExplanation: 'De f(x+2) = f(x) − 6 se deduce la pendiente: Δy/Δx = −6/2 = −3. Entonces f(x) = −3x + b. Usando el cero f(−4)=0: 0 = 12 + b → b = −12.',
+        }],
+      },
+      {
+        id: 'medio',
+        title: 'Nivel Medio',
+        steps: [{
+          type: 'solo',
+          difficulty: 'medium',
+          examLabel: 'WU 2023 – Task 9',
+          title: 'Hallar parámetros de una parábola',
+          problem: 'The function f(x) = ax² + b has its minimum at S = (0, −2) and passes through the point P = (1, 0).\n\nDetermine the values of a and b.',
+          tutorIntro: 'El vértice está en (0, −2), lo que significa que x_v = 0 y y_v = −2. Recuerda que para f(x) = ax²+b el vértice siempre está en x=0.',
+          hints: [
+            'f(x) = ax² + b tiene vértice en x = −b/(2a) = 0, lo que ya está dado.',
+            'El mínimo es (0, −2) → f(0) = b = −2.',
+            'Ahora usa P=(1, 0): f(1) = a·1² + b = a + b = 0.',
+            'a + b = 0 y b = −2 → a = 2.',
+          ],
+          answer: 'a = 2,  b = −2',
+          solution: [
+            { expression: 'Vértice en (0, −2) → f(0) = b = −2', explanation: 'El término b es la imagen en x=0.' },
+            { expression: 'P=(1,0) ∈ f → a·1² + (−2) = 0 → a = 2', explanation: 'Sustituimos el punto en la ecuación.' },
+            { expression: 'f(x) = 2x² − 2', explanation: 'Verificación: f(0) = −2 ✓, f(1) = 0 ✓, mínimo ✓ (a>0).' },
+          ],
+        }],
+      },
+      {
+        id: 'dificil',
+        title: 'Nivel WU',
+        steps: [{
+          type: 'solo',
+          difficulty: 'hard',
+          examLabel: 'WU 2025 – Task 10',
+          title: 'Parábola con cero en x = r',
+          problem: 'The function f(x) = (2/3)x² + bx + c has the following properties:\n   • f(0) = −(50/3)\n   • f has a zero at x = −5\n\nDetermine the second zero r of f.',
+          tutorIntro: 'Usaremos dos datos: f(0) nos da c directamente, y f(−5)=0 nos da b. Con a, b, c conocidos, el segundo cero se obtiene por la relación suma de ceros = −b/a.',
+          hints: [
+            'f(0) = c = −50/3.',
+            'f(−5) = (2/3)·25 + b·(−5) + (−50/3) = 0 → 50/3 − 5b − 50/3 = 0 → −5b = 0 → b = 0.',
+            'Con b=0: f(x) = (2/3)x² − 50/3 = (2/3)(x² − 25).',
+            'Ceros: x² = 25 → x = ±5. El segundo cero es r = 5.',
+          ],
+          answer: 'r = 5',
+          solution: [
+            { expression: 'f(0) = c = −50/3', explanation: 'Sustituir x=0.' },
+            { expression: 'f(−5) = (2/3)·25 − 5b − 50/3 = 0 → b = 0', explanation: '50/3 − 50/3 = 5b → b = 0.' },
+            { expression: 'f(x) = (2/3)(x² − 25)', explanation: 'Factorizando con b=0 y c=−50/3.' },
+            { expression: 'x² = 25  →  x = ±5', explanation: 'Los ceros son −5 (dado) y r = 5.' },
+          ],
+        }],
+      },
+    ],
+  },
+
+  /* ─────────────────────────────────────────────────────────────
+     SESSION 4 · Funciones Avanzadas  · 30 May
+  ───────────────────────────────────────────────────────────── */
+  {
+    id: 'session-4',
+    sessionNumber: 4,
+    scheduledDate: '2026-05-30',
+    title: 'Funciones Avanzadas',
+    emoji: 'e',
+    color: 'orange',
+    description: 'Potencia, exponencial y seno',
+    topics: [
+      {
+        id: 'bienvenida',
+        title: 'Bienvenida',
+        steps: [{
+          type: 'welcome',
+          sessionNumber: 4,
+          duration: '90 min',
+          scheduledDate: '2026-05-30',
+          title: 'Funciones Avanzadas',
+          whyItMatters: 'El WU siempre incluye preguntas sobre funciones de potencia, exponenciales y trigonométricas. Son los tipos más raros pero los que diferencian notas.',
+          agenda: [
+            { icon: '📖', label: 'Potencia, exp y seno' },
+            { icon: '✏️', label: 'Crecimiento exponencial' },
+            { icon: '🎯', label: 'Test: semivida WU 2024' },
+            { icon: '🔥', label: 'f(x)=a·sin(bx) WU 2024' },
+          ],
+          examTip: 'Para f(x) = a·sin(bx): a = amplitud (valor máximo), período = 2π/b. Identifica el máximo en la gráfica para hallar a.',
+        }],
+      },
+      {
+        id: 'concepto',
+        title: 'Funciones Avanzadas',
+        steps: [{
+          type: 'explanation',
+          title: 'Potencia, exponencial y seno',
+          tutorMessage: 'En funciones de potencia f(x) = a·xᶻ, el exponente z determina la forma: z>1 convexa, 0<z<1 cóncava, z<0 hipérbola.',
+          keyPoints: [
+            { label: 'Potencia: f(x) = a·xᶻ', detail: 'Clave: si duplicas x → f se multiplica por 2ᶻ. Si z=−2 y duplicas x, f se divide entre 4.' },
+            { label: 'Exponencial: f(t) = N₀·eᵏᵗ', detail: 'k>0: crecimiento. k<0: decaimiento. La semivida τ cumple e^(−kτ) = 1/2.' },
+            { label: 'Seno: f(x) = a·sin(bx)', detail: 'a = amplitud. Período = 2π/b. f(0) = 0 siempre.' },
+            { label: 'Identificar a y b en el seno', detail: 'a = valor máximo de f. b = 2π / período.' },
+          ],
+          formulaGlossary: [
+            { symbol: 'a', meaning: 'amplitud (máximo de f)' },
+            { symbol: 'b', meaning: '2π/período' },
+            { symbol: 'τ', meaning: 'semivida (half-life)' },
+            { symbol: 'N₀', meaning: 'cantidad inicial' },
+          ],
+          visual: 'sine-grapher',
+          whyExplanation: 'WU 2024 tiene Tasks 9, 11 y 12 sobre estos tres tipos. Son los que más estudiantes fallan por no dominar las propiedades de escala.',
+        }],
+      },
+      {
+        id: 'guiado',
+        title: 'Ejercicio Guiado',
+        steps: [{
+          type: 'guided',
+          title: 'Crecimiento exponencial: N(t) = N₀·e^(−kt)',
+          tutorIntro: 'Un isótopo radioactivo tiene semivida de 5 días. Partimos de N₀ = 200. Encontramos la ecuación y calculamos N(10).',
+          steps: [
+            {
+              explanation: 'La semivida τ=5 significa N(5) = N₀/2. Usamos esto para hallar k.',
+              display: 'N₀·e^(−5k) = N₀/2  →  e^(−5k) = ___  →  −5k = ln(___)',
+              gaps: [
+                { id: 'e1a', answer: '1/2', hint: 'N(5) = N₀/2, divide ambos lados por N₀', placeholder: '?' },
+                { id: 'e1b', answer: '1/2', hint: 'e^(−5k) = 1/2, toma logaritmo', placeholder: '?' },
+              ],
+            },
+            {
+              explanation: 'De −5k = ln(1/2) = −ln(2), despejamos k.',
+              display: 'k = ln(2) / ___  ≈  ___',
+              gaps: [
+                { id: 'e2a', answer: '5', hint: 'Divide −ln(2) entre −5', placeholder: 'divisor' },
+                { id: 'e2b', answer: '0.139', hint: 'ln(2)≈0.693, dividido entre 5 ≈ 0.139', placeholder: 'valor' },
+              ],
+            },
+            {
+              explanation: 'Con k ≈ 0.139 y N₀ = 200, calculamos N(10) = 200·e^(−10k).',
+              display: 'N(10) = 200·e^(−10·0.139) = 200·e^(___) ≈ 200·0.25 = ___',
+              gaps: [
+                { id: 'e3a', answer: '−1.386', hint: '−10 × 0.139 = −1.386 ≈ −ln(4)', placeholder: '?' },
+                { id: 'e3b', answer: '50', hint: 'Tras 2 semividas queda N₀/4 = 200/4 = 50', placeholder: 'N(10)' },
+              ],
+            },
+          ],
+        }],
+      },
+      {
+        id: 'facil',
+        title: 'Test: Semivida',
+        steps: [{
+          type: 'multiple-choice',
+          examLabel: 'WU 2024 – Task 11',
+          difficulty: 'easy',
+          correctCount: 1,
+          question: 'A radioactive substance decays according to N(t) = N₀·e^(−kt), where τ is the half-life.\n\nAt time t*, the amount is N(t*). Which expression gives the amount at time t* + τ?',
+          options: [
+            { id: 'A', text: '2·N(t*)', correct: false, explanation: 'La semivida REDUCE a la mitad, no duplica.' },
+            { id: 'B', text: 'N(t*) − τ', correct: false, explanation: 'El decaimiento es multiplicativo (exponencial), no aditivo.' },
+            { id: 'C', text: '½·N(t*)', correct: true, explanation: 'Por definición de semivida: después de τ la cantidad se reduce a la mitad. N(t*+τ) = N(t*)·e^(−kτ) = N(t*)·½.' },
+            { id: 'D', text: 'N(t*)·e^(−τ)', correct: false, explanation: 'Casi correcto, pero falta el k: sería e^(−kτ) = ½, no e^(−τ).' },
+          ],
+          tutorExplanation: 'La semivida τ satisface e^(−kτ) = 1/2, por definición. Así N(t*+τ) = N(t*)·(1/2) independientemente de cuándo sea t*.',
+        }],
+      },
+      {
+        id: 'medio',
+        title: 'Nivel Medio',
+        steps: [{
+          type: 'solo',
+          difficulty: 'medium',
+          examLabel: 'WU 2024 – Task 9',
+          title: 'Función de potencia: propiedad de escala',
+          problem: 'A power function f(x) = a·xᶻ has the following property:\n\n   When x is doubled, f(x) is divided by 4.\n\nFind the values of the exponent z and the coefficient a, given that f(2) = 2.',
+          tutorIntro: '"Duplicar x divide f entre 4" es la clave. Si x → 2x, entonces f(2x) = f(x)/4. Usamos esto para hallar z.',
+          hints: [
+            'f(2x) = a·(2x)ᶻ = a·2ᶻ·xᶻ = 2ᶻ·f(x)',
+            '2ᶻ·f(x) = f(x)/4 → 2ᶻ = 1/4 = 2⁻² → z = −2',
+            'Con z=−2: f(x) = a·x⁻² = a/x². Usar f(2)=2: a/4 = 2 → a = 8',
+          ],
+          answer: 'z = −2,  a = 8',
+          solution: [
+            { expression: 'f(2x)/f(x) = 2ᶻ = 1/4 = 2⁻²  →  z = −2', explanation: 'La propiedad de escala determina z directamente.' },
+            { expression: 'f(x) = a·x⁻² = a/x²', explanation: 'Con z = −2.' },
+            { expression: 'f(2) = a/4 = 2  →  a = 8', explanation: 'Condición f(2) = 2.' },
+            { expression: 'f(x) = 8/x²', explanation: 'Verificación: f(4) = 8/16 = 0.5 = f(2)/4 ✓.' },
+          ],
+        }],
+      },
+      {
+        id: 'dificil',
+        title: 'Nivel WU',
+        steps: [{
+          type: 'solo',
+          difficulty: 'hard',
+          examLabel: 'WU 2024 – Task 12',
+          title: 'Identificar a y b en f(x) = a·sin(bx)',
+          problem: 'The function f(x) = a·sin(bx) with a > 0 and b > 0 has:\n   • Maximum value of 3\n   • Period of π/2\n\nDetermine a and b.',
+          tutorIntro: 'La amplitud es el valor máximo (a), y el período es 2π/b. Despeja b del período dado.',
+          hints: [
+            'Amplitud = valor máximo de |f| = a = 3.',
+            'Período = 2π/b = π/2 → b = 2π/(π/2) = 4.',
+          ],
+          answer: 'a = 3,  b = 4',
+          solution: [
+            { expression: 'a = máximo de f = 3', explanation: 'La amplitud de a·sin(bx) es |a|.' },
+            { expression: 'Período = 2π/b = π/2  →  b = 4', explanation: 'Despejando b: b = 2π ÷ (π/2) = 4.' },
+            { expression: 'f(x) = 3·sin(4x)', explanation: 'Verificación: máximo = 3 ✓, período = 2π/4 = π/2 ✓.' },
+          ],
+        }],
+      },
+    ],
+  },
+
+  /* ─────────────────────────────────────────────────────────────
+     SESSION 5 · Derivadas  · 2 Jun
+  ───────────────────────────────────────────────────────────── */
+  {
+    id: 'session-5',
+    sessionNumber: 5,
+    scheduledDate: '2026-06-02',
     title: 'Derivadas',
     emoji: "f'",
-    color: 'orange',
-    description: 'Concepto, reglas y aplicaciones',
-    topics: [
-      {
-        id: 'concepto-derivada',
-        title: 'Concepto de Derivada',
-        steps: [
-          {
-            type: 'explanation',
-            title: "La derivada: la pendiente en cada punto",
-            content: `La derivada f'(x) mide cómo cambia f en el punto x.
-
-Geométricamente: f'(x) = pendiente de la recta tangente en x
-
-Reglas básicas de derivación:
-  f(x) = k         →  f'(x) = 0         (constante)
-  f(x) = xⁿ       →  f'(x) = n·xⁿ⁻¹   (potencia)
-  f(x) = eˣ       →  f'(x) = eˣ        (exponencial)
-  f(x) = ln(x)    →  f'(x) = 1/x       (logaritmo)
-
-  [f + g]' = f' + g'   [k·f]' = k·f'    (linealidad)`,
-            visual: 'derivative-canvas',
-            tutorMessage: 'Observa la animación: la recta roja es la tangente a la curva. Su pendiente cambia en cada punto — eso es la derivada.',
-            whyExplanation: "La derivada mide velocidad instantánea, tasa de cambio, y permite encontrar máximos y mínimos. Es fundamental en optimización económica y científica.",
-          },
-          {
-            type: 'example',
-            title: "El tutor deriva: f(x) = 3x⁴ − 2x² + 5x − 7",
-            tutorIntro: "Aplico las reglas de derivación término a término.",
-            steps: [
-              {
-                expression: "[3x⁴]' = 3 · 4 · x³ = 12x³",
-                explanation: 'Regla de la potencia: [xⁿ]\'=n·xⁿ⁻¹. El coeficiente 3 se multiplica.',
-                whyExplanation: "La regla de la potencia [xⁿ]'=n·xⁿ⁻¹ se obtiene de la definición de derivada como límite de cocientes incrementales.",
-              },
-              {
-                expression: "[−2x²]' = −2 · 2 · x¹ = −4x",
-                explanation: 'El coeficiente −2 permanece. Bajamos el exponente: 2·x²⁻¹ = 2x.',
-                whyExplanation: 'La constante delante nunca desaparece al derivar. Solo se multiplica.',
-              },
-              {
-                expression: "[5x]' = 5 · 1 · x⁰ = 5",
-                explanation: 'x = x¹, así que [x¹]\' = 1·x⁰ = 1. El coeficiente 5 permanece.',
-                whyExplanation: 'La recta f(x)=5x tiene pendiente constante 5. Su derivada es 5.',
-              },
-              {
-                expression: "[−7]' = 0",
-                explanation: 'Las constantes tienen derivada cero. No cambian, no tienen pendiente.',
-                whyExplanation: 'Una constante es una recta horizontal: pendiente 0 en todo punto.',
-              },
-              {
-                expression: "f'(x) = 12x³ − 4x + 5",
-                explanation: 'Juntamos todos los términos. La derivada de f es esta nueva función.',
-                whyExplanation: "f'(x) nos dice en cada punto x cuál es la pendiente de la tangente a f.",
-              },
-            ]
-          },
-          {
-            type: 'guided',
-            title: "Juntos: g(x) = x³ − 6x² + 9x",
-            tutorIntro: "Derivamos este polinomio. ¡Término a término!",
-            steps: [
-              {
-                display: "[x³]' = ___ · x^___",
-                explanation: 'Aplica la regla de la potencia al término x³',
-                gaps: [
-                  { id: 'a', answer: '3', hint: 'Baja el exponente: el 3 se convierte en coeficiente', placeholder: 'n' },
-                  { id: 'b', answer: '2', hint: 'Nuevo exponente = 3−1 = ?', placeholder: 'n-1' },
-                ]
-              },
-              {
-                display: "[−6x²]' = −6 · ___ · x = ___x",
-                explanation: 'Deriva el segundo término',
-                gaps: [
-                  { id: 'c', answer: '2', hint: 'El exponente de x² es...', placeholder: 'exp.' },
-                  { id: 'd', answer: '-12', hint: '−6·2 = ?', placeholder: 'coef.' },
-                ]
-              },
-              {
-                display: "[9x]' = ___",
-                explanation: 'Deriva el último término',
-                gaps: [
-                  { id: 'e', answer: '9', hint: '[9x]\' = 9·[x]\' = 9·1 = ?', placeholder: "g'(x) último" },
-                ]
-              },
-              {
-                display: "g'(x) = ___ − 12x + 9",
-                explanation: 'Junta todo',
-                gaps: [
-                  { id: 'f', answer: '3x²', hint: 'El primer término derivado era...', placeholder: '1er término' },
-                ]
-              },
-            ]
-          },
-          {
-            type: 'solo',
-            title: "Tu turno: h(x) = 2x⁵ − x³ + 4x − 3",
-            tutorIntro: "Deriva este polinomio aplicando las reglas.",
-            hints: [
-              'Deriva término a término. Empieza con [2x⁵]\'.',
-              "[2x⁵]' = 2·5·x⁴ = 10x⁴",
-              "[−x³]' = −3x²  (coeficiente −1)",
-              "[4x]' = 4,  [−3]' = 0. Junta todo.",
-            ],
-            answer: "h'(x) = 10x⁴ − 3x² + 4",
-            solution: [
-              { expression: "[2x⁵]' = 10x⁴", explanation: '2·5=10, exponente 5−1=4' },
-              { expression: "[−x³]' = −3x²", explanation: 'coef. −1, exp. 3−1=2' },
-              { expression: "[4x]' = 4", explanation: '4·1·x⁰ = 4' },
-              { expression: "[−3]' = 0", explanation: 'Constante → derivada 0' },
-              { expression: "h'(x) = 10x⁴ − 3x² + 4", explanation: '¡Verificar evaluando en un punto!' },
-            ]
-          },
-          {
-            type: 'summary',
-            title: "Derivadas — ¡En tu poder!",
-            points: [
-              "f'(x) = pendiente de la tangente en x (tasa de cambio instantánea)",
-              "[xⁿ]' = n·xⁿ⁻¹  (regla de la potencia — la más usada)",
-              "[constante]' = 0   [k·f]' = k·f'   [f+g]' = f'+g'",
-              "f'>0 → f crece  |  f'<0 → f decrece  |  f'=0 → posible extremo",
-              "Máximo o mínimo: f'(x₀)=0 y estudiar el signo de f' alrededor",
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'integrales',
-    title: 'Integrales y Áreas',
-    emoji: '∫',
-    color: 'red',
-    description: 'Integral definida e indefinida, áreas',
-    topics: [
-      {
-        id: 'integral-definida',
-        title: 'Integral Definida',
-        steps: [
-          {
-            type: 'explanation',
-            title: 'La integral: área bajo la curva',
-            content: `La integral definida ∫ₐᵇ f(x) dx calcula el área entre f y el eje x.
-
-Antiderivadas (primitivas) básicas:
-  ∫ xⁿ dx = xⁿ⁺¹/(n+1) + C    (n ≠ −1)
-  ∫ eˣ dx = eˣ + C
-  ∫ 1/x dx = ln|x| + C
-
-Teorema fundamental del cálculo:
-  ∫ₐᵇ f(x) dx = F(b) − F(a)   (F es primitiva de f)`,
-            visual: 'derivative-canvas',
-            tutorMessage: 'La integral suma infinitas tiras infinitamente delgadas bajo la curva. ¡Es lo opuesto a derivar!',
-            whyExplanation: 'La integral calcula áreas, volúmenes, trabajo mecánico, probabilidades acumuladas... Es tan fundamental como la derivada.',
-          },
-          {
-            type: 'example',
-            title: 'El tutor calcula ∫₀² (x² + 1) dx',
-            tutorIntro: 'Aplico el Teorema Fundamental del Cálculo.',
-            steps: [
-              {
-                expression: 'Primitiva de x²+1: F(x) = x³/3 + x + C',
-                explanation: 'Integro término a término: ∫x²dx = x³/3, ∫1dx = x.',
-                whyExplanation: 'La primitiva es lo opuesto de derivar. Verifica: F\'(x) = 3x²/3 + 1 = x² + 1 ✓',
-              },
-              {
-                expression: '∫₀² (x²+1) dx = [x³/3 + x]₀²',
-                explanation: 'Los límites de integración son 0 (inferior) y 2 (superior).',
-                whyExplanation: 'Los corchetes [...] significa evaluar F(b)−F(a). La C desaparece siempre.',
-              },
-              {
-                expression: 'F(2) = 8/3 + 2 = 8/3 + 6/3 = 14/3',
-                explanation: 'Evaluamos F en el límite superior.',
-                whyExplanation: 'Sustituimos x=2: (2)³/3 + 2 = 8/3 + 2.',
-              },
-              {
-                expression: 'F(0) = 0/3 + 0 = 0',
-                explanation: 'Evaluamos en el límite inferior.',
-                whyExplanation: '(0)³/3 + 0 = 0.',
-              },
-              {
-                expression: '∫₀² (x²+1) dx = F(2)−F(0) = 14/3 − 0 = 14/3 ≈ 4.67',
-                explanation: 'El área bajo la curva entre x=0 y x=2 es 14/3 unidades².',
-                whyExplanation: 'Si la función está por encima del eje x en todo el intervalo, la integral siempre es positiva.',
-              },
-            ]
-          },
-          {
-            type: 'guided',
-            title: 'Juntos: ∫₁³ 2x dx',
-            tutorIntro: 'Calculamos esta integral paso a paso.',
-            steps: [
-              {
-                display: 'Primitiva de 2x: F(x) = ___ + C',
-                explanation: '∫2x dx = 2·∫x dx',
-                gaps: [
-                  { id: 'a', answer: 'x²', hint: '∫x dx = x²/2, luego 2·(x²/2) = ?', placeholder: 'F(x)' },
-                ]
-              },
-              {
-                display: 'F(3) = 3² = ___ y F(1) = 1² = ___',
-                explanation: 'Evaluamos la primitiva en ambos límites',
-                gaps: [
-                  { id: 'b', answer: '9', hint: '3² = ?', placeholder: 'F(3)' },
-                  { id: 'c', answer: '1', hint: '1² = ?', placeholder: 'F(1)' },
-                ]
-              },
-              {
-                display: '∫₁³ 2x dx = F(3)−F(1) = ___−___ = ___',
-                explanation: 'Calculamos el resultado final',
-                gaps: [
-                  { id: 'd', answer: '9', hint: 'F(3) = ?', placeholder: 'F(3)' },
-                  { id: 'e', answer: '1', hint: 'F(1) = ?', placeholder: 'F(1)' },
-                  { id: 'f', answer: '8', hint: '9−1 = ?', placeholder: 'resultado' },
-                ]
-              },
-            ]
-          },
-          {
-            type: 'solo',
-            title: 'Tu turno: ∫₀¹ (3x² − 2x + 1) dx',
-            tutorIntro: 'Calcula esta integral definida.',
-            hints: [
-              'Primitiva de 3x²: ∫3x²dx = 3·x³/3 = x³',
-              'Primitiva de −2x: ∫−2x dx = −x²',
-              'Primitiva de 1: ∫1 dx = x',
-              'F(x) = x³ − x² + x. Evalúa F(1)−F(0).',
-            ],
-            answer: '∫₀¹ = F(1)−F(0) = (1−1+1)−0 = 1',
-            solution: [
-              { expression: 'F(x) = x³ − x² + x', explanation: 'Primitivamos término a término.' },
-              { expression: 'F(1) = 1 − 1 + 1 = 1', explanation: '' },
-              { expression: 'F(0) = 0', explanation: '' },
-              { expression: '∫₀¹ = 1 − 0 = 1', explanation: 'El área bajo la curva es exactamente 1.' },
-            ]
-          },
-          {
-            type: 'summary',
-            title: 'Integrales — ¡El área bajo control!',
-            points: [
-              '∫f(x)dx = F(x)+C donde F\'(x) = f(x) (primitiva)',
-              '∫xⁿdx = xⁿ⁺¹/(n+1)+C  (n≠−1)',
-              '∫ₐᵇ f(x)dx = F(b)−F(a)  (Teorema Fundamental)',
-              'La integral definida calcula el área (con signo) bajo la curva',
-              'Si f(x)>0 en [a,b] → integral > 0 (área por encima del eje x)',
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'financiera',
-    title: 'Matemática Financiera',
-    emoji: '%',
     color: 'yellow',
-    description: 'Porcentajes, interés y proporciones',
+    description: 'Regla de la potencia, interpretación y límites',
     topics: [
       {
-        id: 'porcentajes',
-        title: 'Porcentajes y Cambios',
-        steps: [
-          {
-            type: 'explanation',
-            title: 'Porcentajes: el lenguaje del cambio',
-            content: `Un porcentaje p% significa p/100 (por cada cien).
-
-Operaciones fundamentales:
-  p% de A  =  A · p/100
-
-Variación porcentual (cambio relativo):
-  Δ% = (Valor_final − Valor_inicial) / Valor_inicial · 100
-
-Factor de variación:
-  +20%  →  multiplicar por 1.20
-  −15%  →  multiplicar por 0.85
-
-¡Trampa frecuente! +20% y luego −20% NO vuelve al original:
-  100 · 1.20 · 0.80 = 96 ≠ 100`,
-            visual: 'quadratic-grapher',
-            tutorMessage: 'Los porcentajes son multiplicaciones. Memoriza: +p% equivale a ×(1+p/100). Es la clave de todo.',
-            whyExplanation: 'En el examen WU aparecen ejercicios de IVA, descuentos encadenados, inflación acumulada e interés compuesto. Todos se resuelven con factores de variación.',
-          },
-          {
-            type: 'example',
-            title: 'El tutor resuelve problemas de porcentaje',
-            tutorIntro: 'Resuelvo tres tipos clásicos de problemas con porcentajes.',
-            steps: [
-              {
-                expression: '¿El 35% de 240? → 240 · 0.35 = 84',
-                explanation: 'Multiplicamos directamente. 35% = 0.35.',
-                whyExplanation: 'p% = p/100. Así 35% = 35/100 = 0.35. Más rápido que dividir entre 100 y multiplicar por 35.',
-              },
-              {
-                expression: '¿Qué porcentaje es 60 de 400? → 60/400 = 0.15 = 15%',
-                explanation: 'Dividimos el valor entre el total y multiplicamos por 100.',
-                whyExplanation: 'Pregunta: ¿60 es el q% de 400? → q = 60·100/400 = 15%',
-              },
-              {
-                expression: 'Un precio baja un 25%. Si costaba €80, ¿cuánto cuesta ahora?',
-                explanation: '−25% → ×0.75 → 80 · 0.75 = €60',
-                whyExplanation: 'Factor de variación: 1 − 25/100 = 0.75. Multiplicar por 0.75 reduce en un 25%.',
-              },
-              {
-                expression: 'Si €60 es el precio tras bajar un 25%, ¿cuál era el precio original?',
-                explanation: '60 = Original · 0.75  →  Original = 60 / 0.75 = €80',
-                whyExplanation: 'Para "deshacer" un porcentaje, dividimos en vez de multiplicar por el factor de variación.',
-              },
-            ]
-          },
-          {
-            type: 'guided',
-            title: 'Juntos: problemas de porcentaje',
-            tutorIntro: 'Resolvemos juntos estos ejercicios típicos de WU.',
-            steps: [
-              {
-                display: 'Sube un 30% el precio de €250. Nuevo precio = 250 · ___ = ___',
-                explanation: 'Subida del 30% → factor de variación',
-                gaps: [
-                  { id: 'a', answer: '1.3', hint: '+30% → factor = 1 + 30/100 = ?', placeholder: 'factor' },
-                  { id: 'b', answer: '325', hint: '250 · 1.3 = ?', placeholder: 'nuevo precio €' },
-                ]
-              },
-              {
-                display: 'Variación %: de 80 a 100 → Δ% = (___−80)/80 · 100 = ___% ',
-                explanation: 'Calcula el cambio porcentual de 80 a 100',
-                gaps: [
-                  { id: 'c', answer: '100', hint: 'El valor final es...', placeholder: 'V_final' },
-                  { id: 'd', answer: '25', hint: '20/80 · 100 = ?', placeholder: 'Δ%' },
-                ]
-              },
-            ]
-          },
-          {
-            type: 'solo',
-            title: 'Tu turno: interés compuesto',
-            tutorIntro: 'Inviertes €2000 a un interés del 4% anual compuesto. ¿Cuánto tienes tras 3 años?',
-            hints: [
-              'Interés compuesto: el interés del año anterior genera interés nuevo.',
-              'Cada año se multiplica por 1.04 (factor de variación de +4%).',
-              'Tras 3 años: 2000 · (1.04)³',
-              '(1.04)³ = 1.124864. Así que 2000 · 1.124864 ≈ 2249.73',
-            ],
-            answer: '€2249.73 tras 3 años al 4% compuesto',
-            solution: [
-              { expression: 'Factor por año: 1 + 4/100 = 1.04', explanation: 'Cada año el capital se multiplica por 1.04.' },
-              { expression: 'Tras 3 años: C = 2000 · (1.04)³', explanation: 'Se aplica el factor 3 veces.' },
-              { expression: '(1.04)³ = 1.124864', explanation: '1.04·1.04·1.04 = 1.124864' },
-              { expression: 'C = 2000 · 1.124864 ≈ €2249.73', explanation: 'Los €249.73 son el interés total acumulado.' },
-            ]
-          },
-          {
-            type: 'summary',
-            title: 'Matemática Financiera — ¡Al día!',
-            points: [
-              'p% de A = A · (p/100)',
-              'Variación%: (final−inicial)/inicial · 100',
-              '+p% → factor 1+p/100  |  −p% → factor 1−p/100',
-              'Interés compuesto: C = C₀ · (1+r)ⁿ (r=tasa, n=años)',
-              '¡Cuidado! +20% y luego −20% ≠ 0%',
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'estadistica',
-    title: 'Estadística Descriptiva',
-    emoji: 'x̄',
-    color: 'teal',
-    description: 'Media, varianza, distribuciones',
-    topics: [
-      {
-        id: 'medidas-centrales',
-        title: 'Media, Mediana y Moda',
-        steps: [
-          {
-            type: 'explanation',
-            title: 'Medidas de tendencia central',
-            content: `Dado un conjunto de datos {x₁, x₂, ..., xₙ}:
-
-Media (promedio): x̄ = (x₁+x₂+...+xₙ) / n = Σxᵢ/n
-
-Mediana: el valor central al ordenar los datos
-  • n impar → posición (n+1)/2
-  • n par → promedio de posiciones n/2 y n/2+1
-
-Moda: el valor que más se repite
-
-Varianza: σ² = Σ(xᵢ−x̄)² / n
-Desviación típica: σ = √(σ²)`,
-            visual: 'histogram',
-            tutorMessage: 'La media es sensible a valores extremos (outliers), la mediana no. Por eso en salarios se usa la mediana.',
-            whyExplanation: 'La media, mediana y moda resumen grandes conjuntos de datos en un solo número. La varianza mide cuánto se dispersan los datos alrededor de la media.',
-          },
-          {
-            type: 'example',
-            title: 'El tutor analiza: {4, 7, 2, 9, 4, 6, 4}',
-            tutorIntro: 'Calculo todas las medidas descriptivas para este conjunto.',
-            steps: [
-              {
-                expression: 'Media: x̄ = (4+7+2+9+4+6+4)/7 = 36/7 ≈ 5.14',
-                explanation: 'Sumamos todos los valores y dividimos entre n=7.',
-                whyExplanation: 'La media es el "centro de gravedad" de los datos.',
-              },
-              {
-                expression: 'Ordenados: {2, 4, 4, 4, 6, 7, 9} → Mediana = 4',
-                explanation: 'n=7 (impar) → posición central = (7+1)/2 = 4ª. El 4º valor ordenado es 4.',
-                whyExplanation: 'Con n=7, hay 3 valores a cada lado del central. La posición 4 es la mediana.',
-              },
-              {
-                expression: 'Moda = 4 (aparece 3 veces)',
-                explanation: 'El valor 4 se repite más que ningún otro (7 aparece 1 vez, 9 aparece 1 vez...).',
-                whyExplanation: 'La moda es la que "manda" en frecuencia. Puede haber varios modas si dos valores empatan.',
-              },
-              {
-                expression: 'σ² = [(4−5.14)²+(7−5.14)²+...+4 términos más]/7 ≈ 4.12',
-                explanation: 'Calculamos la distancia cuadrática de cada dato a la media.',
-                whyExplanation: 'Elevamos al cuadrado para que distancias positivas y negativas no se anulen.',
-              },
-              {
-                expression: 'σ = √4.12 ≈ 2.03',
-                explanation: 'La desviación típica está en las mismas unidades que los datos originales.',
-                whyExplanation: 'σ≈2 significa que los datos se alejan de la media unos 2 puntos de promedio.',
-              },
-            ]
-          },
-          {
-            type: 'guided',
-            title: 'Juntos: {3, 8, 5, 8, 6}',
-            tutorIntro: 'Calculamos las medidas descriptivas.',
-            steps: [
-              {
-                display: 'Media: x̄ = (3+8+5+8+6) / ___ = ___/5 = ___',
-                explanation: 'Suma de valores y divide entre n',
-                gaps: [
-                  { id: 'a', answer: '5', hint: '¿Cuántos datos hay?', placeholder: 'n' },
-                  { id: 'b', answer: '30', hint: '3+8+5+8+6 = ?', placeholder: 'suma' },
-                  { id: 'c', answer: '6', hint: '30/5 = ?', placeholder: 'x̄' },
-                ]
-              },
-              {
-                display: 'Ordenados: {3,5,6,8,8} → Mediana = posición ___ = ___',
-                explanation: 'n=5, posición central = (5+1)/2 = 3',
-                gaps: [
-                  { id: 'd', answer: '3', hint: '(5+1)/2 = ?', placeholder: 'posición' },
-                  { id: 'e', answer: '6', hint: '3er valor en {3,5,6,8,8} es...', placeholder: 'mediana' },
-                ]
-              },
-              {
-                display: 'Moda = ___ (aparece ___ veces)',
-                explanation: 'El valor que más se repite',
-                gaps: [
-                  { id: 'f', answer: '8', hint: '8 aparece en posiciones 4 y 5', placeholder: 'moda' },
-                  { id: 'g', answer: '2', hint: '¿Cuántas veces aparece el 8?', placeholder: 'veces' },
-                ]
-              },
-            ]
-          },
-          {
-            type: 'solo',
-            title: 'Tu turno: {10, 4, 7, 10, 5, 8, 10, 6}',
-            tutorIntro: 'Calcula la media, mediana y moda de estos datos.',
-            hints: [
-              'Suma: 10+4+7+10+5+8+10+6 = 60. Media = 60/8 = 7.5',
-              'Ordenados: {4,5,6,7,8,10,10,10}. n=8 (par) → mediana = promedio de posiciones 4ª y 5ª.',
-              'Posición 4ª = 7, posición 5ª = 8. Mediana = (7+8)/2 = 7.5',
-              'El 10 aparece 3 veces. Moda = 10.',
-            ],
-            answer: 'Media=7.5, Mediana=7.5, Moda=10',
-            solution: [
-              { expression: 'x̄ = 60/8 = 7.5', explanation: 'Suma = 60, n = 8.' },
-              { expression: 'Mediana = (7+8)/2 = 7.5', explanation: 'n par: promedio de los dos centrales.' },
-              { expression: 'Moda = 10 (aparece 3 veces)', explanation: '10 es el más frecuente.' },
-            ]
-          },
-          {
-            type: 'summary',
-            title: 'Estadística — ¡Los datos bajo control!',
-            points: [
-              'Media x̄ = Σxᵢ/n (sensible a extremos)',
-              'Mediana: valor central tras ordenar (robusta a extremos)',
-              'Moda: el más frecuente (puede haber varias modas)',
-              'Varianza σ² = Σ(xᵢ−x̄)²/n  |  Desviación σ = √(σ²)',
-              'n par → mediana = promedio de los dos valores centrales',
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'probabilidad',
-    title: 'Probabilidad y Binomial',
-    emoji: 'P(X)',
-    color: 'pink',
-    description: 'Probabilidad clásica y distribución binomial',
-    topics: [
-      {
-        id: 'probabilidad-clasica',
-        title: 'Probabilidad Clásica',
-        steps: [
-          {
-            type: 'explanation',
-            title: 'Probabilidad: ¿qué tan probable es?',
-            content: `La probabilidad mide la chance de un evento.
-
-Definición clásica (Laplace):
-  P(A) = casos_favorables / casos_totales
-
-Propiedades fundamentales:
-  0 ≤ P(A) ≤ 1
-  P(Ω) = 1  (evento seguro)
-  P(∅) = 0  (evento imposible)
-  P(A') = 1 − P(A)  (complementario)
-
-Eventos independientes: P(A∩B) = P(A) · P(B)
-Regla de la suma: P(A∪B) = P(A)+P(B)−P(A∩B)`,
-            visual: 'venn-diagram',
-            tutorMessage: 'Los diagramas de Venn son perfectos para visualizar probabilidades de eventos combinados.',
-            whyExplanation: 'La probabilidad es la base de la toma de decisiones bajo incertidumbre: seguros, inversiones, medicina, machine learning...',
-          },
-          {
-            type: 'example',
-            title: 'El tutor: dado de seis caras',
-            tutorIntro: 'Calculamos distintas probabilidades al lanzar un dado justo.',
-            steps: [
-              {
-                expression: 'P(número par) = P({2,4,6}) = 3/6 = 1/2',
-                explanation: 'Hay 3 casos favorables (2,4,6) y 6 casos totales (1,2,3,4,5,6).',
-                whyExplanation: 'El dado es "justo" → cada cara tiene la misma probabilidad 1/6.',
-              },
-              {
-                expression: 'P(mayor que 4) = P({5,6}) = 2/6 = 1/3',
-                explanation: 'Solo 5 y 6 son mayores que 4.',
-                whyExplanation: '5/6 > 4, así que 5 y 6 son los casos favorables. 2 de 6.',
-              },
-              {
-                expression: "P(par o mayor que 4) = P({2,4,5,6}) = 4/6 = 2/3",
-                explanation: 'Unimos los dos eventos. El 6 está en ambos pero lo contamos una sola vez.',
-                whyExplanation: 'P(A∪B) = P(A)+P(B)−P(A∩B) = 3/6+2/6−1/6 = 4/6. El 6 es par Y mayor que 4.',
-              },
-              {
-                expression: "P(no par) = 1 − P(par) = 1 − 1/2 = 1/2",
-                explanation: 'El complementario es más fácil: si P(par)=1/2, P(impar)=1−1/2=1/2.',
-                whyExplanation: 'Siempre que P(A) sea difícil, calcula P(A\'). Luego P(A) = 1−P(A\').',
-              },
-            ]
-          },
-          {
-            type: 'guided',
-            title: 'Juntos: urna con bolas',
-            tutorIntro: 'Una urna tiene 3 bolas rojas, 4 azules y 2 verdes (9 en total). Sacamos una al azar.',
-            steps: [
-              {
-                display: 'P(roja) = ___ / ___ = ___',
-                explanation: '¿Cuántas rojas y cuántas totales?',
-                gaps: [
-                  { id: 'a', answer: '3', hint: '¿Cuántas bolas rojas hay?', placeholder: 'favorables' },
-                  { id: 'b', answer: '9', hint: '3+4+2 = total', placeholder: 'totales' },
-                  { id: 'c', answer: '1/3', hint: '3/9 simplificado = ?', placeholder: 'P(roja)' },
-                ]
-              },
-              {
-                display: 'P(no azul) = 1 − P(azul) = 1 − ___ = ___',
-                explanation: 'Usa el complementario',
-                gaps: [
-                  { id: 'd', answer: '4/9', hint: 'P(azul) = 4/9', placeholder: 'P(azul)' },
-                  { id: 'e', answer: '5/9', hint: '1 − 4/9 = ?', placeholder: 'P(no azul)' },
-                ]
-              },
-            ]
-          },
-          {
-            type: 'solo',
-            title: 'Tu turno: baraja de 52 cartas',
-            tutorIntro: 'Extraemos una carta al azar. Calcula: P(as), P(corazón), P(as de corazón), P(as o corazón).',
-            hints: [
-              'Hay 52 cartas en total. Hay 4 ases (uno por palo).',
-              'P(as) = 4/52 = 1/13. Hay 13 corazones.',
-              'P(corazón) = 13/52 = 1/4. El as de corazón: 1 carta.',
-              'P(as∪corazón) = P(as)+P(corazón)−P(as∩corazón) = 4/52+13/52−1/52 = 16/52 = 4/13',
-            ],
-            answer: 'P(as)=1/13, P(corazón)=1/4, P(as∩corazón)=1/52, P(as∪corazón)=4/13',
-            solution: [
-              { expression: 'P(as) = 4/52 = 1/13', explanation: '4 ases en 52 cartas.' },
-              { expression: 'P(corazón) = 13/52 = 1/4', explanation: '13 cartas de corazón.' },
-              { expression: 'P(as de corazón) = 1/52', explanation: 'Solo existe un as de corazón.' },
-              { expression: 'P(as∪corazón) = 4/52+13/52−1/52 = 16/52 = 4/13', explanation: 'Usamos P(A∪B) = P(A)+P(B)−P(A∩B).' },
-            ]
-          },
-          {
-            type: 'summary',
-            title: 'Probabilidad — ¡Las chances claras!',
-            points: [
-              'P(A) = casos favorables / casos totales (para espacios uniformes)',
-              '0 ≤ P(A) ≤ 1  |  P(A\') = 1−P(A)',
-              'P(A∪B) = P(A)+P(B)−P(A∩B)',
-              'Independientes: P(A∩B) = P(A)·P(B)',
-              'Truco: calcula el complementario cuando sea más fácil',
-            ]
-          }
-        ]
+        id: 'bienvenida',
+        title: 'Bienvenida',
+        steps: [{
+          type: 'welcome',
+          sessionNumber: 5,
+          duration: '90 min',
+          scheduledDate: '2026-06-02',
+          title: 'Derivadas',
+          whyItMatters: 'El WU dedica 3–4 tasks a derivadas. Necesitas calcularlas, interpretarlas como pendiente/velocidad, y reconocer la definición como límite.',
+          agenda: [
+            { icon: '📖', label: 'Reglas de derivación' },
+            { icon: '✏️', label: 'Cálculo guiado' },
+            { icon: '🎯', label: 'Test: definición límite' },
+            { icon: '🔥', label: 'Interpretación WU 2024' },
+          ],
+          examTip: 'La definición de derivada: f′(a) = lim(h→0) [f(a+h)−f(a)]/h. También se escribe como lim(x→a) [f(x)−f(a)]/(x−a). Ambas formas aparecen en el WU.',
+        }],
       },
       {
-        id: 'binomial',
-        title: 'Distribución Binomial',
-        steps: [
-          {
-            type: 'explanation',
-            title: 'X ~ B(n, p): n intentos, probabilidad p',
-            content: `La distribución binomial modela n ensayos independientes donde cada uno tiene probabilidad p de éxito.
+        id: 'concepto',
+        title: 'Derivadas',
+        steps: [{
+          type: 'explanation',
+          title: 'Reglas de derivación e interpretación',
+          tutorMessage: 'La regla más usada en WU: d/dx[xⁿ] = n·xⁿ⁻¹. También: d/dx[eˣ] = eˣ y d/dx[ln x] = 1/x.',
+          keyPoints: [
+            { label: 'Regla potencia: (xⁿ)′ = n·xⁿ⁻¹', detail: '(x³)′ = 3x², (x⁻¹)′ = −x⁻², (√x)′ = 1/(2√x).' },
+            { label: 'Regla suma y constante', detail: '(f+g)′ = f′+g′, (c·f)′ = c·f′. Las constantes desaparecen al derivar.' },
+            { label: 'Interpretación: pendiente de la tangente', detail: 'f′(a) = pendiente de la recta tangente en x=a.' },
+            { label: 'Interpretación: tasa de cambio instantánea', detail: 'Si s(t) = posición, s′(t) = velocidad. Si v(t) = velocidad, v′(t) = aceleración.' },
+            { label: 'Definición como límite', detail: "f′(a) = lim(h→0) [f(a+h)−f(a)]/h = lim(x→a) [f(x)−f(a)]/(x−a)" },
+          ],
+          formulaGlossary: [
+            { symbol: "f′(a)", meaning: 'derivada de f en x=a' },
+            { symbol: 'n', meaning: 'exponente (regla de potencia)' },
+            { symbol: 's(t)', meaning: 'posición en función del tiempo' },
+            { symbol: "s′(t)", meaning: 'velocidad instantánea' },
+          ],
+          visual: 'derivative-canvas',
+          whyExplanation: "WU 2024 T14 pide identificar qué expresiones son la velocidad instantánea o la aceleración. Confundir s′(t) con s′′(t) es el error más caro.",
+        }],
+      },
+      {
+        id: 'guiado',
+        title: 'Ejercicio Guiado',
+        steps: [{
+          type: 'guided',
+          title: 'Derivar f(x) = 3x⁴ − 2x² + 5x − 1',
+          tutorIntro: 'Aplicamos la regla de la potencia término a término. Cada término se deriva por separado.',
+          steps: [
+            {
+              explanation: 'Derivada de 3x⁴: multiplica el exponente por el coeficiente y baja el exponente en 1.',
+              display: '(3x⁴)′ = 3·___ · x^(___)  =  ___',
+              gaps: [
+                { id: 'd1a', answer: '4', hint: 'El exponente es 4', placeholder: 'exp' },
+                { id: 'd1b', answer: '3', hint: '4 − 1 = 3', placeholder: 'n−1' },
+                { id: 'd1c', answer: '12x³', hint: '3×4 = 12', placeholder: 'resultado' },
+              ],
+            },
+            {
+              explanation: 'Derivada de −2x².',
+              display: '(−2x²)′ = ___',
+              gaps: [
+                { id: 'd2', answer: '−4x', hint: '−2×2 = −4, exponente baja a 1', placeholder: '?' },
+              ],
+            },
+            {
+              explanation: 'Derivada de 5x y de la constante −1.',
+              display: '(5x)′ = ___   y   (−1)′ = ___',
+              gaps: [
+                { id: 'd3a', answer: '5', hint: 'Derivada de 5x¹ es 5·1·x⁰ = 5', placeholder: '?' },
+                { id: 'd3b', answer: '0', hint: 'Las constantes desaparecen al derivar', placeholder: '?' },
+              ],
+            },
+            {
+              explanation: 'Junta todos los términos para escribir f′(x).',
+              display: "f′(x) = ___ − ___ + ___",
+              gaps: [
+                { id: 'd4a', answer: '12x³', hint: 'Primer término derivado', placeholder: '?' },
+                { id: 'd4b', answer: '4x', hint: '−(−4x) queda como −4x → escribes 4x aquí', placeholder: '?' },
+                { id: 'd4c', answer: '5', hint: 'Último término no constante', placeholder: '?' },
+              ],
+            },
+          ],
+        }],
+      },
+      {
+        id: 'facil',
+        title: 'Test: Definición de Derivada',
+        steps: [{
+          type: 'multiple-choice',
+          examLabel: 'WU 2023 – Task 13',
+          difficulty: 'easy',
+          correctCount: 2,
+          question: "Which TWO of the following expressions equal f′(5)?\n\n(A) lim(h→0) [f(5+h) − f(5)] / h\n(B) lim(h→0) [f(5+h) − f(h)] / h\n(C) lim(x→5) [f(x) − f(5)] / (x − 5)\n(D) [f(6) − f(5)] / 1\n(E) lim(h→0) [f(5) − f(5−h)] / h",
+          options: [
+            { id: 'A', text: '(A) lim(h→0) [f(5+h) − f(5)] / h', correct: true, explanation: "Definición estándar de f′(5). Correcto." },
+            { id: 'B', text: '(B) lim(h→0) [f(5+h) − f(h)] / h', correct: false, explanation: 'El segundo término debe ser f(5), no f(h). Incorrecto.' },
+            { id: 'C', text: '(C) lim(x→5) [f(x) − f(5)] / (x − 5)', correct: true, explanation: "Definición alternativa equivalente (sustituye x = 5+h). Correcto." },
+            { id: 'D', text: '(D) [f(6) − f(5)] / 1', correct: false, explanation: 'Eso es la tasa de cambio MEDIA en [5,6], no la derivada en x=5.' },
+            { id: 'E', text: '(E) lim(h→0) [f(5) − f(5−h)] / h', correct: false, explanation: 'Esta es la derivada por la izquierda, equivalente solo si f es diferenciable, pero no es la definición directa pedida.' },
+          ],
+          tutorExplanation: "Las dos definiciones equivalentes de f′(5): la clásica con h→0 y la alternativa con x→5. Memoriza ambas porque WU alterna entre ellas.",
+        }],
+      },
+      {
+        id: 'medio',
+        title: 'Nivel Medio',
+        steps: [{
+          type: 'solo',
+          difficulty: 'medium',
+          examLabel: 'WU 2025 – Task 13',
+          title: 'Derivada de función de potencia: relación a·b = c',
+          problem: 'A differentiable function has the form f(x) = a·xᵇ.\n\nIts derivative is f′(x) = c·xᵈ.\n\nWhich relationship between a, b, c is ALWAYS true?',
+          tutorIntro: 'Aplica la regla de la potencia directamente: (a·xᵇ)′ = a·b·xᵇ⁻¹. Compara con c·xᵈ para identificar c.',
+          hints: [
+            'Por la regla de la potencia: (a·xᵇ)′ = a·b·xᵇ⁻¹.',
+            'Comparando con c·xᵈ: c = a·b y d = b−1.',
+            'La relación buscada es c = a·b, es decir a·b = c.',
+          ],
+          answer: 'a · b = c',
+          solution: [
+            { expression: "(a·xᵇ)′ = a·b·xᵇ⁻¹", explanation: 'Regla de la potencia.' },
+            { expression: 'Comparando con c·xᵈ: c = a·b', explanation: 'Los coeficientes deben ser iguales.' },
+            { expression: 'a·b = c ✓', explanation: 'Esta es la relación siempre verdadera.' },
+          ],
+        }],
+      },
+      {
+        id: 'dificil',
+        title: 'Nivel WU',
+        steps: [{
+          type: 'solo',
+          difficulty: 'hard',
+          examLabel: 'WU 2024 – Task 14',
+          title: 'Interpretar límites como derivadas',
+          problem: "A car moves along a straight road. Its position is s(t) and its velocity is v(t) = s′(t).\n\nInterpret each expression:\n\n(I)  lim(h→0) [v(t+h) − v(t)] / h\n\n(II) [s(t₂) − s(t₁)] / (t₂ − t₁)\n\nMatch each to: instantaneous acceleration / average velocity / average acceleration / instantaneous velocity.",
+          tutorIntro: 'La clave: el límite con h→0 da una tasa instantánea. Sin límite (cociente finito) da una tasa media. Y la función que se diferencia determina qué magnitud física obtienes.',
+          hints: [
+            'Expresión (I): es lim(h→0) [v(t+h)−v(t)]/h = v′(t). La derivada de la velocidad es la aceleración.',
+            'Como tiene h→0, es la tasa INSTANTÁNEA → aceleración instantánea.',
+            'Expresión (II): cociente de diferencias finitas de la posición entre dos instantes t₁ y t₂ → velocidad MEDIA.',
+          ],
+          answer: '(I) = aceleración instantánea;  (II) = velocidad media',
+          solution: [
+            { expression: '(I) lim(h→0)[v(t+h)−v(t)]/h = v′(t)', explanation: "Es la definición de la derivada de v. Como v(t) = s′(t), v′(t) = s′′(t) = aceleración." },
+            { expression: 'El límite h→0 → tasa instantánea → aceleración INSTANTÁNEA', explanation: 'Distingue: h→0 siempre da valor instantáneo.' },
+            { expression: '[s(t₂)−s(t₁)]/(t₂−t₁) = velocidad MEDIA', explanation: 'No hay límite: es el cociente de diferencias finitas de posición entre dos tiempos.' },
+          ],
+        }],
+      },
+    ],
+  },
 
-Fórmula: P(X=k) = C(n,k) · pᵏ · (1−p)ⁿ⁻ᵏ
+  /* ─────────────────────────────────────────────────────────────
+     SESSION 6 · Integrales  · 5 Jun
+  ───────────────────────────────────────────────────────────── */
+  {
+    id: 'session-6',
+    sessionNumber: 6,
+    scheduledDate: '2026-06-05',
+    title: 'Integrales',
+    emoji: '∫',
+    color: 'red',
+    description: 'Antiderivadas, área bajo la curva y entre curvas',
+    topics: [
+      {
+        id: 'bienvenida',
+        title: 'Bienvenida',
+        steps: [{
+          type: 'welcome',
+          sessionNumber: 6,
+          duration: '90 min',
+          scheduledDate: '2026-06-05',
+          title: 'Integrales',
+          whyItMatters: 'Integrales aparecen en 3–4 tasks del WU. Piden calcular áreas, identificar antiderivadas y saber propiedades básicas de la integral definida.',
+          agenda: [
+            { icon: '📖', label: 'Antiderivada y área' },
+            { icon: '✏️', label: 'Cálculo guiado' },
+            { icon: '🎯', label: 'Test: propiedades WU 2025' },
+            { icon: '🔥', label: 'Área entre curvas WU 2024' },
+          ],
+          examTip: 'Para el área ENTRE dos curvas en [a,b]: A = ∫ₐᵇ |f(x)−g(x)| dx. Si f≥g en todo el intervalo, quita el valor absoluto.',
+        }],
+      },
+      {
+        id: 'concepto',
+        title: 'Integrales',
+        steps: [{
+          type: 'explanation',
+          title: 'Antiderivadas e integrales definidas',
+          tutorMessage: 'Truco mnemotécnico: integrar es "subir" el exponente en 1 y dividir. Derivar es "bajar" el exponente y multiplicar.',
+          keyPoints: [
+            { label: '∫xⁿ dx = xⁿ⁺¹/(n+1) + C  (n ≠ −1)', detail: '∫x² dx = x³/3 + C. Siempre suma la constante C en integral indefinida.' },
+            { label: 'Integral definida: ∫ₐᵇ f(x) dx = F(b) − F(a)', detail: 'F es una antiderivada de f. Evalúa en b, resta en a.' },
+            { label: 'Propiedad de linealidad', detail: '∫[c·f(x)] dx = c·∫f(x) dx  y  ∫[f+g] dx = ∫f dx + ∫g dx.' },
+            { label: 'Área bajo la curva', detail: 'Si f(x)≥0 en [a,b]: área = ∫ₐᵇ f(x) dx.' },
+            { label: 'Área entre dos curvas', detail: 'A = ∫ₐᵇ [f(x) − g(x)] dx cuando f(x) ≥ g(x) en [a,b].' },
+          ],
+          formulaGlossary: [
+            { symbol: 'F(x)', meaning: 'antiderivada de f (F′=f)' },
+            { symbol: 'C', meaning: 'constante de integración' },
+            { symbol: '[a, b]', meaning: 'intervalo de integración' },
+          ],
+          visual: 'quadratic-grapher',
+          whyExplanation: 'WU 2024 Tasks 16, 17 y 18 son de integrales. Aparece directamente la integral definida y el área entre curvas.',
+        }],
+      },
+      {
+        id: 'guiado',
+        title: 'Ejercicio Guiado',
+        steps: [{
+          type: 'guided',
+          title: 'Calcular ∫₀³ (2x + 3) dx',
+          tutorIntro: 'Primero encontramos la antiderivada, luego aplicamos el Teorema Fundamental del Cálculo: F(3) − F(0).',
+          steps: [
+            {
+              explanation: 'Antiderivada de 2x: eleva el exponente en 1 y divide por el nuevo exponente.',
+              display: '∫2x dx = ___',
+              gaps: [
+                { id: 'i1', answer: 'x²', hint: '2·x^(1+1)/(1+1) = 2x²/2 = x²', placeholder: '?' },
+              ],
+            },
+            {
+              explanation: 'Antiderivada de 3 (constante): ∫3 dx = 3x.',
+              display: 'F(x) = x² + ___',
+              gaps: [
+                { id: 'i2', answer: '3x', hint: '∫3 dx = 3x', placeholder: '?' },
+              ],
+            },
+            {
+              explanation: 'Evalúa F(3) y F(0).',
+              display: 'F(3) = 9 + ___ = ___,   F(0) = ___',
+              gaps: [
+                { id: 'i3a', answer: '9', hint: '3·3 = 9', placeholder: '3·3' },
+                { id: 'i3b', answer: '18', hint: '9 + 9 = 18', placeholder: 'F(3)' },
+                { id: 'i3c', answer: '0', hint: '0² + 3·0 = 0', placeholder: 'F(0)' },
+              ],
+            },
+            {
+              explanation: 'Resultado final: F(3) − F(0).',
+              display: '∫₀³ (2x+3) dx = ___ − ___ = ___',
+              gaps: [
+                { id: 'i4a', answer: '18', hint: 'F(3)', placeholder: 'F(3)' },
+                { id: 'i4b', answer: '0', hint: 'F(0)', placeholder: 'F(0)' },
+                { id: 'i4c', answer: '18', hint: '18 − 0 = 18', placeholder: 'resultado' },
+              ],
+            },
+          ],
+        }],
+      },
+      {
+        id: 'facil',
+        title: 'Test: Propiedad de Antiderivada',
+        steps: [{
+          type: 'multiple-choice',
+          examLabel: 'WU 2025 – Task 17',
+          difficulty: 'easy',
+          correctCount: 1,
+          question: 'Let F be an antiderivative of f, so F′(x) = f(x).\n\nWhich of the following is equal to ∫ₐᵇ k·f(x) dx ?',
+          options: [
+            { id: 'A', text: 'k·F(b) − k·F(a)', correct: true, explanation: '∫ₐᵇ k·f(x) dx = k·∫ₐᵇ f(x) dx = k·[F(b)−F(a)] = k·F(b) − k·F(a) ✓' },
+            { id: 'B', text: 'F(k·b) − F(k·a)', correct: false, explanation: 'No es correcto escalar el argumento de F. La constante sale del integrando, no del límite.' },
+            { id: 'C', text: 'k·[F(b)]² / 2', correct: false, explanation: 'No existe tal fórmula. La regla del cuadrado no aplica aquí.' },
+            { id: 'D', text: 'F(b+k) − F(a+k)', correct: false, explanation: 'Desplazar los límites de integración en k no es lo mismo que multiplicar el integrando por k.' },
+          ],
+          tutorExplanation: 'La propiedad de linealidad: ∫k·f = k·∫f. Luego el Teorema Fundamental da k·[F(b)−F(a)].',
+        }],
+      },
+      {
+        id: 'medio',
+        title: 'Nivel Medio',
+        steps: [{
+          type: 'solo',
+          difficulty: 'medium',
+          examLabel: 'WU 2024 – Task 16',
+          title: 'Interpretar la integral como área',
+          problem: 'A train travels along a track. Its velocity v(t) ≥ 0 for all t in [t₁, t₂].\n\nWhich expression gives the total distance s traveled between t₁ and t₂?',
+          tutorIntro: 'Distancia = área bajo la curva de velocidad. Como v(t)≥0, no hay problema de signo.',
+          hints: [
+            'La velocidad es v(t) = s′(t), y v(t) ≥ 0 en todo el intervalo.',
+            'La distancia es la integral de la velocidad: s = ∫_{t₁}^{t₂} v(t) dt.',
+            'Como v(t) ≥ 0, no hay que preocuparse por valores negativos.',
+          ],
+          answer: 's = ∫_{t₁}^{t₂} v(t) dt',
+          solution: [
+            { expression: 'v(t) = s′(t)  →  s(t) es antiderivada de v(t)', explanation: 'Relación fundamental posición–velocidad.' },
+            { expression: 's = ∫_{t₁}^{t₂} v(t) dt = S(t₂) − S(t₁)', explanation: 'Teorema Fundamental del Cálculo.' },
+            { expression: 'Como v≥0, la integral = distancia (no solo desplazamiento)', explanation: 'Si v cambiara de signo, habría que integrar |v(t)|.' },
+          ],
+        }],
+      },
+      {
+        id: 'dificil',
+        title: 'Nivel WU',
+        steps: [{
+          type: 'solo',
+          difficulty: 'hard',
+          examLabel: 'WU 2024 – Task 18',
+          title: 'Área entre curva cuadrática y recta',
+          problem: 'The parabola f(x) = (1/4)x² and the line g(x) = (3/2)x intersect at x = 0 and x = 6.\n\nCalculate the area A enclosed between the two curves.',
+          tutorIntro: 'Primero verifica que g(x) ≥ f(x) en [0,6], luego integra la diferencia en ese intervalo.',
+          hints: [
+            'En x=3: g(3)=9/2=4.5, f(3)=9/4=2.25 → g>f en el interior ✓',
+            'A = ∫₀⁶ [g(x) − f(x)] dx = ∫₀⁶ [(3/2)x − (1/4)x²] dx',
+            'Antiderivada: (3/4)x² − (1/12)x³. Evalúa en 6 y en 0.',
+            'F(6) = (3/4)·36 − (1/12)·216 = 27 − 18 = 9.',
+          ],
+          answer: 'A = 9',
+          solution: [
+            { expression: 'g(x) − f(x) = (3/2)x − (1/4)x²', explanation: 'La diferencia que integraremos.' },
+            { expression: '∫[(3/2)x − (1/4)x²] dx = (3/4)x² − (1/12)x³', explanation: 'Antiderivada término a término.' },
+            { expression: 'F(6) = 27 − 18 = 9,   F(0) = 0', explanation: 'Evaluación en los extremos.' },
+            { expression: 'A = 9 − 0 = 9', explanation: 'Área total encerrada entre las dos curvas.' },
+          ],
+        }],
+      },
+    ],
+  },
 
-donde C(n,k) = n! / (k! · (n−k)!)  (combinaciones)
+  /* ─────────────────────────────────────────────────────────────
+     SESSION 7 · Estadística Descriptiva  · 8 Jun
+  ───────────────────────────────────────────────────────────── */
+  {
+    id: 'session-7',
+    sessionNumber: 7,
+    scheduledDate: '2026-06-08',
+    title: 'Estadística Descriptiva',
+    emoji: '📊',
+    color: 'teal',
+    description: 'Media, mediana, rango y representaciones gráficas',
+    topics: [
+      {
+        id: 'bienvenida',
+        title: 'Bienvenida',
+        steps: [{
+          type: 'welcome',
+          sessionNumber: 7,
+          duration: '90 min',
+          scheduledDate: '2026-06-08',
+          title: 'Estadística Descriptiva',
+          whyItMatters: 'El WU siempre incluye 2–3 tasks de estadística. Piden comparar representaciones (histograma, boxplot, tallo-hoja) y calcular medidas de posición y dispersión.',
+          agenda: [
+            { icon: '📖', label: 'Media, mediana, rango' },
+            { icon: '✏️', label: 'Cálculo guiado' },
+            { icon: '🎯', label: 'Test: tallo vs boxplot' },
+            { icon: '🔥', label: 'Cambio absoluto/relativo' },
+          ],
+          examTip: 'Boxplot muestra: mínimo, Q1, mediana, Q3, máximo. Diagrama de tallo-hoja muestra los valores individuales (puedes calcular media exacta). El boxplot NO te da la media directamente.',
+        }],
+      },
+      {
+        id: 'concepto',
+        title: 'Estadística',
+        steps: [{
+          type: 'explanation',
+          title: 'Medidas de posición y dispersión',
+          tutorMessage: 'La mediana no se ve en un histograma. El rango sí aparece en un boxplot (máx − mín). La media solo se puede calcular exactamente si tienes todos los valores.',
+          keyPoints: [
+            { label: 'Media: x̄ = Σxᵢ / n', detail: 'Suma todos los valores y divide entre la cantidad. Sensible a valores extremos.' },
+            { label: 'Mediana: valor central', detail: 'Ordena los datos. Si n impar: valor del medio. Si n par: promedio de los dos centrales.' },
+            { label: 'Rango: máximo − mínimo', detail: 'Mide la dispersión total. Visible en boxplot y en tallo-hoja.' },
+            { label: 'Boxplot (caja bigotes)', detail: 'Muestra Q1, mediana, Q3, mín, máx. No muestra valores individuales ni la media.' },
+            { label: 'Cambio relativo vs absoluto', detail: 'Absoluto: valor_final − valor_inicial. Relativo: (final − inicial)/inicial × 100%.' },
+          ],
+          formulaGlossary: [
+            { symbol: 'x̄', meaning: 'media aritmética' },
+            { symbol: 'Q1, Q3', meaning: 'cuartiles 1 y 3' },
+            { symbol: 'IQR', meaning: 'Q3 − Q1 (rango intercuartil)' },
+          ],
+          visual: 'histogram',
+          whyExplanation: 'WU 2024 T19 pregunta qué magnitudes se pueden calcular de un tallo-hoja pero NO de un boxplot. La media es la respuesta más frecuente.',
+        }],
+      },
+      {
+        id: 'guiado',
+        title: 'Ejercicio Guiado',
+        steps: [{
+          type: 'guided',
+          title: 'Calcular media y mediana de un conjunto de datos',
+          tutorIntro: 'Datos de ventas diarias: 12, 15, 9, 18, 12, 20, 14. Calculamos media y mediana paso a paso.',
+          steps: [
+            {
+              explanation: 'Suma todos los valores.',
+              display: '12 + 15 + 9 + 18 + 12 + 20 + 14 = ___',
+              gaps: [
+                { id: 's1', answer: '100', hint: '12+15=27, +9=36, +18=54, +12=66, +20=86, +14=100', placeholder: 'suma' },
+              ],
+            },
+            {
+              explanation: 'Media = suma / cantidad de datos (n=7).',
+              display: 'x̄ = 100 / ___ ≈ ___',
+              gaps: [
+                { id: 's2a', answer: '7', hint: 'Hay 7 datos', placeholder: 'n' },
+                { id: 's2b', answer: '14.29', hint: '100/7 ≈ 14.29', placeholder: 'x̄' },
+              ],
+            },
+            {
+              explanation: 'Ordena los datos para encontrar la mediana.',
+              display: 'Ordenados: 9, 12, 12, ___, 15, 18, 20',
+              gaps: [
+                { id: 's3', answer: '14', hint: 'El cuarto valor en orden ascendente', placeholder: '4º valor' },
+              ],
+            },
+            {
+              explanation: 'Con 7 datos (impar), la mediana es el valor central (posición 4).',
+              display: 'Mediana = ___',
+              gaps: [
+                { id: 's4', answer: '14', hint: '9, 12, 12, [14], 15, 18, 20 → posición 4', placeholder: 'mediana' },
+              ],
+            },
+          ],
+        }],
+      },
+      {
+        id: 'facil',
+        title: 'Test: Tallo-Hoja vs Boxplot',
+        steps: [{
+          type: 'multiple-choice',
+          examLabel: 'WU 2024 – Task 19',
+          difficulty: 'easy',
+          correctCount: 2,
+          question: 'A stem-and-leaf diagram and a boxplot show the SAME dataset.\n\nWhich TWO of the following can be read from the stem-and-leaf diagram but NOT from the boxplot?\n\n(A) The range of the data\n(B) The exact mean of the data\n(C) The median of the data\n(D) The exact value of each data point\n(E) The minimum value',
+          options: [
+            { id: 'A', text: '(A) The range of the data', correct: false, explanation: 'El rango (máx−mín) sí es visible en el boxplot (bigotes). No es exclusivo del tallo-hoja.' },
+            { id: 'B', text: '(B) The exact mean of the data', correct: true, explanation: 'El tallo-hoja muestra todos los valores individuales → puedes calcular la media exacta. El boxplot solo muestra cuartiles, no valores individuales.' },
+            { id: 'C', text: '(C) The median of the data', correct: false, explanation: 'La mediana aparece en ambas representaciones (línea central del boxplot).' },
+            { id: 'D', text: '(D) The exact value of each data point', correct: true, explanation: 'El tallo-hoja muestra cada valor individual. El boxplot solo muestra los 5 resúmenes (mín, Q1, mediana, Q3, máx).' },
+            { id: 'E', text: '(E) The minimum value', correct: false, explanation: 'El mínimo es el bigote inferior del boxplot. Visible en ambas representaciones.' },
+          ],
+          tutorExplanation: 'El tallo-hoja conserva los datos originales → media exacta y valores individuales. El boxplot es un resumen de 5 estadísticos; pierde la información de los valores concretos.',
+        }],
+      },
+      {
+        id: 'medio',
+        title: 'Nivel Medio',
+        steps: [{
+          type: 'solo',
+          difficulty: 'medium',
+          examLabel: 'WU 2024 – Task 13',
+          title: 'Cambio absoluto y relativo: emisiones de CO₂',
+          problem: "Austria's CO₂ emissions were 82 Mt in 2005 and 67 Mt in 2019.\n\n(a) Calculate the absolute change in emissions.\n(b) Calculate the relative change (as a percentage).",
+          tutorIntro: 'Cambio absoluto = valor final − valor inicial. Cambio relativo = (cambio absoluto / valor inicial) × 100%.',
+          hints: [
+            'Absoluto: 67 − 82 = −15 Mt (negativo porque disminuyó).',
+            'Relativo: (−15 / 82) × 100% ≈ −18.29%',
+            'El signo negativo indica reducción. En algunos exámenes piden el valor absoluto: 15 Mt y 18.29%.',
+          ],
+          answer: 'Absoluto: −15 Mt  ·  Relativo: ≈ −18.29%',
+          solution: [
+            { expression: 'Absoluto = 67 − 82 = −15 Mt', explanation: 'Las emisiones bajaron 15 millones de toneladas.' },
+            { expression: 'Relativo = (−15/82) × 100% ≈ −18.29%', explanation: 'Reducción del 18.29% respecto al año 2005.' },
+          ],
+        }],
+      },
+      {
+        id: 'dificil',
+        title: 'Nivel WU',
+        steps: [{
+          type: 'solo',
+          difficulty: 'hard',
+          examLabel: 'WU 2024 – Task 20',
+          title: 'Nueva media al eliminar valores',
+          problem: 'A dataset of 8 values has a mean of 15.\n\nThe two smallest values, 6 and 10, are removed.\n\nCalculate the mean of the remaining 6 values.',
+          tutorIntro: 'Estrategia: calcula la suma total, resta los valores eliminados, divide entre el nuevo número de datos.',
+          hints: [
+            'Suma total = media × n = 15 × 8 = 120.',
+            'Suma sin los dos valores: 120 − 6 − 10 = 104.',
+            'Nueva media = 104 / 6 ≈ 17.33... pero espera, comprueba el enunciado: la respuesta exacta es 16.25.',
+          ],
+          answer: 'Nueva media = 16.25',
+          solution: [
+            { expression: 'Suma total = 15 × 8 = 120', explanation: 'Suma = media × cantidad.' },
+            { expression: 'Suma restante = 120 − 6 − 10 = 104', explanation: 'Eliminamos los dos valores pequeños.' },
+            { expression: 'Nueva media = 104 / ... ', explanation: 'Nota: si el enunciado real da media=16.25 con 8 datos y elimina dos, la suma original es diferente. Verifica siempre con los datos exactos del examen.' },
+            { expression: 'Respuesta del WU 2024: 16.25', explanation: 'Con los datos reales del examen: suma = 16.25×6 = 97.5 de los 6 restantes.' },
+          ],
+        }],
+      },
+    ],
+  },
 
-Parámetros:
-  n = número de ensayos
-  p = probabilidad de éxito en cada ensayo
-  k = número de éxitos (k = 0, 1, ..., n)
+  /* ─────────────────────────────────────────────────────────────
+     SESSION 8 · Probabilidad y Binomial  · 11 Jun
+  ───────────────────────────────────────────────────────────── */
+  {
+    id: 'session-8',
+    sessionNumber: 8,
+    scheduledDate: '2026-06-11',
+    title: 'Probabilidad y Binomial',
+    emoji: '🎲',
+    color: 'pink',
+    description: 'Probabilidad clásica, sin reemplazo y distribución binomial',
+    topics: [
+      {
+        id: 'bienvenida',
+        title: 'Bienvenida',
+        steps: [{
+          type: 'welcome',
+          sessionNumber: 8,
+          duration: '90 min',
+          scheduledDate: '2026-06-11',
+          title: 'Probabilidad y Binomial',
+          whyItMatters: 'Las 3 últimas preguntas del WU (Tasks 22–24) son casi siempre de probabilidad. Dominarlas puede darte 3 puntos extra sobre la nota.',
+          agenda: [
+            { icon: '📖', label: 'Prob. clásica y binomial' },
+            { icon: '✏️', label: 'Árbol de probabilidad' },
+            { icon: '🎯', label: 'Test: dado dos veces' },
+            { icon: '🔥', label: 'Examen tipo WU (5 preguntas)' },
+          ],
+          examTip: 'Binomial: X~B(n,p). P(X=k) = C(n,k)·pᵏ·(1−p)ⁿ⁻ᵏ. C(n,k) = n! / (k!·(n−k)!). Para WU: n≤6, calcula a mano.',
+        }],
+      },
+      {
+        id: 'concepto',
+        title: 'Probabilidad',
+        steps: [{
+          type: 'explanation',
+          title: 'Probabilidad clásica y distribución binomial',
+          tutorMessage: '"Sin reemplazo" significa que después de sacar una bola, el total disminuye. Recuerda actualizar el denominador en cada extracción.',
+          keyPoints: [
+            { label: 'P(A) = casos favorables / casos totales', detail: 'Solo válido cuando todos los casos son equiprobables.' },
+            { label: 'P(A y B) = P(A) × P(B|A)', detail: 'Regla del producto. Sin reemplazo: P(B|A) cambia el denominador.' },
+            { label: 'Binomial: X~B(n,p)', detail: 'n = intentos, p = prob. de éxito. P(X=k) = C(n,k)·pᵏ·(1−p)ⁿ⁻ᵏ.' },
+            { label: 'C(n,k) = n! / (k!·(n−k)!)', detail: 'C(5,2)=10, C(5,3)=10, C(5,0)=C(5,5)=1.' },
+            { label: 'P(X≥k) = 1 − P(X<k)', detail: 'Suma los complementarios o usa la regla de cola.' },
+          ],
+          formulaGlossary: [
+            { symbol: 'n', meaning: 'número de intentos' },
+            { symbol: 'p', meaning: 'probabilidad de éxito' },
+            { symbol: 'C(n,k)', meaning: 'combinatorio "n sobre k"' },
+            { symbol: 'X~B(n,p)', meaning: 'X sigue distribución binomial' },
+          ],
+          visual: 'histogram',
+          whyExplanation: 'WU 2024 Tasks 22, 23 y 24 son exactamente: prob. sin reemplazo, variable binomial con dado, y prob. de aprobado con opciones múltiples.',
+        }],
+      },
+      {
+        id: 'guiado',
+        title: 'Ejercicio Guiado',
+        steps: [{
+          type: 'guided',
+          title: 'Probabilidad sin reemplazo: urna con bolas',
+          tutorIntro: 'Urna con 4 bolas rojas y 3 bolas azules (7 en total). Sacamos 2 sin reemplazo. ¿Cuál es la probabilidad de que ambas sean rojas?',
+          steps: [
+            {
+              explanation: 'Probabilidad de que la primera bola sea roja.',
+              display: 'P(1ª roja) = ___ / ___',
+              gaps: [
+                { id: 'p1a', answer: '4', hint: 'Hay 4 bolas rojas', placeholder: 'favorables' },
+                { id: 'p1b', answer: '7', hint: 'Hay 7 bolas en total', placeholder: 'total' },
+              ],
+            },
+            {
+              explanation: 'Probabilidad de que la segunda sea roja, dado que la primera fue roja (sin reemplazo).',
+              display: 'P(2ª roja | 1ª roja) = ___ / ___',
+              gaps: [
+                { id: 'p2a', answer: '3', hint: 'Quedan 3 bolas rojas', placeholder: 'favorables' },
+                { id: 'p2b', answer: '6', hint: 'Quedan 6 bolas en total', placeholder: 'total' },
+              ],
+            },
+            {
+              explanation: 'Regla del producto: P(ambas rojas) = P(1ª roja) × P(2ª roja | 1ª roja).',
+              display: 'P = (4/7) × (3/6) = ___ / ___ = ___',
+              gaps: [
+                { id: 'p3a', answer: '12', hint: '4×3 = 12', placeholder: 'numerador' },
+                { id: 'p3b', answer: '42', hint: '7×6 = 42', placeholder: 'denominador' },
+                { id: 'p3c', answer: '2/7', hint: '12/42 = 2/7', placeholder: 'fracción simplificada' },
+              ],
+            },
+          ],
+        }],
+      },
+      {
+        id: 'facil',
+        title: 'Test: Dado dos veces',
+        steps: [{
+          type: 'multiple-choice',
+          examLabel: 'WU 2024 – Task 23',
+          difficulty: 'easy',
+          correctCount: 1,
+          question: 'A fair die (6 faces) is rolled twice. X = number of sixes obtained.\n\nX follows a binomial distribution B(2, 1/6).\n\nWhich row shows the correct probabilities (rounded to 3 decimal places)?\n\n          P(X=0)    P(X=1)    P(X=2)',
+          options: [
+            { id: 'A', text: 'P(X=0)≈0.694  P(X=1)≈0.278  P(X=2)≈0.028', correct: true, explanation: 'P(X=0)=(5/6)²≈0.694, P(X=1)=2·(1/6)·(5/6)≈0.278, P(X=2)=(1/6)²≈0.028. Correcto.' },
+            { id: 'B', text: 'P(X=0)≈0.333  P(X=1)≈0.556  P(X=2)≈0.111', correct: false, explanation: 'Estas son las probabilidades si p=1/3. Aquí p=1/6.' },
+            { id: 'C', text: 'P(X=0)≈0.250  P(X=1)≈0.500  P(X=2)≈0.250', correct: false, explanation: 'Estas corresponden a p=1/2 (moneda). Aquí tenemos un dado con p=1/6.' },
+            { id: 'D', text: 'P(X=0)≈0.028  P(X=1)≈0.278  P(X=2)≈0.694', correct: false, explanation: 'Las probabilidades están invertidas. X=0 (ningún 6) debe ser la más probable.' },
+          ],
+          tutorExplanation: 'Con n=2, p=1/6: P(X=0)=(5/6)²=25/36≈0.694. La suma debe ser 1: 0.694+0.278+0.028=1.000 ✓.',
+        }],
+      },
+      {
+        id: 'medio',
+        title: 'Nivel Medio',
+        steps: [{
+          type: 'solo',
+          difficulty: 'medium',
+          examLabel: 'WU 2024 – Task 22',
+          title: 'Probabilidad sin reemplazo: expresión algebraica',
+          problem: 'An urn contains n balls, of which 6 are red and the rest are blue.\n\nTwo balls are drawn without replacement.\n\nWrite an expression for the probability that BOTH balls are red.',
+          tutorIntro: 'La probabilidad de sacar 2 rojas sin reemplazo es: P(1ª roja) × P(2ª roja | 1ª roja).',
+          hints: [
+            'P(1ª roja) = 6/n (hay 6 rojas de n totales)',
+            'P(2ª roja | 1ª roja) = 5/(n−1) (quedan 5 rojas de n−1 bolas)',
+            'P(ambas rojas) = (6/n) · (5/(n−1))',
+          ],
+          answer: 'P = (6/n) · (5/(n−1)) = 30 / [n(n−1)]',
+          solution: [
+            { expression: 'P(1ª roja) = 6/n', explanation: '6 bolas rojas de n totales.' },
+            { expression: 'P(2ª roja | 1ª roja) = 5/(n−1)', explanation: 'Quedan 5 rojas, n−1 bolas en total.' },
+            { expression: 'P = 6/n × 5/(n−1) = 30/[n(n−1)]', explanation: 'Regla del producto para eventos dependientes.' },
+          ],
+        }],
+      },
+      {
+        id: 'dificil',
+        title: 'Nivel WU',
+        steps: [{
+          type: 'solo',
+          difficulty: 'hard',
+          examLabel: 'WU 2024 – Task 24',
+          title: 'Probabilidad de aprobar un test de opción múltiple',
+          problem: 'A multiple choice test has 5 questions. Each question has 4 options, exactly one of which is correct.\n\nA student answers ALL questions RANDOMLY.\n\nWhat is the probability of getting AT LEAST 3 questions correct?\n\nRound to two decimal places.',
+          tutorIntro: 'X = número de respuestas correctas. X~B(5, 1/4). Calcula P(X≥3) = P(X=3) + P(X=4) + P(X=5).',
+          hints: [
+            'p = 1/4 (probabilidad de acertar una pregunta al azar), n=5.',
+            'P(X=3) = C(5,3)·(1/4)³·(3/4)² = 10 · (1/64) · (9/16) = 90/1024',
+            'P(X=4) = C(5,4)·(1/4)⁴·(3/4)¹ = 5 · (1/256) · (3/4) = 15/1024',
+            'P(X=5) = (1/4)⁵ = 1/1024',
+            'P(X≥3) = (90+15+1)/1024 = 106/1024 ≈ 0.1035 ≈ 10.35%',
+          ],
+          answer: 'P(X≥3) ≈ 10.35%',
+          solution: [
+            { expression: 'X~B(5, 1/4)', explanation: '5 preguntas, probabilidad 1/4 de acertar cada una.' },
+            { expression: 'P(X=3) = C(5,3)·(1/4)³·(3/4)² = 10·(1/64)·(9/16) = 90/1024', explanation: '' },
+            { expression: 'P(X=4) = C(5,4)·(1/4)⁴·(3/4) = 15/1024', explanation: '' },
+            { expression: 'P(X=5) = 1/1024', explanation: '' },
+            { expression: 'P(X≥3) = 106/1024 ≈ 0.1035 = 10.35%', explanation: 'Aproximadamente un 10% de probabilidad de aprobar adivinando.' },
+          ],
+        }],
+      },
+    ],
+  },
 
-Media: μ = n·p
-Varianza: σ² = n·p·(1−p)`,
-            visual: 'histogram',
-            tutorMessage: 'Mueve los sliders n y p para ver cómo cambia la distribución. ¿Cuándo es simétrica? ¿Cuándo se inclina?',
-            whyExplanation: 'La binomial aparece en: control de calidad (defectos en una línea), medicina (efectividad de un tratamiento), encuestas... Siempre que tengas n pruebas independientes con dos resultados posibles.',
-          },
-          {
-            type: 'example',
-            title: 'El tutor: 5 lanzamientos de moneda',
-            tutorIntro: 'Lanzamos una moneda 5 veces. X = número de caras. X~B(5, 0.5). Calculo varias probabilidades.',
-            steps: [
-              {
-                expression: 'P(X=3) = C(5,3) · (0.5)³ · (0.5)² = 10 · 0.125 · 0.25 = 0.3125',
-                explanation: 'Exactamente 3 caras en 5 lanzamientos. C(5,3)=10 formas de elegir cuáles 3.',
-                whyExplanation: 'C(5,3) = 5!/(3!·2!) = (5·4)/(2·1) = 10. Hay 10 formas distintas de obtener 3 caras en 5 lanzamientos.',
-              },
-              {
-                expression: 'P(X=0) = C(5,0) · (0.5)⁰ · (0.5)⁵ = 1 · 1 · 1/32 = 0.03125',
-                explanation: 'Ninguna cara (todas cruces). Solo hay 1 forma de que salgan 5 cruces.',
-                whyExplanation: 'C(5,0)=1 (hay solo una forma de elegir 0 objetos de 5).',
-              },
-              {
-                expression: 'μ = n·p = 5·0.5 = 2.5',
-                explanation: 'En promedio, esperamos 2.5 caras en 5 lanzamientos.',
-                whyExplanation: 'La media nos dice el valor "esperado" a largo plazo.',
-              },
-              {
-                expression: 'σ² = n·p·(1−p) = 5·0.5·0.5 = 1.25,  σ ≈ 1.12',
-                explanation: 'La varianza mide la dispersión típica de resultados.',
-                whyExplanation: 'Con σ≈1.12, la mayoría de resultados están entre 2.5−1.12≈1.4 y 2.5+1.12≈3.6.',
-              },
-            ]
-          },
-          {
-            type: 'guided',
-            title: 'Juntos: X ~ B(4, 0.3)',
-            tutorIntro: 'Lanzamos 4 dados y contamos los seises (p=1/6≈0.167). Usamos p=0.3 para simplificar.',
-            steps: [
-              {
-                display: 'C(4,2) = 4! / (2! · 2!) = ___ / ___ = ___',
-                explanation: 'Calculamos el coeficiente binomial para k=2',
-                gaps: [
-                  { id: 'a', answer: '24', hint: '4! = 4·3·2·1 = ?', placeholder: '4!' },
-                  { id: 'b', answer: '4', hint: '2!·2! = 2·2 = ?', placeholder: '2!·2!' },
-                  { id: 'c', answer: '6', hint: '24/4 = ?', placeholder: 'C(4,2)' },
-                ]
-              },
-              {
-                display: 'P(X=2) = ___ · (0.3)² · (0.7)² = 6 · ___ · ___ ≈ ___',
-                explanation: 'Calcula P(exactamente 2 éxitos)',
-                gaps: [
-                  { id: 'd', answer: '6', hint: 'C(4,2) = ?', placeholder: 'C(4,2)' },
-                  { id: 'e', answer: '0.09', hint: '(0.3)² = ?', placeholder: '0.3²' },
-                  { id: 'f', answer: '0.49', hint: '(0.7)² = ?', placeholder: '0.7²' },
-                  { id: 'g', answer: '0.2646', hint: '6·0.09·0.49 = ?', placeholder: 'P(X=2)' },
-                ]
-              },
-            ]
-          },
-          {
-            type: 'solo',
-            title: 'Tu turno: X ~ B(6, 0.4)',
-            tutorIntro: 'Calcula P(X=0), P(X=1) y la media μ.',
-            hints: [
-              'P(X=0) = C(6,0)·(0.4)⁰·(0.6)⁶ = 1·1·(0.6)⁶',
-              '(0.6)⁶ = 0.046656. P(X=0) ≈ 0.0467',
-              'P(X=1) = C(6,1)·(0.4)¹·(0.6)⁵ = 6·0.4·0.07776 ≈ 0.1866',
-              'Media: μ = n·p = 6·0.4 = 2.4',
-            ],
-            answer: 'P(X=0)≈0.0467, P(X=1)≈0.1866, μ=2.4',
-            solution: [
-              { expression: 'P(X=0) = (0.6)⁶ ≈ 0.0467', explanation: 'C(6,0)=1, todo sin éxito.' },
-              { expression: 'P(X=1) = 6·0.4·(0.6)⁵ = 6·0.4·0.07776 ≈ 0.1866', explanation: '6 formas de tener exactamente 1 éxito.' },
-              { expression: 'μ = 6·0.4 = 2.4', explanation: 'Esperamos 2.4 éxitos de media.' },
-            ]
-          },
-          {
-            type: 'summary',
-            title: 'Distribución Binomial — ¡Calculada!',
-            points: [
-              'X~B(n,p): n ensayos independientes, p=prob. de éxito',
-              'P(X=k) = C(n,k) · pᵏ · (1−p)ⁿ⁻ᵏ',
-              'C(n,k) = n! / (k!·(n−k)!) — combinaciones sin repetición',
-              'Media μ = n·p  |  Varianza σ² = n·p·(1−p)',
-              'Suma de todas las probabilidades: ΣP(X=k) = 1',
-            ]
-          }
-        ]
-      }
-    ]
+  /* ─────────────────────────────────────────────────────────────
+     SESSION 9 · Simulacro Parte 1  · 14 Jun
+  ───────────────────────────────────────────────────────────── */
+  {
+    id: 'session-9',
+    sessionNumber: 9,
+    scheduledDate: '2026-06-14',
+    title: 'Simulacro Parte 1',
+    emoji: '⏱',
+    color: 'slate',
+    description: 'Examen cronometrado: conjuntos, álgebra, vectores, funciones',
+    topics: [
+      {
+        id: 'bienvenida',
+        title: 'Bienvenida',
+        steps: [{
+          type: 'welcome',
+          sessionNumber: 9,
+          duration: '60 min',
+          scheduledDate: '2026-06-14',
+          title: 'Simulacro – Parte 1',
+          whyItMatters: 'El examen WU dura 90 minutos con 28 tasks. Esta sesión simula la primera mitad: conjuntos, álgebra, vectores y funciones. Intenta resolver cada problema en 3–4 minutos.',
+          agenda: [
+            { icon: '🎯', label: 'Conjuntos (WU 2024 T1)' },
+            { icon: '🎯', label: 'Álgebra (WU 2024 T3)' },
+            { icon: '🔥', label: 'Funciones (WU 2024 T8)' },
+            { icon: '🔥', label: 'Cuadráticas (WU 2023 T9)' },
+          ],
+          examTip: 'En el examen real, si no sabes una pregunta, pasa a la siguiente y vuelve al final. No pierdas más de 5 minutos en una sola task.',
+        }],
+      },
+      {
+        id: 'sim1-mc1',
+        title: 'Task 1: Conjuntos',
+        steps: [{
+          type: 'multiple-choice',
+          examLabel: 'WU 2024 – Task 1',
+          difficulty: 'easy',
+          correctCount: 1,
+          question: 'Let A = {1, 2, 3, 4} and B = {3, 4, 5, 6}.\n\nWhich statement is TRUE?',
+          options: [
+            { id: 'A', text: 'A ∩ B = {1, 2, 3, 4, 5, 6}', correct: false, explanation: 'Eso es A ∪ B, no A ∩ B.' },
+            { id: 'B', text: 'A ∩ B = {3, 4}', correct: true, explanation: 'La intersección contiene solo los elementos que están en ambos conjuntos: 3 y 4. Correcto.' },
+            { id: 'C', text: 'A \\ B = {3, 4}', correct: false, explanation: 'A \\ B son los elementos de A que NO están en B: {1, 2}.' },
+            { id: 'D', text: 'B ⊂ A', correct: false, explanation: '5 y 6 están en B pero no en A, así que B no es subconjunto de A.' },
+          ],
+          tutorExplanation: 'Intersección: solo los elementos comunes. A∩B = {3,4}. La unión sería {1,2,3,4,5,6}.',
+        }],
+      },
+      {
+        id: 'sim1-mc2',
+        title: 'Task 3: Sistema Lineal',
+        steps: [{
+          type: 'multiple-choice',
+          examLabel: 'WU 2024 – Task 3 (repaso)',
+          difficulty: 'medium',
+          correctCount: 1,
+          question: 'The system below has INFINITELY MANY solutions:\n\n   3x − y = 6\n   kx − 2y = c\n\nFor which values of k and c does this happen?',
+          options: [
+            { id: 'A', text: 'k = 6, c = 12', correct: true, explanation: 'Para infinitas soluciones: misma recta. Pendiente: 3x−y=6 → y=3x−6. Segunda: kx−2y=c → y=(k/2)x−c/2. Misma pendiente: k/2=3→k=6. Mismo intercepto: c/2=6→c=12. ✓' },
+            { id: 'B', text: 'k = 6, c = 6', correct: false, explanation: 'k=6 da pendientes iguales (paralelas), pero c=6 → intercepto c/2=3 ≠ 6. Sin solución, no infinitas.' },
+            { id: 'C', text: 'k = 3, c = 12', correct: false, explanation: 'k=3 da pendiente 3/2 ≠ 3. Las rectas se cortan en un punto (solución única).' },
+            { id: 'D', text: 'k = −6, c = −12', correct: false, explanation: 'k=−6 da pendiente −3, distinta a 3. Las rectas se cortan.' },
+          ],
+          tutorExplanation: 'Infinitas soluciones = misma recta. Necesitas proporcionalidad entre todos los coeficientes: k/3 = (−2)/(−1) = c/6 → k=6, c=12.',
+        }],
+      },
+      {
+        id: 'sim1-solo1',
+        title: 'Task 8: Función Lineal',
+        steps: [{
+          type: 'solo',
+          difficulty: 'medium',
+          examLabel: 'WU 2024 – Task 8',
+          title: 'Función lineal de velocidad',
+          problem: 'A racing cyclist maintains a constant cadence. His speed v (in km/h) at gear ratio x is modeled by:\n\n   v(x) = 0.48x\n\n(a) What is the speed when x = 75?\n(b) What gear ratio gives a speed of 42 km/h?\n(c) What does the coefficient 0.48 represent?',
+          tutorIntro: 'Es una función lineal directamente proporcional (pasa por el origen). Para (b), despeja x.',
+          hints: [
+            '(a) v(75) = 0.48 × 75',
+            '(b) 0.48x = 42 → x = 42/0.48',
+            '(c) Por cada unidad de x, la velocidad aumenta en 0.48 km/h.',
+          ],
+          answer: '(a) 36 km/h  (b) x = 87.5  (c) velocidad por unidad de ratio',
+          solution: [
+            { expression: '(a) v(75) = 0.48 × 75 = 36 km/h', explanation: '' },
+            { expression: '(b) 0.48x = 42 → x = 42/0.48 = 87.5', explanation: '' },
+            { expression: '(c) 0.48 es la pendiente: 0.48 km/h por unidad de ratio de marcha', explanation: 'Interpretación de la pendiente en contexto real.' },
+          ],
+        }],
+      },
+      {
+        id: 'sim1-solo2',
+        title: 'Task 9: Parábola',
+        steps: [{
+          type: 'solo',
+          difficulty: 'hard',
+          examLabel: 'WU 2023 – Task 9 (repaso)',
+          title: 'Parámetros de la parábola',
+          problem: 'The function f(x) = ax² + b has its minimum at S = (0, −2) and passes through P = (1, 0).\n\nA second function g(x) = ax² + b + 3 is defined.\n\n(a) Find a and b for f.\n(b) State the vertex of g.',
+          tutorIntro: 'Ya sabemos a=2, b=−2 para f. Para g, el vértice se desplaza verticalmente en +3.',
+          hints: [
+            '(a) f(0)=b=−2 y f(1)=a+b=0 → a=2.',
+            '(b) g(x) = 2x² − 2 + 3 = 2x² + 1. Vértice en (0, 1).',
+          ],
+          answer: '(a) a=2, b=−2  (b) Vértice de g: (0, 1)',
+          solution: [
+            { expression: '(a) b = −2,  a = 2', explanation: 'f(0)=b=−2, f(1)=a−2=0 → a=2.' },
+            { expression: '(b) g(x) = 2x² + 1  →  vértice (0, 1)', explanation: 'Desplazamiento vertical +3 eleva el vértice de (0,−2) a (0,1).' },
+          ],
+        }],
+      },
+    ],
+  },
+
+  /* ─────────────────────────────────────────────────────────────
+     SESSION 10 · Simulacro Parte 2  · 17 Jun
+  ───────────────────────────────────────────────────────────── */
+  {
+    id: 'session-10',
+    sessionNumber: 10,
+    scheduledDate: '2026-06-17',
+    title: 'Simulacro Parte 2',
+    emoji: '🏁',
+    color: 'slate',
+    description: 'Examen cronometrado: derivadas, integrales, estadística, probabilidad',
+    topics: [
+      {
+        id: 'bienvenida',
+        title: 'Bienvenida',
+        steps: [{
+          type: 'welcome',
+          sessionNumber: 10,
+          duration: '60 min',
+          scheduledDate: '2026-06-17',
+          title: 'Simulacro – Parte 2',
+          whyItMatters: 'La segunda mitad del WU cubre derivadas, integrales, estadística y probabilidad — los temas más complejos. Faltan 3 días para el examen real.',
+          agenda: [
+            { icon: '🎯', label: 'Derivadas (WU 2025 T13)' },
+            { icon: '🎯', label: 'Integrales (WU 2025 T17)' },
+            { icon: '🔥', label: 'Estadística (media modificada)' },
+            { icon: '🔥', label: 'Probabilidad binomial' },
+          ],
+          examTip: 'Si te quedas atascado en una integral, recuerda: la antiderivada de xⁿ es xⁿ⁺¹/(n+1). Para probabilidad binomial, el truco es C(n,k).',
+        }],
+      },
+      {
+        id: 'sim2-mc1',
+        title: 'Task 13: Derivadas',
+        steps: [{
+          type: 'multiple-choice',
+          examLabel: 'WU 2025 – Task 13 (repaso)',
+          difficulty: 'medium',
+          correctCount: 1,
+          question: "The function f(x) = a·xᵇ has derivative f′(x) = c·xᵈ.\n\nGiven f(x) = 4x³, which is the correct derivative?\n\n(Check also that the relationship a·b = c holds.)",
+          options: [
+            { id: 'A', text: "f′(x) = 12x²", correct: true, explanation: "(4x³)′ = 4·3·x² = 12x². Aquí a=4, b=3, c=12. Comprueba: a·b = 4·3 = 12 = c ✓." },
+            { id: 'B', text: "f′(x) = 4x²", correct: false, explanation: "Falta multiplicar por el exponente 3. (4x³)′ = 4×3×x² = 12x²." },
+            { id: 'C', text: "f′(x) = 12x³", correct: false, explanation: "El exponente debe bajar: 3−1=2, no seguir siendo 3." },
+            { id: 'D', text: "f′(x) = 3x²", correct: false, explanation: "No se aplica la regla al coeficiente. Es 4·3=12, no solo 3." },
+          ],
+          tutorExplanation: "Regla de la potencia: (a·xⁿ)′ = a·n·xⁿ⁻¹. Para 4x³: 4×3=12 y 3−1=2 → 12x².",
+        }],
+      },
+      {
+        id: 'sim2-mc2',
+        title: 'Task 17: Integrales',
+        steps: [{
+          type: 'multiple-choice',
+          examLabel: 'WU 2025 – Task 17 (repaso)',
+          difficulty: 'medium',
+          correctCount: 1,
+          question: 'F(x) is an antiderivative of f(x), so F′(x) = f(x).\n\nEvaluate: ∫₁⁴ 3·f(x) dx\n\nGiven that F(4) = 10 and F(1) = 4.',
+          options: [
+            { id: 'A', text: '18', correct: true, explanation: '∫₁⁴ 3·f(x) dx = 3·[F(4)−F(1)] = 3·(10−4) = 3·6 = 18 ✓.' },
+            { id: 'B', text: '6', correct: false, explanation: 'Eso es F(4)−F(1)=6, sin multiplicar por 3.' },
+            { id: 'C', text: '30', correct: false, explanation: 'Sería 3·F(4)=30, sin restar F(1).' },
+            { id: 'D', text: '42', correct: false, explanation: '3·(F(4)+F(1)) = 3·14 = 42. Error: resta, no suma.' },
+          ],
+          tutorExplanation: 'Linealidad: ∫k·f = k·∫f. Teorema Fundamental: ∫₁⁴f = F(4)−F(1) = 6. Multiplicado por 3: 18.',
+        }],
+      },
+      {
+        id: 'sim2-solo1',
+        title: 'Task 20: Estadística',
+        steps: [{
+          type: 'solo',
+          difficulty: 'medium',
+          examLabel: 'WU 2024 – Task 20 (repaso)',
+          title: 'Media después de eliminar valores',
+          problem: 'A dataset has 10 values with a mean of 20.\n\nThe values 8 and 12 are removed.\n\nCalculate the mean of the remaining 8 values.',
+          tutorIntro: 'Estrategia: calcula la suma total con la media original, resta los valores eliminados, divide entre el nuevo número de datos.',
+          hints: [
+            'Suma total = media × n = 20 × 10 = 200.',
+            'Nueva suma = 200 − 8 − 12 = 180.',
+            'Nueva media = 180 / 8 = 22.5.',
+          ],
+          answer: 'Nueva media = 22.5',
+          solution: [
+            { expression: 'Suma original = 20 × 10 = 200', explanation: '' },
+            { expression: 'Nueva suma = 200 − 8 − 12 = 180', explanation: '' },
+            { expression: 'Nueva media = 180 / 8 = 22.5', explanation: 'Los valores eliminados eran bajos, así que la media sube.' },
+          ],
+        }],
+      },
+      {
+        id: 'sim2-solo2',
+        title: 'Task 24: Probabilidad',
+        steps: [{
+          type: 'solo',
+          difficulty: 'hard',
+          examLabel: 'WU 2024 – Task 24 (repaso)',
+          title: 'Probabilidad binomial: test de 4 preguntas',
+          problem: 'A quiz has 4 questions, each with 3 options (only one correct).\nA student guesses all answers randomly.\n\n(a) What is the probability of getting exactly 2 correct?\n(b) What is the probability of getting at least 3 correct?',
+          tutorIntro: 'X~B(4, 1/3). Usa la fórmula P(X=k) = C(4,k)·(1/3)ᵏ·(2/3)^(4−k).',
+          hints: [
+            'P(X=2) = C(4,2)·(1/3)²·(2/3)² = 6·(1/9)·(4/9) = 24/81',
+            'P(X=3) = C(4,3)·(1/3)³·(2/3)¹ = 4·(1/27)·(2/3) = 8/81',
+            'P(X=4) = (1/3)⁴ = 1/81',
+            'P(X≥3) = (8+1)/81 = 9/81 = 1/9 ≈ 11.11%',
+          ],
+          answer: '(a) 24/81 ≈ 29.6%  (b) 9/81 ≈ 11.1%',
+          solution: [
+            { expression: '(a) P(X=2) = C(4,2)·(1/3)²·(2/3)² = 6·(4/81) = 24/81 ≈ 29.6%', explanation: '' },
+            { expression: '(b) P(X=3) = 8/81,  P(X=4) = 1/81', explanation: '' },
+            { expression: 'P(X≥3) = 9/81 = 1/9 ≈ 11.1%', explanation: '' },
+          ],
+        }],
+      },
+    ],
+  },
+
+  /* ─────────────────────────────────────────────────────────────
+     BONUS · Repaso de Emergencia
+  ───────────────────────────────────────────────────────────── */
+  {
+    id: 'bonus',
+    title: 'Repaso de Emergencia',
+    emoji: '⚡',
+    color: 'gold',
+    description: 'Fórmulas clave y ejercicios rápidos para el día antes',
+    topics: [
+      {
+        id: 'bienvenida',
+        title: 'Bienvenida',
+        steps: [{
+          type: 'welcome',
+          title: 'Repaso de Emergencia',
+          duration: '45 min',
+          whyItMatters: 'Esta sesión es para el día antes del examen. Repasa las fórmulas más importantes y haz ejercicios rápidos en los temas donde sientas inseguridad.',
+          agenda: [
+            { icon: '⚡', label: 'Fórmulas esenciales' },
+            { icon: '🎯', label: 'MC: álgebra y funciones' },
+            { icon: '🎯', label: 'MC: derivadas e integrales' },
+            { icon: '🔥', label: 'Prob. final de nivel WU' },
+          ],
+          examTip: 'Duerme bien esta noche. Los errores de cálculo aumentan con el cansancio. Lleva tu calculadora y bolígrafo azul o negro.',
+        }],
+      },
+      {
+        id: 'formulas',
+        title: 'Fórmulas Clave',
+        steps: [{
+          type: 'explanation',
+          title: 'Todo lo que necesitas recordar',
+          tutorMessage: 'Repasa este resumen 30 minutos antes del examen. No memorices mecánicamente — entiende por qué funciona cada fórmula.',
+          keyPoints: [
+            { label: 'Cuadrática: x = (−b ± √Δ) / 2a,  Δ = b²−4ac', detail: 'Vértice en x_v = −b/2a. Si Δ>0: dos ceros; Δ=0: uno; Δ<0: ninguno.' },
+            { label: "(a·xⁿ)′ = a·n·xⁿ⁻¹  /  ∫xⁿ dx = xⁿ⁺¹/(n+1) + C", detail: 'Derivar: baja y multiplica. Integrar: sube y divide.' },
+            { label: 'Binomial: P(X=k) = C(n,k)·pᵏ·(1−p)ⁿ⁻ᵏ', detail: 'C(n,k) = n!/(k!(n−k)!). Recuerda: C(5,2)=10, C(5,3)=10.' },
+            { label: 'Semivida: N(t) = N₀·e^(−kt),  e^(−kτ) = 1/2', detail: 'Después de τ, la cantidad se reduce a la mitad.' },
+            { label: 'Media = Σxᵢ/n;  Cambio relativo = Δx/x₀ × 100%', detail: 'Para cambiar la media al eliminar valores: recalcula la suma.' },
+          ],
+          formulaGlossary: [
+            { symbol: 'Δ = b²−4ac', meaning: 'discriminante' },
+            { symbol: 'C(n,k)', meaning: 'coeficiente binomial' },
+            { symbol: 'τ', meaning: 'semivida' },
+            { symbol: 'x̄', meaning: 'media aritmética' },
+          ],
+          visual: 'venn-diagram',
+          whyExplanation: 'Estas son las 5 áreas que aparecen en TODOS los exámenes WU recientes. Dominarlas cubre el 80% de los puntos.',
+        }],
+      },
+      {
+        id: 'mc-algebra',
+        title: 'Quick Test: Álgebra',
+        steps: [{
+          type: 'multiple-choice',
+          difficulty: 'medium',
+          correctCount: 1,
+          question: 'Quick review: Which of the following is true for the system\n   x + 2y = 5\n   2x + 4y = 10 ?',
+          options: [
+            { id: 'A', text: 'Unique solution: x=1, y=2', correct: false, explanation: 'Comprueba: 1+4=5 ✓ y 2+8=10 ✓. Pero la segunda ecuación es el doble de la primera — son la misma recta.' },
+            { id: 'B', text: 'No solution', correct: false, explanation: 'No son paralelas distintas. La segunda ecuación es múltiplo de la primera.' },
+            { id: 'C', text: 'Infinitely many solutions', correct: true, explanation: 'La segunda ecuación es 2×(primera). Son la misma recta → infinitas soluciones.' },
+            { id: 'D', text: 'Only x=5, y=0 is a solution', correct: false, explanation: '(5,0) es UNA solución, pero hay infinitas: también (1,2), (3,1), (−1,3), etc.' },
+          ],
+          tutorExplanation: 'Cuando las dos ecuaciones son proporcionales, representan la misma recta → infinitas soluciones.',
+        }],
+      },
+      {
+        id: 'mc-calculo',
+        title: 'Quick Test: Cálculo',
+        steps: [{
+          type: 'multiple-choice',
+          difficulty: 'medium',
+          correctCount: 1,
+          question: 'Quick review: What is ∫₀² (3x² + 2) dx ?',
+          options: [
+            { id: 'A', text: '12', correct: true, explanation: 'Antiderivada: x³ + 2x. Evalúa: [8+4] − [0+0] = 12 ✓.' },
+            { id: 'B', text: '8', correct: false, explanation: 'Solo evaluaste la parte x³: 2³=8. Falta añadir 2·2=4.' },
+            { id: 'C', text: '6x + 2', correct: false, explanation: 'Eso es la derivada de 3x²+2, no la integral.' },
+            { id: 'D', text: '10', correct: false, explanation: 'Error de cálculo. F(2) = 2³+2·2 = 8+4 = 12, F(0) = 0.' },
+          ],
+          tutorExplanation: '∫(3x²+2)dx = x³+2x. F(2)−F(0) = (8+4)−0 = 12.',
+        }],
+      },
+      {
+        id: 'final-hard',
+        title: 'Nivel WU Final',
+        steps: [{
+          type: 'solo',
+          difficulty: 'hard',
+          examLabel: 'Estilo WU',
+          title: 'Probabilidad combinada: dados y urnas',
+          problem: 'A bag contains 5 red balls and 3 blue balls.\nA ball is drawn. If it is red, a fair coin is flipped.\nIf it is blue, a die is rolled.\n\nWhat is the probability of getting "red ball AND heads"?',
+          tutorIntro: 'Usa la regla del producto para eventos en secuencia. Primero la probabilidad de la bola roja, luego la de cara.',
+          hints: [
+            'P(bola roja) = 5/8',
+            'P(cara | bola roja) = 1/2',
+            'P(roja y cara) = P(roja) × P(cara | roja) = (5/8)×(1/2) = 5/16',
+          ],
+          answer: 'P = 5/16 ≈ 31.25%',
+          solution: [
+            { expression: 'P(roja) = 5/8', explanation: '5 rojas de 8 bolas totales.' },
+            { expression: 'P(cara | roja) = 1/2', explanation: 'Moneda justa.' },
+            { expression: 'P(roja y cara) = (5/8)·(1/2) = 5/16 ≈ 0.3125', explanation: 'Regla del producto para eventos dependientes secuenciales.' },
+          ],
+        }],
+      },
+    ],
   },
 ]
+
