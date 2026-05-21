@@ -16,10 +16,16 @@ function checkAnswer(input, expected) {
   return alts.some(a => norm === a)
 }
 
-function GapInput({ gap, onCorrect }) {
+const HINT_LEVELS = [
+  { label: '💡 Pista',       bg: 'bg-amber-50',   border: 'border-amber-200',   text: 'text-amber-800'   },
+  { label: '🔍 Más pista',   bg: 'bg-orange-50',  border: 'border-orange-200',  text: 'text-orange-800'  },
+  { label: '✅ Ver respuesta', bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-800' },
+]
+
+function GapInput({ gap, stepExplanation, onCorrect }) {
   const [val, setVal] = useState('')
   const [status, setStatus] = useState('idle')
-  const [showHint, setShowHint] = useState(false)
+  const [hintLevel, setHintLevel] = useState(0)
 
   const check = () => {
     if (!val.trim()) return
@@ -41,6 +47,16 @@ function GapInput({ gap, onCorrect }) {
     )
   }
 
+  const activeHint = HINT_LEVELS[hintLevel - 1]
+
+  const hintContent = hintLevel === 1
+    ? stepExplanation
+    : hintLevel === 2
+    ? gap.hint
+    : hintLevel === 3
+    ? `La respuesta es: ${gap.answer}. ${gap.hint}`
+    : null
+
   return (
     <span className="inline-flex items-center gap-1 relative">
       <input type="text" value={val} placeholder={gap.placeholder}
@@ -51,13 +67,19 @@ function GapInput({ gap, onCorrect }) {
         className="px-1.5 py-0.5 text-xs bg-indigo-100 text-indigo-700 rounded hover:bg-indigo-200 transition-colors">
         ✓
       </button>
-      <button onClick={() => setShowHint(h => !h)} className="btn-hint text-xs py-0.5 px-1.5">
-        💡
-      </button>
-      {showHint && (
-        <span className="absolute top-8 left-0 z-20 p-2 bg-amber-50 border border-amber-200 rounded-lg
-                         text-xs text-amber-800 shadow-lg w-48 animate-fade-in whitespace-normal">
-          {gap.hint}
+      {hintLevel < 3 && (
+        <button
+          onClick={() => setHintLevel(h => h + 1)}
+          className="btn-hint text-xs py-0.5 px-1.5 whitespace-nowrap">
+          {HINT_LEVELS[hintLevel].label}
+        </button>
+      )}
+      {hintLevel > 0 && (
+        <span className={`absolute top-8 left-0 z-20 p-2 rounded-lg text-xs shadow-lg w-52
+                          animate-fade-in whitespace-normal border
+                          ${activeHint.bg} ${activeHint.border} ${activeHint.text}`}>
+          {hintLevel === 3 && <span className="font-bold block mb-0.5">Respuesta:</span>}
+          {hintContent}
         </span>
       )}
     </span>
@@ -113,12 +135,16 @@ export default function GuidedStep({ step, onNext }) {
                         <span key={j} className="inline-flex items-center flex-wrap">
                           <span>{part}</span>
                           {j < arr.length - 1 && gap && (
-                            <GapInput gap={gap} onCorrect={() => {
-                              setCorrect(c => c + 1)
-                              if (i === stepIdx && stepIdx < step.steps.length - 1) {
-                                setTimeout(() => setStepIdx(idx => idx + 1), 400)
-                              }
-                            }} />
+                            <GapInput
+                              gap={gap}
+                              stepExplanation={s.explanation}
+                              onCorrect={() => {
+                                setCorrect(c => c + 1)
+                                if (i === stepIdx && stepIdx < step.steps.length - 1) {
+                                  setTimeout(() => setStepIdx(idx => idx + 1), 400)
+                                }
+                              }}
+                            />
                           )}
                         </span>
                       )
