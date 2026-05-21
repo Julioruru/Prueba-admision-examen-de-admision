@@ -58,7 +58,28 @@ export const lessons = [
       {
         id: 'guiado',
         title: 'Ejercicio Guiado',
-        steps: [{
+        steps: [
+        {
+          type: 'explanation',
+          title: 'Antes de empezar: sustitución y ℕ',
+          tutorMessage: 'Este ejercicio pide demostrar que ciertas expresiones siempre son números naturales. Repasamos las dos herramientas que necesitamos: qué es un número natural y cómo sustituir a = −4b.',
+          keyPoints: [
+            {
+              label: 'ℕ = {0, 1, 2, 3, …} — enteros no negativos',
+              detail: 'Un resultado es natural si es siempre un entero ≥ 0, sin importar el valor de b. Por ejemplo, 4 ∈ ℕ, pero 4b no lo es (b podría ser negativo).',
+            },
+            {
+              label: 'Sustituir a = −4b: reemplaza cada "a" por "−4b"',
+              detail: 'Ejemplo paso a paso — −a/b con a = −4b:\n  −a/b = −(−4b)/b    ← sustituye\n       = 4b/b          ← dos negativos dan positivo\n       = 4             ← la b se cancela → 4 ∈ ℕ ✓',
+            },
+            {
+              label: 'Potencia de un producto: (3b)² = 9b²',
+              detail: 'Eleva cada factor por separado: 3² = 9 y b² = b². Si b ∈ ℤ y b ≠ 0, entonces 9b² es un entero positivo → ∈ ℕ ✓.',
+            },
+          ],
+          visual: 'number-sets',
+        },
+        {
           type: 'guided',
           title: 'Deducir números naturales de una expresión',
           tutorIntro: 'Dado a = −4b con b ∈ ℤ, b ≠ 0, vamos a demostrar que ciertas expresiones siempre son números naturales.',
