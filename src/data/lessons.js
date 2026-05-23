@@ -1,339 +1,403 @@
 export const lessons = [
   /* ─────────────────────────────────────────────────────────────
-     SESSION 1 · Conjuntos y Álgebra  · 21 May
+     SESSION 1 · Conjuntos y Álgebra
   ───────────────────────────────────────────────────────────── */
   {
-    id: 'session-1',
+    id: 'conjuntos',
     sessionNumber: 1,
     scheduledDate: '2026-05-21',
     title: 'Conjuntos y Álgebra',
     emoji: '∪',
     color: 'emerald',
-    description: 'Números reales, conjuntos y sistemas lineales',
+    description: 'Conjuntos numéricos, ecuaciones con porcentajes y sistemas sin solución',
     topics: [
       {
-        id: 'bienvenida',
-        title: 'Bienvenida',
-        steps: [{
-          type: 'welcome',
-          sessionNumber: 1,
-          duration: '90 min',
-          scheduledDate: '2026-05-21',
-          title: 'Conjuntos y Álgebra',
-          whyItMatters: 'Las 3–4 primeras preguntas del WU siempre son de conjuntos numéricos o álgebra. Son las más fáciles de dominar con práctica.',
-          agenda: [
-            { icon: '📖', label: 'Conjuntos ℕ ℤ ℚ ℝ' },
-            { icon: '✏️', label: 'Ejercicio guiado' },
-            { icon: '🎯', label: 'Test WU 2023' },
-            { icon: '🔥', label: 'Problema real WU' },
-          ],
-          examTip: 'En el examen WU, Task 1 casi siempre pide identificar a qué conjunto pertenece un número o cuáles afirmaciones son verdaderas sobre ℕ, ℤ, ℚ, ℝ.',
-        }],
-      },
-      {
-        id: 'concepto',
+        id: 'conjuntos-numericos',
         title: 'Conjuntos Numéricos',
-        steps: [{
-          type: 'explanation',
-          title: 'Números reales y conjuntos',
-          tutorMessage: 'El error más frecuente: confundir ∈ (elemento) con ⊆ (subconjunto). Recuerda: 3 ∈ ℕ pero {3} ⊆ ℕ.',
-          keyPoints: [
-            { label: 'ℕ = {0, 1, 2, 3, …}', detail: 'Solo enteros no negativos. −5 ∉ ℕ, 0 ∈ ℕ.' },
-            { label: 'ℤ = {…, −2, −1, 0, 1, 2, …}', detail: 'Añade los negativos. ℕ ⊂ ℤ.' },
-            { label: 'ℚ = {a/b | a,b ∈ ℤ, b ≠ 0}', detail: 'Fracciones exactas. 0.333… = 1/3 ∈ ℚ.' },
-            { label: 'ℝ = recta numérica completa', detail: 'Incluye irracionales: √2, π, e ∉ ℚ pero ∈ ℝ.' },
-            { label: 'Jerarquía: ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ', detail: 'Todo natural es entero, todo entero es racional, todo racional es real.' },
-          ],
-          formulaGlossary: [
-            { symbol: '∈', meaning: 'pertenece a' },
-            { symbol: '⊂', meaning: 'subconjunto estricto' },
-            { symbol: 'A ∩ B', meaning: 'intersección (en ambos)' },
-            { symbol: 'A ∪ B', meaning: 'unión (en al menos uno)' },
-            { symbol: "A \\ B", meaning: 'diferencia (en A pero no en B)' },
-          ],
-          visual: 'number-sets',
-          whyExplanation: 'Task 1 del WU 2023, 2024 y 2025 fue siempre sobre conjuntos numéricos. Son puntos fáciles si sabes la jerarquía.',
-        }],
-      },
-      {
-        id: 'guiado',
-        title: 'Ejercicio Guiado',
         steps: [
-        {
-          type: 'explanation',
-          title: 'Antes de empezar: sustitución y ℕ',
-          tutorMessage: 'Este ejercicio pide demostrar que ciertas expresiones siempre son números naturales. Repasamos las dos herramientas que necesitamos: qué es un número natural y cómo sustituir a = −4b.',
-          keyPoints: [
-            {
-              label: 'ℕ = {0, 1, 2, 3, …} — enteros no negativos',
-              detail: 'Un resultado es natural si es siempre un entero ≥ 0, sin importar el valor de b. Por ejemplo, 4 ∈ ℕ, pero 4b no lo es (b podría ser negativo).',
-            },
-            {
-              label: 'Sustituir a = −4b: reemplaza cada "a" por "−4b"',
-              detail: 'Ejemplo paso a paso — −a/b con a = −4b:\n  −a/b = −(−4b)/b    ← sustituye\n       = 4b/b          ← dos negativos dan positivo\n       = 4             ← la b se cancela → 4 ∈ ℕ ✓',
-            },
-            {
-              label: 'Potencia de un producto: (3b)² = 9b²',
-              detail: 'Eleva cada factor por separado: 3² = 9 y b² = b². Si b ∈ ℤ y b ≠ 0, entonces 9b² es un entero positivo → ∈ ℕ ✓.',
-            },
-          ],
-          visual: 'number-sets',
-        },
-        {
-          type: 'guided',
-          title: 'Deducir números naturales de una expresión',
-          tutorIntro: 'Dado a = −4b con b ∈ ℤ, b ≠ 0, vamos a demostrar que ciertas expresiones siempre son números naturales.',
-          steps: [
-            {
-              explanation: 'Primero simplificamos −a/b sustituyendo a = −4b.',
-              display: '−a/b = −(___)/b = ___',
-              gaps: [
-                { id: 'g1a', answer: '−4b', hint: 'a = −4b, sustituye directamente', placeholder: 'a = ?' },
-                { id: 'g1b', answer: '4', hint: '−(−4b)/b = 4b/b = 4', placeholder: 'resultado' },
-              ],
-            },
-            {
-              explanation: 'Ahora simplificamos (−a − b). Sustituimos a = −4b.',
-              display: '−a − b = −(___) − b = 4b − b = ___',
-              gaps: [
-                { id: 'g2a', answer: '−4b', hint: 'a = −4b', placeholder: 'a' },
-                { id: 'g2b', answer: '3b', hint: '4b − b = 3b', placeholder: 'resultado' },
-              ],
-            },
-            {
-              explanation: 'Por último, elevamos al cuadrado.',
-              display: '(−a − b)² = (3b)² = ___',
-              gaps: [
-                { id: 'g3', answer: '9b²', hint: '(3b)² = 9·b²', placeholder: '?' },
-              ],
-            },
-          ],
-        }],
+          {
+            type: 'explanation',
+            title: '¿Qué son los conjuntos numéricos?',
+            tutorMessage: 'ℕ⊂ℤ⊂ℚ⊂ℝ: cada conjunto contiene al anterior. Un número natural también es entero, racional y real.',
+            content: 'ℕ={0,1,2,3...} solo positivos sin decimales. ℤ añade negativos. ℚ añade fracciones. ℝ añade irracionales como √2 y π. Truco: si puedes escribirlo como a/b con a,b enteros, es racional.',
+          },
+          {
+            type: 'example',
+            tutorIntro: 'Voy a clasificar −√100, √(9/2) y π paso a paso.',
+            steps: [
+              { expression: '−√100 = −10 ∈ ℤ,ℚ,ℝ pero ∉ ℕ', explanation: '√100=10, con el negativo da −10. Es entero negativo.' },
+              { expression: '√(9/2) = 3/√2 ∉ ℚ', explanation: 'No se puede escribir como fracción exacta de enteros. Es irracional.' },
+              { expression: 'π ∉ ℚ, solo ∈ ℝ', explanation: 'π=3.14159... decimales infinitos no periódicos. Irracional.' },
+            ],
+          },
+          {
+            type: 'guided',
+            title: 'Clasifica estos números',
+            tutorIntro: 'Completa: ¿a qué conjuntos pertenece cada número?',
+            steps: [
+              {
+                display: '−√100 = −10 ∈ ___ (el conjunto más pequeño posible)',
+                gaps: [
+                  { id: 'a', answer: 'ℤ', hint1: 'Es negativo, no puede ser ℕ', hint2: 'Los negativos entran en ℤ', hint3: 'ℤ={...−2,−1,0,1,2...}' },
+                ],
+              },
+              {
+                display: 'Toda fracción a/b con a,b∈ℤ pertenece a ___',
+                gaps: [
+                  { id: 'b', answer: 'ℚ', hint1: '¿Qué conjunto son las fracciones?', hint2: 'ℚ = {a/b | a,b∈ℤ, b≠0}', hint3: 'ℚ es el conjunto de los racionales' },
+                ],
+              },
+            ],
+          },
+          {
+            type: 'solo',
+            title: 'WU 2023 – Task 1',
+            examQuestion: 'Which two statements are TRUE?\nA) √(9/2) is a rational number\nB) −√100 is an integer\nC) √15 is a terminating decimal\nD) Every rational number is also a real number\nE) √(−4) is a real number',
+            answer: 'B and D',
+            hints: [
+              'Evalúa cada opción. Empieza con −√100.',
+              '√100=10, entonces −√100=−10. ¿Es entero? Sí. ¿Y √(9/2)?',
+              'B) −√100=−10 ∈ ℤ ✓. D) ℚ⊂ℝ siempre ✓. A) √(9/2)=irracional ✗. C) √15=irracional ✗. E) √(−4) no existe en ℝ ✗',
+            ],
+            solution: 'B) −√100=−10 es entero ✓\nD) Todo racional es real porque ℚ⊂ℝ ✓',
+          },
+          {
+            type: 'summary',
+            points: [
+              'ℕ⊂ℤ⊂ℚ⊂ℝ: cada conjunto contiene al anterior',
+              'Para clasificar: simplifica primero (√100=10), luego pregunta ¿es negativo? ¿es fracción? ¿es irracional?',
+              '√número negativo → no existe en ℝ',
+              'Todo número natural es también entero, racional y real',
+            ],
+          },
+        ],
       },
       {
-        id: 'facil',
-        title: 'Test WU 2023',
-        steps: [{
-          type: 'multiple-choice',
-          examLabel: 'WU 2023 – Task 1',
-          difficulty: 'easy',
-          correctCount: 2,
-          question: 'Which TWO of the following statements are TRUE?\n\n(A) √(9/2) is a rational number\n(B) −√100 is an integer\n(C) √15 is a natural number\n(D) Every rational number is a real number\n(E) √(−4) is a real number',
-          options: [
-            { id: 'A', text: '(A) √(9/2) is a rational number', correct: false, explanation: '√(9/2) = 3/√2 = 3√2/2, que es irracional. Falso.' },
-            { id: 'B', text: '(B) −√100 is an integer', correct: true, explanation: '−√100 = −10 ∈ ℤ. Verdadero.' },
-            { id: 'C', text: '(C) √15 is a natural number', correct: false, explanation: '√15 ≈ 3.873, no es entero. Falso.' },
-            { id: 'D', text: '(D) Every rational number is a real number', correct: true, explanation: 'ℚ ⊂ ℝ, por definición. Verdadero.' },
-            { id: 'E', text: '(E) √(−4) is a real number', correct: false, explanation: 'La raíz de un número negativo no existe en ℝ. Falso.' },
-          ],
-          tutorExplanation: 'Clave: −√100 = −10 (entero) y ℚ ⊂ ℝ (todo racional es real). Siempre verifica si el resultado de una raíz es entero antes de clasificar.',
-        }],
+        id: 'ecuaciones-porcentaje',
+        title: 'Ecuaciones con Porcentajes',
+        steps: [
+          {
+            type: 'explanation',
+            title: 'Traducir porcentajes a ecuaciones',
+            tutorMessage: 'El truco es traducir palabras a símbolos: X% más = multiplicar por (1+X/100). X€ más = sumar X.',
+            content: 'Ejemplo: m cuesta 80% más que a → m=1.8a → m/a=1.8. m cuesta 1.40€ más → m=a+1.40 → a=m−1.40. Una frase = una ecuación.',
+          },
+          {
+            type: 'example',
+            tutorIntro: 'Un hotel cuesta 50% más que un hostel, y también 30€ más. Escribo las ecuaciones.',
+            steps: [
+              { expression: 'hotel = 1.5·hostel', explanation: '50% más = multiplicar por 1.5' },
+              { expression: 'hotel = hostel + 30', explanation: '30€ más = sumar 30' },
+              { expression: '1.5·hostel = hostel+30 → hostel=60€', explanation: 'Combino las dos ecuaciones' },
+            ],
+          },
+          {
+            type: 'guided',
+            tutorIntro: 'Peras cuestan p€/kg, manzanas a€/kg. Peras cuestan 30% más Y 0.90€ más.',
+            steps: [
+              {
+                display: '30% más: p = ___ · a',
+                gaps: [
+                  { id: 'a', answer: '1.3', hint1: '30% más = 1+0.30 = ?', hint2: '1+0.3=1.3', hint3: '1.3' },
+                ],
+              },
+              {
+                display: '0.90€ más: a = p − ___',
+                gaps: [
+                  { id: 'b', answer: '0.90', hint1: 'p=a+0.90, despeja a', hint2: 'a=p−0.90', hint3: '0.90' },
+                ],
+              },
+            ],
+          },
+          {
+            type: 'solo',
+            title: 'WU 2024 – Task 2',
+            examQuestion: 'A fruit seller sells apples (a €/kg) and apricots (m €/kg).\n• 1kg of apricots costs 80% more than apples.\n• 1kg of apricots costs 1.40€ more than apples.\n\nWhich TWO equations are correct?\nA) a·0.8=m\nB) a+1.8=m\nC) a=m−1.4\nD) a=m/1.4\nE) m/a=1.8',
+            answer: 'C and E',
+            hints: [
+              'Traduce cada frase a una ecuación por separado.',
+              '80% más → m=1.8a → m/a=1.8. 1.40€ más → m=a+1.40 → a=m−1.40.',
+              'C) a=m−1.4 ✓. E) m/a=1.8 ✓',
+            ],
+            solution: 'C) a=m−1.4 porque m=a+1.40\nE) m/a=1.8 porque m=1.8a',
+          },
+          {
+            type: 'summary',
+            points: [
+              '"X% más que Y" → multiplica Y por (1+X/100)',
+              'Una frase = una ecuación',
+              'Verifica sustituyendo números concretos',
+              'En el examen: traduce cada opción y verifica rápido',
+            ],
+          },
+        ],
       },
       {
-        id: 'medio',
-        title: 'Nivel Medio',
-        steps: [{
-          type: 'solo',
-          difficulty: 'medium',
-          examLabel: 'WU 2024 – Task 2',
-          title: 'Plantear ecuaciones: precio de frutas',
-          problem: 'Mangoes cost 80% more than apricots AND €1.40 more than apricots.\n\nLet m = price of mangoes (€) and a = price of apricots (€).\n\nWhich TWO equations correctly model this situation?',
-          tutorIntro: 'El truco: "80% más caro" significa m = a + 0.8a = 1.8a, es decir m/a = 1.8. Y "€1.40 más" significa m = a + 1.4, es decir a = m − 1.4.',
-          hints: [
-            '"80% más caro que los albaricoques" → m = 1.8·a → divide ambos lados: m/a = 1.8',
-            '"1.40 € más caro" → m = a + 1.4 → despeja a: a = m − 1.4',
-            'Revisa las opciones: busca exactamente m/a = 1.8 y a = m − 1.4',
-          ],
-          answer: 'a = m − 1.4   y   m/a = 1.8',
-          solution: [
-            { expression: 'Dato 1: m = a + 1.40 → a = m − 1.40 ✓', explanation: 'Los mangos cuestan 1.40 € más que los albaricoques.' },
-            { expression: 'Dato 2: m = 1.8·a → m/a = 1.8 ✓', explanation: '80% más caro equivale a multiplicar por 1.8.' },
-            { expression: 'Incorrecto: m = 0.8·a → m/a = 0.8', explanation: 'Eso significaría que los mangos son MÁS BARATOS. Error clásico.' },
-          ],
-        }],
-      },
-      {
-        id: 'dificil',
-        title: 'Nivel WU',
-        steps: [{
-          type: 'solo',
-          difficulty: 'hard',
-          examLabel: 'WU 2024 – Task 3',
-          title: 'Sistema de ecuaciones sin solución',
-          problem: 'Consider the system of linear equations:\n\n   2x − y = 3\n   ax + 2y = c\n\nFor which values of a and c does the system have NO solution?',
-          tutorIntro: 'Un sistema 2×2 no tiene solución cuando las rectas son paralelas (igual pendiente, distinto término independiente). Despeja y en ambas ecuaciones y compara.',
-          hints: [
-            'Despeja y en la primera: y = 2x − 3. La pendiente es 2.',
-            'Despeja y en la segunda: 2y = −ax + c → y = −(a/2)x + c/2. La pendiente es −a/2.',
-            'Pendientes iguales: 2 = −a/2 → a = −4',
-            'Para que NO sea la misma recta: −3 ≠ c/2 → c ≠ −6',
-          ],
-          answer: 'a = −4 y c ≠ −6',
-          solution: [
-            { expression: 'y = 2x − 3  (pendiente 2, intercepto −3)', explanation: 'Despejando y de la primera ecuación.' },
-            { expression: 'y = −(a/2)x + c/2  (pendiente −a/2)', explanation: 'Despejando y de la segunda ecuación.' },
-            { expression: '−a/2 = 2  →  a = −4', explanation: 'Para pendientes iguales (líneas paralelas o coincidentes).' },
-            { expression: 'c/2 ≠ −3  →  c ≠ −6', explanation: 'Si c = −6 serían la misma recta (infinitas soluciones). c ≠ −6 garantiza ninguna solución.' },
-          ],
-        }],
+        id: 'sistemas-sin-solucion',
+        title: 'Sistemas sin Solución',
+        steps: [
+          {
+            type: 'explanation',
+            title: '¿Cuándo un sistema no tiene solución?',
+            tutorMessage: 'Dos rectas no se cruzan cuando son paralelas: misma pendiente, diferente intercepto.',
+            content: 'Sistema 2×2: sin solución cuando las rectas son paralelas. Método: despeja y en ambas y compara pendientes. Misma pendiente + distinto intercepto = sin solución.',
+          },
+          {
+            type: 'example',
+            tutorIntro: '¿Para qué valor de k no hay solución? I: x+2y=4 / II: kx+4y=3',
+            steps: [
+              { expression: 'Pendiente I: y=2−x/2 → pendiente=−1/2', explanation: 'Despejo y en la primera ecuación' },
+              { expression: 'Pendiente II: y=(3−kx)/4 → pendiente=−k/4', explanation: 'Despejo y en la segunda' },
+              { expression: '−1/2=−k/4 → k=2', explanation: 'Igualo pendientes → k=2 da rectas paralelas' },
+            ],
+          },
+          {
+            type: 'guided',
+            tutorIntro: 'I: 2x−y=3 / II: ax+2y=c. Sin solución. Encuentra a.',
+            steps: [
+              {
+                display: 'Pendiente I: y=2x−3 → pendiente=___',
+                gaps: [
+                  { id: 'a', answer: '2', hint1: 'coeficiente de x', hint2: 'y=2x−3, pendiente=2', hint3: '2' },
+                ],
+              },
+              {
+                display: 'Pendiente II: y=(c−ax)/2 → pendiente=___',
+                gaps: [
+                  { id: 'b', answer: '-a/2', hint1: 'despeja y: 2y=c−ax', hint2: 'pendiente=−a/2', hint3: '-a/2' },
+                ],
+              },
+              {
+                display: 'Igualo: 2=−a/2 → a=___',
+                gaps: [
+                  { id: 'c', answer: '-4', hint1: '2=−a/2, multiplica por −2', hint2: 'a=−4', hint3: '-4' },
+                ],
+              },
+            ],
+          },
+          {
+            type: 'solo',
+            title: 'WU 2024 – Task 3',
+            examQuestion: 'System of equations:\nI:  2x − y = 3\nII: ax + 2y = c\n\nThis system has NO solution.\nWrite down values of a and c.',
+            answer: 'a=−4, c=0 (any c≠−6)',
+            hints: [
+              'Sin solución = rectas paralelas = misma pendiente, distinto intercepto.',
+              'Pendiente I=2. Pendiente II=−a/2. Iguala: 2=−a/2.',
+              'a=−4. Con a=−4, c puede ser cualquier valor excepto −6. Pon c=0.',
+            ],
+            solution: 'Pendiente I=2. Pendiente II=−a/2.\n2=−a/2 → a=−4.\nc puede ser cualquier valor excepto −6.\nRespuesta: a=−4, c=0',
+          },
+          {
+            type: 'summary',
+            points: [
+              'Sin solución = rectas paralelas',
+              'Método: despeja y, compara pendientes',
+              'Misma pendiente + distinto intercepto = sin solución',
+              'Misma pendiente + mismo intercepto = infinitas soluciones',
+            ],
+          },
+        ],
       },
     ],
   },
 
   /* ─────────────────────────────────────────────────────────────
-     SESSION 2 · Vectores y Geometría  · 24 May
+     SESSION 2 · Vectores y Geometría
   ───────────────────────────────────────────────────────────── */
   {
-    id: 'session-2',
+    id: 'vectores',
     sessionNumber: 2,
     scheduledDate: '2026-05-24',
     title: 'Vectores y Geometría',
     emoji: '→',
-    color: 'violet',
-    description: 'Vectores en ℝ² y ℝ³, rectas paramétricas',
+    color: 'blue',
+    description: 'Relaciones entre vectores, ecuación vectorial de rectas y rectas idénticas',
     topics: [
       {
-        id: 'bienvenida',
-        title: 'Bienvenida',
-        steps: [{
-          type: 'welcome',
-          sessionNumber: 2,
-          duration: '90 min',
-          scheduledDate: '2026-05-24',
-          title: 'Vectores y Geometría',
-          whyItMatters: 'El WU tiene 2–3 preguntas de vectores. Aparecen en Tasks 4–6 y suelen pedir identificar ecuaciones de rectas o calcular con vectores.',
-          agenda: [
-            { icon: '📖', label: 'Vectores y rectas' },
-            { icon: '✏️', label: 'Suma y resta guiada' },
-            { icon: '🎯', label: 'Test: rectas paralelas' },
-            { icon: '🔥', label: 'Recta en 3D (WU 2025)' },
-          ],
-          examTip: 'La ecuación paramétrica X = P + t·v es la forma estándar del WU. Identifica el punto P y el vector director v.',
-        }],
+        id: 'relaciones-vectores',
+        title: 'Relaciones entre Vectores',
+        steps: [
+          {
+            type: 'explanation',
+            title: 'Paralelos, perpendiculares y escalados',
+            tutorMessage: 'Paralelo: b=k·a. Perpendicular: a·b=0.',
+            content: 'Paralelo: b=k·a para algún escalar k. Si k<0, sentidos opuestos.\nPerpendicular: a·b=a₁b₁+a₂b₂=0.\nEjemplo: a=(2,4), b=(1,2) → b=(1/2)·a → paralelos.',
+          },
+          {
+            type: 'example',
+            tutorIntro: 'a=(3,6), b=(2,4). Analizo su relación.',
+            steps: [
+              { expression: 'b=(2/3)·a porque (2/3)·(3,6)=(2,4)', explanation: 'b es múltiplo de a → paralelos' },
+              { expression: 'a·b=3·2+6·4=30≠0', explanation: 'No perpendiculares (confirmado, son paralelos)' },
+            ],
+          },
+          {
+            type: 'guided',
+            tutorIntro: 'a=(4,0), b=(0,3). Analiza.',
+            steps: [
+              {
+                display: 'a·b = 4·___+0·___ = ___',
+                gaps: [
+                  { id: 'a', answer: '0', hint1: 'primer componente de b=(0,3)', hint2: '0', hint3: '0' },
+                  { id: 'b', answer: '3', hint1: 'segundo componente de b=(0,3)', hint2: '3', hint3: '3' },
+                  { id: 'c', answer: '0', hint1: '4·0+0·3=?', hint2: '0', hint3: '0' },
+                ],
+              },
+              {
+                display: 'Como a·b=0 son ___',
+                gaps: [
+                  { id: 'd', answer: 'perpendiculares', hint1: 'producto escalar=0 significa...', hint2: 'perpendiculares', hint3: 'perpendiculares' },
+                ],
+              },
+            ],
+          },
+          {
+            type: 'solo',
+            title: 'WU 2024 – Task 4',
+            examQuestion: 'Let a,b ∈ ℝ². Match each diagram to the correct statement:\nA:(a−b)⊥b  B:a·b=0  C:b=(3/2)a  D:a=−2b  E:(a−b)⊥a  F:b=(2/3)a\n\nDiagram 1: b same direction as a, b shorter\nDiagram 2: (a−b) perpendicular to b\nDiagram 3: a and b opposite directions, |a|=2|b|\nDiagram 4: a and b perpendicular',
+            answer: 'D1→F, D2→A, D3→D, D4→B',
+            hints: [
+              'D1: b mismo sentido, más corto → b=fracción·a. ¿F(2/3) o C(3/2)?',
+              'b=(2/3)a → b más corto ✓. b=(3/2)a → b más largo ✗. D1→F.',
+              'D1→F, D2→A, D3→D (a=−2b opuestos), D4→B (perpendiculares)',
+            ],
+            solution: 'D1→F: b=(2/3)a\nD2→A: (a−b)⊥b\nD3→D: a=−2b\nD4→B: a·b=0',
+          },
+          {
+            type: 'summary',
+            points: [
+              'Paralelo: b=k·a',
+              'Perpendicular: a·b=0',
+              'k>0 mismo sentido, k<0 opuesto',
+              '|k|<1 b más corto, |k|>1 b más largo',
+            ],
+          },
+        ],
       },
       {
-        id: 'concepto',
-        title: 'Vectores y Rectas',
-        steps: [{
-          type: 'explanation',
-          title: 'Vectores en ℝ² y ℝ³',
-          tutorMessage: 'Dos vectores son paralelos si uno es múltiplo escalar del otro: u ∥ v ⟺ u = λ·v para algún λ ≠ 0.',
-          keyPoints: [
-            { label: 'Vector: magnitud y dirección', detail: 'v = (v₁, v₂) o v = (v₁, v₂, v₃). Suma: componente a componente.' },
-            { label: 'Recta paramétrica: X = P + t·v', detail: 'P = punto base, v = vector director, t ∈ ℝ.' },
-            { label: 'Vectores paralelos: u = λ·v', detail: 'Si (a, b) ∥ (c, d) entonces ad = bc (proporcionalidad).' },
-            { label: 'Rectas idénticas', detail: 'Misma dirección Y el vector PQ (entre puntos) es paralelo al director.' },
-            { label: 'Punto de intersección', detail: 'Igualar las dos ecuaciones paramétricas y resolver el sistema.' },
-          ],
-          formulaGlossary: [
-            { symbol: 'X = P + t·v', meaning: 'ecuación paramétrica de recta' },
-            { symbol: 'v', meaning: 'vector director' },
-            { symbol: 'P', meaning: 'punto base de la recta' },
-            { symbol: 't', meaning: 'parámetro real (t ∈ ℝ)' },
-          ],
-          visual: 'vector-diagram',
-          whyExplanation: 'WU 2024 Tasks 4 y 5 piden identificar qué diagrama de vectores corresponde a cierta operación y qué recta tiene una ecuación dada.',
-        }],
+        id: 'ecuacion-vectorial',
+        title: 'Ecuación Vectorial de una Recta',
+        steps: [
+          {
+            type: 'explanation',
+            title: 'X=P+t·d: punto más dirección',
+            tutorMessage: 'Una recta = un punto + una dirección. t mueve el punto por la recta.',
+            content: 'X=(p₁,p₂)+t·(d₁,d₂)\nP=punto en la recta, d=dirección, t∈ℝ\nEjemplo: pasa por (1,2) dirección (3,1):\nt=0→(1,2), t=1→(4,3), t=−1→(−2,1)',
+          },
+          {
+            type: 'example',
+            tutorIntro: 'Recta por (0,1) dirección (2,1). Encuentro puntos.',
+            steps: [
+              { expression: 'X=(0,1)+t·(2,1)', explanation: 'Ecuación vectorial' },
+              { expression: 't=0:(0,1). t=1:(2,2). t=2:(4,3)', explanation: 'Cada t da un punto' },
+              { expression: 'Pendiente=1/2: sube 1 por cada 2', explanation: 'd₂/d₁=1/2' },
+            ],
+          },
+          {
+            type: 'guided',
+            tutorIntro: 'Recta por (−1,0) dirección (3,1).',
+            steps: [
+              {
+                display: 'X=(___, ___)+t·(___, ___)',
+                gaps: [
+                  { id: 'a', answer: '-1', hint1: 'punto de paso', hint2: '(−1,0)', hint3: '-1' },
+                  { id: 'b', answer: '0', hint1: 'segundo componente del punto', hint2: '0', hint3: '0' },
+                  { id: 'c', answer: '3', hint1: 'dirección', hint2: '(3,1)', hint3: '3' },
+                  { id: 'd', answer: '1', hint1: 'segundo componente dirección', hint2: '1', hint3: '1' },
+                ],
+              },
+              {
+                display: 'Para t=2: (___, ___)',
+                gaps: [
+                  { id: 'e', answer: '5', hint1: '−1+2·3=?', hint2: '5', hint3: '5' },
+                  { id: 'f', answer: '2', hint1: '0+2·1=?', hint2: '2', hint3: '2' },
+                ],
+              },
+            ],
+          },
+          {
+            type: 'solo',
+            title: 'WU 2024 – Task 5',
+            examQuestion: 'Six lines g1...g6 are shown (points have integer coordinates).\n\nWhich line has vector equation:\nX = (a1,a2) + t·(3,1)  with t∈ℝ, a1,a2∈ℤ ?',
+            answer: 'g2',
+            hints: [
+              'Dirección (3,1): por cada 3 en x, sube 1 en y.',
+              'Pendiente=1/3. Busca la recta con esa pendiente.',
+              'g2 tiene pendiente 1/3 ✓',
+            ],
+            solution: 'Dirección (3,1) → pendiente=1/3\nBusco recta donde Δy/Δx=1/3\nEsa es g2.',
+          },
+          {
+            type: 'summary',
+            points: [
+              'X=P+t·d: P punto, d dirección, t parámetro',
+              'Pendiente=d₂/d₁',
+              'Para verificar un punto: sustituye y resuelve t',
+              'Múltiples d válidos: (3,1) y (6,2) dan la misma recta',
+            ],
+          },
+        ],
       },
       {
-        id: 'guiado',
-        title: 'Ejercicio Guiado',
-        steps: [{
-          type: 'guided',
-          title: 'Operaciones con vectores',
-          tutorIntro: 'Dados a = (3, −1) y b = (−1, 2), calculamos combinaciones lineales paso a paso.',
-          steps: [
-            {
-              explanation: 'Suma de vectores: suma componente a componente.',
-              display: 'a + b = (3 + ___, −1 + ___) = (___,  ___)',
-              gaps: [
-                { id: 'v1a', answer: '−1', hint: 'Segunda componente de b', placeholder: 'b₁' },
-                { id: 'v1b', answer: '2', hint: 'Segunda componente de b', placeholder: 'b₂' },
-                { id: 'v1c', answer: '2', hint: '3 + (−1) = 2', placeholder: 'x' },
-                { id: 'v1d', answer: '1', hint: '−1 + 2 = 1', placeholder: 'y' },
-              ],
-            },
-            {
-              explanation: '2a − b: multiplica a por 2, luego resta b.',
-              display: '2a = (___, ___),   2a − b = (6−(___)  ,  −2−(___)) = (___,  ___)',
-              gaps: [
-                { id: 'v2a', answer: '6', hint: '2×3 = 6', placeholder: '2·3' },
-                { id: 'v2b', answer: '−2', hint: '2×(−1) = −2', placeholder: '2·(−1)' },
-                { id: 'v2c', answer: '−1', hint: 'Primera componente de b', placeholder: 'b₁' },
-                { id: 'v2d', answer: '2', hint: 'Segunda componente de b', placeholder: 'b₂' },
-                { id: 'v2e', answer: '7', hint: '6 − (−1) = 7', placeholder: 'x' },
-                { id: 'v2f', answer: '−4', hint: '−2 − 2 = −4', placeholder: 'y' },
-              ],
-            },
-          ],
-        }],
-      },
-      {
-        id: 'facil',
-        title: 'Test: Rectas Paralelas',
-        steps: [{
-          type: 'multiple-choice',
-          examLabel: 'WU 2023 – Task 5',
-          difficulty: 'easy',
-          correctCount: 1,
-          question: 'The lines g and h are defined as:\n\n   g: X = (1, 3) + t·(2, a)\n   h: X = (3, b) + s·(4, 2)\n\nThe lines g and h are IDENTICAL. What are the values of a and b?',
-          options: [
-            { id: 'A', text: 'a = 1, b = 4', correct: true, explanation: 'Director de h: (4,2) = 2·(2,1). Para a=1, g tiene director (2,1) ∥ (4,2) ✓. Vector entre bases: (3,4)−(1,3)=(2,1) ∥ (2,1) ✓. Las rectas son idénticas.' },
-            { id: 'B', text: 'a = 2, b = 1', correct: false, explanation: 'a=2 da director (2,2). Para que sea ∥ (4,2): 2/4 = 2/2 → 1/2 ≠ 1. Los directores no son proporcionales → rectas no son paralelas.' },
-            { id: 'C', text: 'a = 2, b = 5', correct: false, explanation: 'a=2 da director (2,2), que no es proporcional a (4,2): 2/4 ≠ 2/2. Las rectas no son paralelas.' },
-            { id: 'D', text: 'a = 1, b = 3', correct: false, explanation: 'a=1 da directores paralelos ✓. Pero vector entre bases: (3,3)−(1,3)=(2,0), que no es ∥ (2,1) porque 0/1 ≠ 2/2. Las rectas son paralelas pero no idénticas.' },
-            { id: 'E', text: 'a = 1, b = 5', correct: false, explanation: 'a=1 da directores paralelos ✓. Pero (3,5)−(1,3)=(2,2): 2/2 ≠ 1/2 — no proporcional a (2,1). Error clásico: confundir la proporcionalidad y obtener b=5 en lugar de b=4.' },
-          ],
-          tutorExplanation: 'Para rectas idénticas: (1) misma dirección → 2/4 = a/2 → a=1. (2) vector entre bases (2,b−3) ∥ (2,1): proporción 2/2 = (b−3)/1 → b−3=1 → b=4. Respuesta: a=1, b=4.',
-        }],
-      },
-      {
-        id: 'medio',
-        title: 'Nivel Medio',
-        steps: [{
-          type: 'solo',
-          difficulty: 'medium',
-          examLabel: 'WU 2024 – Task 5',
-          title: 'Identificar la ecuación de una recta',
-          problem: 'Four lines g₁, g₂, g₃, g₄ are drawn in a coordinate system.\n\nLine g₂ passes through the points A = (0, 2) and B = (3, 3).\n\nWhich line has the equation   X = (a₁, a₂) + t·(3, 1)?',
-          tutorIntro: 'La ecuación X = (a₁, a₂) + t·(3,1) tiene vector director (3,1). Eso significa que por cada 3 unidades en x, sube 1 en y. Busca la recta con pendiente 1/3.',
-          hints: [
-            'El vector director (3,1) → pendiente = Δy/Δx = 1/3.',
-            'De A=(0,2) a B=(3,3): Δx=3, Δy=1 → pendiente = 1/3 ✓',
-            'g₂ pasa por (0,2) con pendiente 1/3: X = (0,2) + t·(3,1). Esto coincide con la forma dada (con a₁=0, a₂=2).',
-          ],
-          answer: 'g₂',
-          solution: [
-            { expression: 'Vector director (3,1) → pendiente = 1/3', explanation: 'Avanza 3 en x y 1 en y.' },
-            { expression: 'g₂: de (0,2) a (3,3) → Δx=3, Δy=1 → pendiente 1/3 ✓', explanation: 'Coincide con el vector director.' },
-            { expression: 'X = (0,2) + t·(3,1)', explanation: 'Punto base (0,2), director (3,1). Correcta.' },
-          ],
-        }],
-      },
-      {
-        id: 'dificil',
-        title: 'Nivel WU',
-        steps: [{
-          type: 'solo',
-          difficulty: 'hard',
-          examLabel: 'WU 2025 – Task 4',
-          title: 'Recta en 3D y punto específico',
-          problem: 'A line passes through the points P = (−1, 0, 3) and Q = (3, −1, 2).\n\nWrite the parametric equation of the line.\n\nThen find the coordinates of point A on the line where the x-coordinate equals 7.',
-          tutorIntro: 'El vector director es Q − P. Escribe X = P + t·(Q−P) y luego resuelve para t cuando x=7.',
-          hints: [
-            'Vector director: v = Q − P = (3−(−1), −1−0, 2−3) = (4, −1, −1)',
-            'Ecuación: X = (−1, 0, 3) + t·(4, −1, −1)',
-            'Para x=7: −1 + 4t = 7 → 4t = 8 → t = 2',
-            'Con t=2: y = 0 + 2·(−1) = −2, z = 3 + 2·(−1) = 1',
-          ],
-          answer: 'A = (7, −2, 1)',
-          solution: [
-            { expression: 'v = Q − P = (4, −1, −1)', explanation: 'Vector director de P a Q.' },
-            { expression: 'X = (−1, 0, 3) + t·(4, −1, −1)', explanation: 'Ecuación paramétrica con P como punto base.' },
-            { expression: '−1 + 4t = 7  →  t = 2', explanation: 'Componente x igual a 7.' },
-            { expression: 'A = (−1+8, 0−2, 3−2) = (7, −2, 1)', explanation: 'Sustituir t=2 en las tres componentes.' },
-          ],
-        }],
+        id: 'rectas-identicas',
+        title: 'Rectas Idénticas',
+        steps: [
+          {
+            type: 'explanation',
+            title: '¿Cuándo dos rectas vectoriales son la misma?',
+            tutorMessage: 'Idénticas = misma dirección + comparten un punto.',
+            content: 'Condición 1: vectores dirección proporcionales (paralelos)\nCondición 2: un punto de una recta está en la otra\nSolo condición 1 → paralelas distintas\nAmbas condiciones → idénticas',
+          },
+          {
+            type: 'example',
+            tutorIntro: '¿Son idénticas g:X=(0,0)+t·(2,2) y h:X=(1,1)+s·(1,1)?',
+            steps: [
+              { expression: '(2,2)=2·(1,1) ✓', explanation: 'Direcciones proporcionales' },
+              { expression: '(0,0)+t·(2,2)=(1,1) → t=0.5 ✓', explanation: '(1,1) está en g' },
+              { expression: '→ IDÉNTICAS', explanation: 'Ambas condiciones cumplidas' },
+            ],
+          },
+          {
+            type: 'guided',
+            tutorIntro: 'g:X=(1,0)+t·(1,1), h:X=(2,b)+s·(a,2). Idénticas. Encuentra a y b.',
+            steps: [
+              {
+                display: '(a,2) proporcional a (1,1): a=___',
+                gaps: [
+                  { id: 'a', answer: '2', hint1: '(a,2)=k·(1,1) → 2=k → a=k=?', hint2: 'k=2, a=2', hint3: '2' },
+                ],
+              },
+              {
+                display: '(2,b) en g: 1+t=2→t=___, b=0+t=___',
+                gaps: [
+                  { id: 'b', answer: '1', hint1: '1+t=2', hint2: 't=1', hint3: '1' },
+                  { id: 'c', answer: '1', hint1: 'b=0+1·1', hint2: 'b=1', hint3: '1' },
+                ],
+              },
+            ],
+          },
+          {
+            type: 'solo',
+            title: 'WU 2023 – Task 5',
+            examQuestion: 'Two lines:\ng: X=(1,0)+t·(1,1)\nh: X=(2,b)+s·(a,2)\n\nThe lines are identical.\nFind a and b.',
+            answer: 'a=2, b=1',
+            hints: [
+              'Idénticas: misma dirección + punto compartido.',
+              '(a,2) proporcional a (1,1) → a=2. Luego verifica si (2,b) está en g.',
+              '1+t=2→t=1, b=0+1=1. Respuesta: a=2, b=1',
+            ],
+            solution: 'Paso 1: (a,2)=k·(1,1) → k=2 → a=2\nPaso 2: (1,0)+t·(1,1)=(2,b) → t=1 → b=1',
+          },
+          {
+            type: 'summary',
+            points: [
+              'Idénticas: direcciones proporcionales + punto compartido',
+              'Solo proporcionales → paralelas distintas',
+              'Método: 1) proporcionalidad 2) sustituye punto',
+              'Si hay solución para t → idénticas',
+            ],
+          },
+        ],
       },
     ],
   },

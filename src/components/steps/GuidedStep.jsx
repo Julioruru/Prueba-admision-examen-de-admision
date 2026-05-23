@@ -81,11 +81,13 @@ function GapInput({ gap, stepExplanation, onCorrect }) {
 
   // Build popup content and styling
   const hintContent = hintLevel === 1
-    ? stepExplanation
+    ? (gap.hint1 !== undefined ? gap.hint1 : stepExplanation)
     : hintLevel === 2
-    ? gap.hint
+    ? (gap.hint2 !== undefined ? gap.hint2 : gap.hint)
     : hintLevel === 3
-    ? `La respuesta es: ${gap.answer}. ${gap.hint}`
+    ? (gap.hint3 !== undefined
+        ? `La respuesta es: ${gap.answer}. ${gap.hint3}`
+        : `La respuesta es: ${gap.answer}. ${gap.hint || ''}`)
     : null
 
   let popupCls = ''
