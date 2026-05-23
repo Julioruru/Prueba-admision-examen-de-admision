@@ -31,29 +31,177 @@ export const lessons = [
         }],
       },
       {
-        id: 'concepto',
+        id: 'conjuntos-numericos',
         title: 'Conjuntos Numéricos',
-        steps: [{
-          type: 'explanation',
-          title: 'Números reales y conjuntos',
-          tutorMessage: 'El error más frecuente: confundir ∈ (elemento) con ⊆ (subconjunto). Recuerda: 3 ∈ ℕ pero {3} ⊆ ℕ.',
-          keyPoints: [
-            { label: 'ℕ = {0, 1, 2, 3, …}', detail: 'Solo enteros no negativos. −5 ∉ ℕ, 0 ∈ ℕ.' },
-            { label: 'ℤ = {…, −2, −1, 0, 1, 2, …}', detail: 'Añade los negativos. ℕ ⊂ ℤ.' },
-            { label: 'ℚ = {a/b | a,b ∈ ℤ, b ≠ 0}', detail: 'Fracciones exactas. 0.333… = 1/3 ∈ ℚ.' },
-            { label: 'ℝ = recta numérica completa', detail: 'Incluye irracionales: √2, π, e ∉ ℚ pero ∈ ℝ.' },
-            { label: 'Jerarquía: ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ', detail: 'Todo natural es entero, todo entero es racional, todo racional es real.' },
-          ],
-          formulaGlossary: [
-            { symbol: '∈', meaning: 'pertenece a' },
-            { symbol: '⊂', meaning: 'subconjunto estricto' },
-            { symbol: 'A ∩ B', meaning: 'intersección (en ambos)' },
-            { symbol: 'A ∪ B', meaning: 'unión (en al menos uno)' },
-            { symbol: "A \\ B", meaning: 'diferencia (en A pero no en B)' },
-          ],
-          visual: 'number-sets',
-          whyExplanation: 'Task 1 del WU 2023, 2024 y 2025 fue siempre sobre conjuntos numéricos. Son puntos fáciles si sabes la jerarquía.',
-        }],
+        steps: [
+          {
+            type: 'explanation',
+            title: 'Conjuntos numéricos: ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ',
+            tutorMessage: 'Truco clave: antes de clasificar un número con raíz cuadrada, SIEMPRE simplifica primero. √100 = 10 ∈ ℕ, no "un irracional". El error más frecuente es no simplificar.',
+            keyPoints: [
+              { label: 'ℕ = {0, 1, 2, 3, …}', detail: 'Solo enteros no negativos. −5 ∉ ℕ, 0 ∈ ℕ. Todo natural también es entero, racional y real.' },
+              { label: 'ℤ = {…, −2, −1, 0, 1, 2, …}', detail: 'Añade los negativos. −3 ∈ ℤ pero −3 ∉ ℕ. ℕ ⊂ ℤ.' },
+              { label: 'ℚ = {a/b | a,b ∈ ℤ, b ≠ 0}', detail: 'Fracciones exactas. 3/7 ∈ ℚ, −1/2 ∈ ℚ. Decimales finitos y periódicos también: 0.5 = 1/2 ∈ ℚ.' },
+              { label: 'ℝ = recta numérica completa', detail: 'Incluye irracionales: √2, √3, √5, π, e ∉ ℚ pero sí ∈ ℝ. ℚ ⊂ ℝ.' },
+              { label: 'Raíces: simplifica antes de clasificar', detail: '√100 = 10 ∈ ℕ. √(9/4) = 3/2 ∈ ℚ. √2 irracional → solo ℝ. √(−9) no existe en ℝ.' },
+              { label: 'Raíces perfectas vs irracionales', detail: '√4=2, √9=3, √16=4, √25=5 → ℕ. √2, √3, √5, √7 → solo ℝ (irracionales).' },
+            ],
+            formulaGlossary: [
+              { symbol: '∈', meaning: 'pertenece a' },
+              { symbol: '⊂', meaning: 'subconjunto estricto' },
+              { symbol: '√(a/b) = √a/√b', meaning: 'simplifica antes de clasificar' },
+              { symbol: '√(neg)', meaning: 'no existe en ℝ' },
+            ],
+            visual: 'number-sets',
+            whyExplanation: 'Task 1 del WU 2023, 2024 y 2025 fue siempre sobre conjuntos numéricos. Son puntos fáciles si sabes la jerarquía y simplificas raíces antes de clasificar.',
+          },
+          {
+            type: 'example',
+            title: 'El tutor clasifica: 5 números paso a paso',
+            tutorIntro: 'Siempre sigo el mismo proceso: (1) simplifica si hay raíz, (2) identifica el conjunto más pequeño, (3) recuerda que ese número también pertenece a todos los conjuntos mayores.',
+            steps: [
+              {
+                expression: '7 → ℕ, ℤ, ℚ, ℝ',
+                explanation: '7 es entero positivo → natural. Como ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ, pertenece a los cuatro conjuntos.',
+              },
+              {
+                expression: '−5 → ℤ, ℚ, ℝ  (no ℕ)',
+                explanation: '−5 es negativo → ∈ ℤ pero ∉ ℕ. Como ℤ ⊂ ℚ ⊂ ℝ, también ∈ ℚ y ∈ ℝ.',
+              },
+              {
+                expression: '−√100 → simplificar: −10 → ℤ, ℚ, ℝ',
+                explanation: 'Primero: √100 = 10, así −√100 = −10. Es entero negativo: −10 ∈ ℤ (y también ∈ ℚ, ∈ ℝ).',
+                whyExplanation: 'Error frecuente: ver √100 y pensar "irracional". Siempre calcula la raíz antes de clasificar.',
+              },
+              {
+                expression: '√(9/4) → simplificar: 3/2 → ℚ, ℝ  (no ℤ)',
+                explanation: '√(9/4) = √9/√4 = 3/2. Fracción de enteros → ∈ ℚ. Pero 3/2 = 1.5 ∉ ℤ.',
+              },
+              {
+                expression: '√7 → irracional → solo ℝ',
+                explanation: '√7 ≈ 2.6457… no es fracción exacta. Es irracional: ∈ ℝ pero ∉ ℚ, ∉ ℤ, ∉ ℕ.',
+                whyExplanation: '7 no es cuadrado perfecto (4=2², 9=3²), así que √7 no es entero → irracional.',
+              },
+            ],
+          },
+          {
+            type: 'guided',
+            title: 'Completa: clasifica cada número',
+            tutorIntro: 'Para cada número, simplifica si hay raíz, luego indica el conjunto más pequeño al que pertenece.',
+            steps: [
+              {
+                explanation: '−3 es entero negativo. ¿Cuál es el conjunto más pequeño al que pertenece?',
+                display: '−3 ∈ ___ (conjunto más pequeño posible)',
+                gaps: [
+                  { id: 'cn1', answer: 'ℤ', hint: '−3 es negativo → no ∈ ℕ, sí ∈ ℤ', placeholder: '?' },
+                ],
+              },
+              {
+                explanation: '2/5 es una fracción de enteros no entera. ¿A qué conjunto pertenece?',
+                display: '2/5 ∈ ___',
+                gaps: [
+                  { id: 'cn2', answer: 'ℚ', hint: 'Fracción de enteros, no es entero → ℚ', placeholder: '?' },
+                ],
+              },
+              {
+                explanation: 'Simplifica √9 primero, luego clasifica.',
+                display: '√9 = ___ ∈ ___',
+                gaps: [
+                  { id: 'cn3a', answer: '3', hint: '3² = 9', placeholder: 'valor' },
+                  { id: 'cn3b', answer: 'ℕ', hint: '3 es entero positivo → natural', placeholder: 'conjunto' },
+                ],
+              },
+              {
+                explanation: '√(−9): ¿existe en ℝ? Indica a qué conjunto pertenece.',
+                display: '√(−9) ∈ ___',
+                gaps: [
+                  { id: 'cn4', answer: 'ninguno', hint: 'La raíz de un número negativo no existe en ℝ', placeholder: '?' },
+                ],
+              },
+              {
+                explanation: 'Simplifica −√(1/4) antes de clasificar.',
+                display: '−√(1/4) = ___ ∈ ___',
+                gaps: [
+                  { id: 'cn5a', answer: '−1/2', hint: '√(1/4) = √1/√4 = 1/2, con signo negativo: −1/2', placeholder: 'valor' },
+                  { id: 'cn5b', answer: 'ℚ', hint: '−1/2 es fracción, no entero → ℚ', placeholder: 'conjunto' },
+                ],
+              },
+            ],
+          },
+          {
+            type: 'solo',
+            difficulty: 'medium',
+            title: 'Práctica: ¿A qué conjunto pertenece?',
+            problem: 'Which of the following numbers belongs to ℚ but NOT to ℤ?\n\nA) −8\nB) √16\nC) 3/7\nD) √5\nE) −√9',
+            tutorIntro: 'Simplifica las raíces primero. Luego busca el número que sea racional (fracción) pero no entero.',
+            hints: [
+              'ℚ contiene fracciones. ℤ contiene enteros. Busca algo que sea fracción pero no entero.',
+              'A) −8 ∈ ℤ. B) √16=4 ∈ ℕ. C) 3/7 fracción no entera → ℚ pero no ℤ. D) √5 irracional. E) −√9=−3 ∈ ℤ.',
+              'C) 3/7 — es fracción de enteros (racional) pero no es entero.',
+            ],
+            answer: 'C) 3/7',
+            solution: [
+              { expression: 'A) −8 ∈ ℤ ✗', explanation: '−8 es entero — también ∈ ℤ, no cumple "no ∈ ℤ".' },
+              { expression: 'B) √16 = 4 ∈ ℕ ✗', explanation: 'Simplifica: √16=4, natural — también ∈ ℤ.' },
+              { expression: 'C) 3/7 ∈ ℚ ✓ y 3/7 ∉ ℤ ✓ — CORRECTA', explanation: '3/7 es fracción de enteros pero no es entero.' },
+              { expression: 'D) √5 irracional ✗', explanation: '√5 ∉ ℚ — no cumple "∈ ℚ".' },
+              { expression: 'E) −√9 = −3 ∈ ℤ ✗', explanation: 'Simplifica: −√9=−3, entero — también ∈ ℤ.' },
+            ],
+          },
+          {
+            type: 'solo',
+            difficulty: 'medium',
+            title: 'Práctica: verdadero o falso',
+            problem: 'A number n satisfies: n = √(p/q) where p and q are natural numbers.\n\nWhich TWO statements are definitely TRUE?\n\nA) n is always a rational number\nB) n is always a real number\nC) n could be a natural number\nD) n is never an integer\nE) n is always positive',
+            tutorIntro: 'Prueba con ejemplos: p=4, q=1 → n=2 ∈ ℕ. p=1, q=4 → n=1/2 ∈ ℚ. p=2, q=1 → n=√2 irracional.',
+            hints: [
+              'Prueba con ejemplos concretos: p=4,q=1 → n=2. p=1,q=4 → n=1/2. p=2,q=1 → n=√2.',
+              'B) √(p/q) siempre existe en ℝ ✓. C) si p=4,q=1: n=2∈ℕ ✓. E) √ siempre da positivo ✓.',
+              'A) falsa: √2 es irracional. D) falsa: √4=2 es entero. B, C y E son verdaderas.',
+            ],
+            answer: 'B, C y E',
+            solution: [
+              { expression: 'B) ✓ — √(p/q) siempre existe en ℝ', explanation: 'p,q ∈ ℕ → p/q > 0 → la raíz existe en ℝ.' },
+              { expression: 'C) ✓ — ejemplo: √(4/1) = 2 ∈ ℕ', explanation: 'Con p=4, q=1: n=2, natural.' },
+              { expression: 'E) ✓ — la raíz cuadrada siempre da resultado positivo', explanation: 'Por definición, √x ≥ 0 para x ≥ 0.' },
+              { expression: 'A) ✗ — √(2/1) = √2 es irracional', explanation: '√2 ∉ ℚ, contraejemplo para A.' },
+              { expression: 'D) ✗ — √(9/1) = 3 es entero', explanation: 'Contraejemplo para D.' },
+            ],
+          },
+          {
+            type: 'solo',
+            difficulty: 'hard',
+            examLabel: 'WU 2023 – Task 1',
+            title: 'WU 2023 – Task 1',
+            problem: 'Which two statements are TRUE?\n\nA) √(9/2) is a rational number\nB) −√100 is an integer\nC) √15 is a terminating decimal\nD) Every rational number is also a real number\nE) √(−4) is a real number',
+            tutorIntro: 'Evalúa cada opción. Simplifica primero: √100=10, √(9/2)=3/√2, √15≈3.87.',
+            hints: [
+              'Evalúa cada opción. Simplifica primero: √100=?, √(9/2)=?, √15≈?',
+              'B) √100=10 → −10 es entero ✓. D) ℚ⊂ℝ por definición ✓. A) √(9/2)=3/√2 irracional ✗.',
+              'B) −√100=−10∈ℤ ✓. D) todo racional es real ✓. Las otras tres son falsas.',
+            ],
+            answer: 'B y D',
+            solution: [
+              { expression: 'B) −√100 = −10 → entero ✓', explanation: '√100=10, con signo: −10 ∈ ℤ.' },
+              { expression: 'D) Por definición ℚ ⊂ ℝ ✓', explanation: 'Todo número racional es también real.' },
+              { expression: 'A) √(9/2) = 3/√2 = 3√2/2 — irracional ✗', explanation: '√2 es irracional, así que 3/√2 también.' },
+              { expression: 'C) √15 ≈ 3.872… — no termina ✗', explanation: '15 no es cuadrado perfecto → √15 irracional.' },
+              { expression: 'E) √(−4) no existe en ℝ ✗', explanation: 'Raíz de negativo no existe en ℝ.' },
+            ],
+          },
+          {
+            type: 'summary',
+            title: '¡Conjuntos Numéricos dominados!',
+            points: [
+              'Jerarquía: ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ — todo natural es entero, todo entero es racional, todo racional es real.',
+              'Para clasificar: simplifica la raíz primero (√100=10 ∈ ℕ, √(9/4)=3/2 ∈ ℚ).',
+              '√2, √3, √5, √7 son irracionales (solo ℝ). √4=2, √9=3, √16=4 son naturales.',
+              '√(número negativo) no existe en ℝ.',
+              '√(a/b) = √a/√b — simplifica antes de clasificar.',
+              'Si p,q ∈ ℕ: √(p/q) siempre ∈ ℝ, pero puede ser ℕ, ℚ o irracional según los valores.',
+            ],
+          },
+        ],
       },
       {
         id: 'guiado',
