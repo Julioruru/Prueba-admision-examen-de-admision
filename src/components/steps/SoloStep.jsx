@@ -52,10 +52,10 @@ export default function SoloStep({ step, onNext, onComplete }) {
       <h2 className="text-xl font-bold text-slate-800 mb-4">{step.title}</h2>
 
       {/* English exam problem — dark bg */}
-      {step.problem && (
+      {(step.problem || step.examQuestion) && (
         <div className="bg-slate-800 text-white rounded-xl p-5 mb-4 text-sm font-medium
                         leading-relaxed whitespace-pre-line font-mono">
-          {step.problem}
+          {step.problem || step.examQuestion}
         </div>
       )}
 
