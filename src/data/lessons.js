@@ -50,6 +50,33 @@ export const lessons = [
             ],
           },
           {
+            type: 'guided',
+            title: 'Nivel medio: raíces y fracciones',
+            tutorIntro: 'Estos son más parecidos al examen. Cuidado con las trampas.',
+            steps: [
+              {
+                display: '√(9/4) = ___ ∈ ___ (usa √(a/b) = √a/√b)',
+                gaps: [
+                  { id: 'a', answer: '3/2', hint1: '√9=3, √4=2', hint2: '√(9/4)=3/2=1.5', hint3: '3/2' },
+                  { id: 'b', answer: 'ℚ', hint1: '3/2 es fracción de enteros', hint2: 'a=3, b=2 → racional', hint3: 'ℚ' },
+                ],
+              },
+              {
+                display: '√(−9) ∈ ___ (cuidado)',
+                gaps: [
+                  { id: 'c', answer: 'ninguno', hint1: '¿Existe x∈ℝ con x²=−9?', hint2: 'No: x²≥0 siempre', hint3: 'ninguno — no existe en ℝ' },
+                ],
+              },
+              {
+                display: '−√(1/4) = ___ ∈ ___',
+                gaps: [
+                  { id: 'd', answer: '-1/2', hint1: '√(1/4)=1/2, con negativo=?', hint2: '−1/2', hint3: '-1/2' },
+                  { id: 'e', answer: 'ℚ', hint1: '−1/2 es fracción de enteros', hint2: 'negativo pero fracción → ℚ, no ℤ', hint3: 'ℚ' },
+                ],
+              },
+            ],
+          },
+          {
             type: 'solo',
             title: 'WU 2023 – Task 1',
             examQuestion: 'Which two statements are TRUE?\nA) √(9/2) is a rational number\nB) −√100 is an integer\nC) √15 is a terminating decimal\nD) Every rational number is also a real number\nE) √(−4) is a real number',
@@ -105,6 +132,25 @@ export const lessons = [
                 display: '0.90€ más: a = p − ___',
                 gaps: [
                   { id: 'b', answer: '0.90', hint1: 'p=a+0.90, despeja a', hint2: 'a=p−0.90', hint3: '0.90' },
+                ],
+              },
+            ],
+          },
+          {
+            type: 'guided',
+            title: 'Nivel medio: identifica la ecuación correcta',
+            tutorIntro: 'Como en el examen: varias opciones, solo algunas correctas.',
+            steps: [
+              {
+                display: '"p cuesta 25% más que q". ¿Cuáles son correctas?\nA) p=0.25q  B) p=1.25q  C) p/q=1.25  D) q=p−0.25\nRespuesta: ___',
+                gaps: [
+                  { id: 'a', answer: 'B y C', hint1: '25% más = ×1.25. ¿Cuál opción tiene eso?', hint2: 'p=1.25q → también p/q=1.25. Son la misma relación.', hint3: 'B y C son correctas' },
+                ],
+              },
+              {
+                display: '"r cuesta 1.80€ más que s". ¿Cuáles son correctas?\nA) r=s·1.80  B) s=r−1.80  C) r−s=1.80  D) r/s=1.80\nRespuesta: ___',
+                gaps: [
+                  { id: 'b', answer: 'B y C', hint1: '1.80€ más → suma, no multiplica: r=s+1.80', hint2: 'De r=s+1.80: r−s=1.80 y s=r−1.80', hint3: 'B y C correctas' },
                 ],
               },
             ],
@@ -171,6 +217,37 @@ export const lessons = [
                 display: 'Igualo: 2=−a/2 → a=___',
                 gaps: [
                   { id: 'c', answer: '-4', hint1: '2=−a/2, multiplica por −2', hint2: 'a=−4', hint3: '-4' },
+                ],
+              },
+            ],
+          },
+          {
+            type: 'guided',
+            title: 'Nivel medio: sistema con dos parámetros',
+            tutorIntro: 'Sistema: I: 2x−y=3 / II: ax+2y=c. Sin solución. Encuentra a y verifica c.',
+            steps: [
+              {
+                display: 'Pendiente I: y=2x−3 → pendiente=___',
+                gaps: [
+                  { id: 'a', answer: '2', hint1: 'coeficiente de x', hint2: 'pendiente=2', hint3: '2' },
+                ],
+              },
+              {
+                display: 'Pendiente II: 2y=c−ax → y=c/2−(a/2)x → pendiente=___',
+                gaps: [
+                  { id: 'b', answer: '-a/2', hint1: 'coeficiente de x en y=c/2−(a/2)x', hint2: '−a/2', hint3: '-a/2' },
+                ],
+              },
+              {
+                display: 'Igualo: 2=−a/2 → a=___',
+                gaps: [
+                  { id: 'c', answer: '-4', hint1: '2=−a/2, multiplica ambos lados por −2', hint2: 'a=−4', hint3: '-4' },
+                ],
+              },
+              {
+                display: 'Con a=−4: intercepto II=c/2. Para paralelas (no idénticas): c/2≠−3 → c≠___',
+                gaps: [
+                  { id: 'd', answer: '-6', hint1: 'c/2≠−3 → c≠?', hint2: 'c≠2×(−3)=−6', hint3: '-6' },
                 ],
               },
             ],
