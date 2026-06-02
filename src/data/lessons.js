@@ -629,6 +629,122 @@ export const lessons = [
           ],
         }],
       },
+      /* ── NEW TOPIC: Cuadráticas desde cero ── */
+      {
+        id: 'cuadraticas-desde-cero',
+        title: 'Cuadráticas desde cero',
+        steps: [
+          /* Paso 1: Concepto */
+          {
+            type: 'explanation',
+            title: 'Ecuaciones cuadráticas: ax² + bx + c = 0',
+            tutorMessage: 'Truco WU: en cuanto veas "exactly one root / exactly one solution" en el enunciado, dispara Δ = 0 de inmediato. No calculas nada más todavía.',
+            keyPoints: [
+              { label: 'Forma: ax² + bx + c = 0', detail: 'Su gráfica es una parábola (forma de U). Resolver = encontrar los x donde la parábola cruza el eje X. A esos x los llamamos soluciones o raíces.' },
+              { label: 'N.° de soluciones (discriminante Δ = b²−4ac)', detail: 'Δ > 0 → 2 soluciones. Δ = 0 → 1 solución (raíz doble). Δ < 0 → 0 soluciones reales.' },
+              { label: 'Fórmula general: x = (−b ± √Δ) / (2a)', detail: 'Universal: funciona para cualquier cuadrática con a ≠ 0. Sustituye a, b, c y simplifica.' },
+              { label: 'El símbolo ±', detail: 'Haces la cuenta DOS veces: x₁ con + y x₂ con −. Por eso suelen salir 2 soluciones.' },
+            ],
+            formulaGlossary: [
+              { symbol: 'a, b, c', meaning: 'coeficientes de ax²+bx+c' },
+              { symbol: 'Δ = b²−4ac', meaning: 'discriminante' },
+              { symbol: '±', meaning: 'dos operaciones: +√Δ  y  −√Δ' },
+              { symbol: 'x = (−b ± √Δ)/(2a)', meaning: 'fórmula general' },
+            ],
+            visual: 'quadratic-grapher',
+            whyExplanation: 'La fórmula general y el discriminante aparecen en 3–4 tasks WU por examen. El patrón Δ = 0 ↔ "exactly one solution" es el que más puntos da.',
+          },
+          /* Paso 2: Ejemplo resuelto */
+          {
+            type: 'example',
+            title: 'Ejemplo resuelto: x² − 5x + 6 = 0',
+            tutorIntro: 'Aplicamos la fórmula general paso a paso. Identifica a, b y c antes de sustituir.',
+            steps: [
+              { expression: 'a = 1, b = −5, c = 6', explanation: 'Identificamos los coeficientes comparando con ax²+bx+c. Ojo: b lleva el signo menos.' },
+              { expression: 'x = (−(−5) ± √((−5)² − 4·1·6)) / (2·1)', explanation: 'Sustituimos en la fórmula general.' },
+              { expression: '= (5 ± √(25 − 24)) / 2 = (5 ± 1) / 2', explanation: 'Calculamos primero lo de dentro de la raíz: 25 − 24 = 1.' },
+              { expression: 'x₁ = (5+1)/2 = 3 ;  x₂ = (5−1)/2 = 2', explanation: 'Abrimos el ±: una vez sumando, otra restando. Resultado: x = 3 y x = 2 (la parábola cruza el eje X en esos dos puntos).' },
+            ],
+          },
+          /* Paso 3: Fácil — multi-select */
+          {
+            type: 'multiple-choice',
+            examLabel: 'Resolver – Nivel 1',
+            difficulty: 'easy',
+            correctCount: 2,
+            question: 'Solve x² − 7x + 10 = 0. Mark ALL solutions.',
+            options: [
+              { id: 'A', text: 'x = 2', correct: true,  explanation: '2² − 7·2 + 10 = 4 − 14 + 10 = 0 ✓' },
+              { id: 'B', text: 'x = 3', correct: false, explanation: '3² − 7·3 + 10 = 9 − 21 + 10 = −2 ≠ 0' },
+              { id: 'C', text: 'x = 5', correct: true,  explanation: '5² − 7·5 + 10 = 25 − 35 + 10 = 0 ✓' },
+              { id: 'D', text: 'x = 7', correct: false, explanation: '7² − 7·7 + 10 = 49 − 49 + 10 = 10 ≠ 0' },
+            ],
+            solution: [
+              { expression: 'a=1, b=−7, c=10 → Δ = 49 − 40 = 9', explanation: 'Identificamos coeficientes y calculamos el discriminante.' },
+              { expression: 'x = (7 ± √9)/2 = (7 ± 3)/2', explanation: 'Sustituimos. √9 = 3.' },
+              { expression: 'x₁ = 10/2 = 5 ;  x₂ = 4/2 = 2', explanation: 'Abrimos el ±. Hay DOS soluciones, por eso es multi-select.' },
+            ],
+          },
+          /* Paso 4: Medio — multi-select (trampa de signos) */
+          {
+            type: 'multiple-choice',
+            examLabel: 'Resolver – Nivel 2',
+            difficulty: 'medium',
+            correctCount: 2,
+            question: 'Solve x² + 2x − 8 = 0. Mark ALL solutions.',
+            options: [
+              { id: 'A', text: 'x = 2',  correct: true,  explanation: '2² + 2·2 − 8 = 4 + 4 − 8 = 0 ✓' },
+              { id: 'B', text: 'x = −2', correct: false, explanation: '(−2)² + 2·(−2) − 8 = 4 − 4 − 8 = −8 ≠ 0' },
+              { id: 'C', text: 'x = 4',  correct: false, explanation: '4² + 2·4 − 8 = 16 + 8 − 8 = 16 ≠ 0' },
+              { id: 'D', text: 'x = −4', correct: true,  explanation: '(−4)² + 2·(−4) − 8 = 16 − 8 − 8 = 0 ✓' },
+            ],
+            solution: [
+              { expression: 'a=1, b=2, c=−8 → Δ = 4 + 32 = 36', explanation: 'Cuidado: c es NEGATIVO, así que −4ac = −4·1·(−8) = +32.' },
+              { expression: 'x = (−2 ± √36)/2 = (−2 ± 6)/2', explanation: 'Sustituimos. √36 = 6. Ojo: −b = −2.' },
+              { expression: 'x₁ = 4/2 = 2 ;  x₂ = −8/2 = −4', explanation: 'Una solución positiva y una negativa. El error típico aquí es el signo.' },
+            ],
+          },
+          /* Paso 5: Nivel WU — single */
+          {
+            type: 'multiple-choice',
+            examLabel: 'WU 2026 – Task 1',
+            difficulty: 'hard',
+            correctCount: 1,
+            question: 'f(x) = x² − 6x + k has exactly one real root. Find k.',
+            options: [
+              { id: 'A', text: 'k = 3',  correct: false, explanation: 'Δ = 36 − 12 = 24 > 0 → dos raíces.' },
+              { id: 'B', text: 'k = 6',  correct: false, explanation: 'Δ = 36 − 24 = 12 > 0 → dos raíces.' },
+              { id: 'C', text: 'k = 9',  correct: true,  explanation: 'Δ = 36 − 36 = 0 → una raíz doble. ✓' },
+              { id: 'D', text: 'k = 36', correct: false, explanation: 'Δ = 36 − 144 = −108 < 0 → sin raíces reales.' },
+            ],
+            solution: [
+              { expression: 'PATRÓN: "exactly one root" → Δ = 0', explanation: 'Esta es la señal clave: en cuanto leas "exactly one root/solution", dispara discriminante cero. No calculas nada todavía, solo reconoces el tipo.' },
+              { expression: 'Δ = b² − 4ac, con a=1, b=−6, c=k', explanation: 'Identificamos coeficientes.' },
+              { expression: '36 − 4k = 0  →  k = 9', explanation: 'Despejamos k.' },
+            ],
+          },
+          /* Paso 6: Nivel WU — single */
+          {
+            type: 'multiple-choice',
+            examLabel: 'WU 2026 – Task 2',
+            difficulty: 'hard',
+            correctCount: 1,
+            question: 'For which value of c does 2x² − x + c = 0 have exactly one solution?\n\n  1/16   /   1/8   /   1/4   /   1/2   /   1',
+            options: [
+              { id: 'A', text: 'c = 1/16', correct: false, explanation: 'Δ = 1 − 8·(1/16) = 1 − 0.5 > 0 → dos soluciones.' },
+              { id: 'B', text: 'c = 1/8',  correct: true,  explanation: 'Δ = 1 − 8·(1/8) = 1 − 1 = 0 → exactamente una solución. ✓' },
+              { id: 'C', text: 'c = 1/4',  correct: false, explanation: 'Δ = 1 − 8·(1/4) = 1 − 2 = −1 < 0 → sin soluciones reales.' },
+              { id: 'D', text: 'c = 1/2',  correct: false, explanation: 'Δ = 1 − 8·(1/2) = 1 − 4 = −3 < 0 → sin soluciones reales.' },
+              { id: 'E', text: 'c = 1',    correct: false, explanation: 'Δ = 1 − 8·1 = −7 < 0 → sin soluciones reales.' },
+            ],
+            solution: [
+              { expression: 'PATRÓN: "exactly one solution" → Δ = 0', explanation: 'Mismo disparador que el anterior. Misma jugada.' },
+              { expression: 'a=2, b=−1, c=c → (−1)² − 4·2·c = 0', explanation: 'Identificamos coeficientes y planteamos Δ=0.' },
+              { expression: '1 − 8c = 0  →  c = 1/8', explanation: 'Despejamos c.' },
+            ],
+          },
+        ],
+      },
     ],
   },
 
@@ -784,68 +900,6 @@ export const lessons = [
             { expression: 'f(x) = 3·sin(4x)', explanation: 'Verificación: máximo = 3 ✓, período = 2π/4 = π/2 ✓.' },
           ],
         }],
-      },
-      {
-        id: 'cuadraticas-parametros',
-        title: 'Cuadráticas con parámetros',
-        steps: [
-          {
-            type: 'multiple-choice',
-            examLabel: 'WU 2026 – Task 1',
-            difficulty: 'easy',
-            correctCount: 1,
-            question: 'f(x) = x² − 6x + k has exactly one real root. Find k.',
-            options: [
-              { id: 'A', text: 'k = 3',  correct: false, explanation: 'Δ = 36 − 4·3 = 24 > 0 → dos raíces distintas.' },
-              { id: 'B', text: 'k = 6',  correct: false, explanation: 'Δ = 36 − 4·6 = 12 > 0 → dos raíces distintas.' },
-              { id: 'C', text: 'k = 9',  correct: true,  explanation: 'Δ = 36 − 4·9 = 0 → exactamente una raíz. ✓' },
-              { id: 'D', text: 'k = 36', correct: false, explanation: 'Δ = 36 − 4·36 = −108 < 0 → ninguna raíz real.' },
-            ],
-            solution: [
-              { expression: 'One real root means Δ = 0', explanation: 'Una sola raíz → discriminante cero.' },
-              { expression: 'Δ = b² − 4ac, with a=1, b=−6, c=k', explanation: 'Identificamos los coeficientes.' },
-              { expression: '36 − 4k = 0  →  k = 9', explanation: 'Despejamos k.' },
-            ],
-          },
-          {
-            type: 'multiple-choice',
-            examLabel: 'WU 2026 – Task 2',
-            difficulty: 'medium',
-            correctCount: 3,
-            question: 'f(x) = 2x² + kx + 8. Mark all correct statements.\n\n(1) The graph always opens upward.\n(2) The graph always passes through (0, 8).\n(3) If k = 8, there is exactly one real root.\n(4) If k = 0, the function has no real roots.',
-            options: [
-              { id: '1', text: '(1) The graph always opens upward.',              correct: true,  explanation: 'a = 2 > 0 para cualquier k → abre siempre hacia arriba. ✓' },
-              { id: '2', text: '(2) The graph always passes through (0, 8).',     correct: true,  explanation: 'f(0) = 0 + 0 + 8 = 8 independientemente de k. ✓' },
-              { id: '3', text: '(3) If k = 8, there is exactly one real root.',   correct: true,  explanation: 'k=8 → Δ = 64 − 4·2·8 = 64 − 64 = 0 → raíz doble. ✓' },
-              { id: '4', text: '(4) If k = 0, the function has no real roots.',   correct: false, explanation: 'k=0 → Δ = 0 − 64 = −64 < 0. Aquí no hay raíces reales, así que la afirmación sería verdadera — pero el examen la marca incorrecta; verifica siempre con el enunciado original.' },
-            ],
-            solution: [
-              { expression: 'a = 2 > 0 for any k', explanation: '(1) correcta: a>0 siempre abre hacia arriba.' },
-              { expression: 'f(0) = 8', explanation: '(2) correcta: el corte con el eje Y es (0, c) = (0, 8).' },
-              { expression: 'k=8 → Δ = 64 − 64 = 0', explanation: '(3) correcta: Δ=0 → una raíz doble.' },
-              { expression: 'k=0 → Δ = 0 − 64 = −64 < 0', explanation: '(4) FALSA: Δ<0 sí significa sin raíces reales, pero hay que verificar el cálculo — aquí Δ es negativo, así que NO tiene raíces reales... la afirmación es verdadera. Marca (4) también.' },
-            ],
-          },
-          {
-            type: 'multiple-choice',
-            examLabel: 'WU 2026 – Task 3',
-            difficulty: 'hard',
-            correctCount: 1,
-            question: 'For which value of c does 2x² − x + c = 0 have exactly one solution?\n\n  1/16   /   1/8   /   1/4   /   1/2   /   1',
-            options: [
-              { id: 'A', text: 'c = 1/16', correct: false, explanation: 'Δ = 1 − 4·2·(1/16) = 1 − 1/2 = 1/2 > 0 → dos soluciones.' },
-              { id: 'B', text: 'c = 1/8',  correct: true,  explanation: 'Δ = 1 − 4·2·(1/8) = 1 − 1 = 0 → exactamente una solución. ✓' },
-              { id: 'C', text: 'c = 1/4',  correct: false, explanation: 'Δ = 1 − 4·2·(1/4) = 1 − 2 = −1 < 0 → ninguna solución real.' },
-              { id: 'D', text: 'c = 1/2',  correct: false, explanation: 'Δ = 1 − 4·2·(1/2) = 1 − 4 = −3 < 0 → ninguna solución real.' },
-              { id: 'E', text: 'c = 1',    correct: false, explanation: 'Δ = 1 − 4·2·1 = 1 − 8 = −7 < 0 → ninguna solución real.' },
-            ],
-            solution: [
-              { expression: 'One solution → Δ = 0 → b² − 4ac = 0', explanation: 'Una solución exige discriminante cero.' },
-              { expression: 'a=2, b=−1, c=c', explanation: 'Coeficientes de la ecuación.' },
-              { expression: '(−1)² − 4·2·c = 0  →  1 − 8c = 0  →  c = 1/8', explanation: 'Despejamos c.' },
-            ],
-          },
-        ],
       },
     ],
   },
