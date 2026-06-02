@@ -10,7 +10,10 @@ export default function MultipleChoiceStep({ step, onNext, onComplete }) {
   const [selected, setSelected] = useState(new Set())
   const [submitted, setSubmitted] = useState(false)
 
+  const hasSolution = Array.isArray(step.solution) && step.solution.length > 0
   const isMulti = (step.correctCount || 1) > 1
+  const showButton = isMulti || hasSolution
+
   const options = step.options || []
   const correctIds = new Set(options.filter(o => o.correct).map(o => o.id))
 
@@ -20,8 +23,11 @@ export default function MultipleChoiceStep({ step, onNext, onComplete }) {
       const next = new Set(selected)
       next.has(id) ? next.delete(id) : next.add(id)
       setSelected(next)
+    } else if (hasSolution) {
+      // Single-correct with explicit solution: radio-style but wait for button
+      setSelected(new Set([id]))
     } else {
-      // Single-select: auto-submit on click
+      // Single-select legacy: auto-submit on click
       setSelected(new Set([id]))
       setSubmitted(true)
     }
@@ -86,7 +92,7 @@ export default function MultipleChoiceStep({ step, onNext, onComplete }) {
               disabled={submitted}
               className={`w-full text-left p-4 rounded-xl border-2 transition-all ${border}`}>
               <div className="flex items-start gap-3">
-                {/* Indicator dot */}
+                {/* Indicator */}
                 <div className={`w-5 h-5 rounded border-2 flex-shrink-0 mt-0.5 flex items-center
                                 justify-center text-xs font-bold transition-all ${circle}`}>
                   {showCorrect ? '✓' : showWrong ? '✗' : isSelected && !submitted ? '✓' : ''}
@@ -107,16 +113,18 @@ export default function MultipleChoiceStep({ step, onNext, onComplete }) {
         })}
       </div>
 
-      {/* Submit (multi-select only) */}
-      {isMulti && !submitted && (
+      {/* Submit button */}
+      {showButton && !submitted && (
         <button onClick={submit}
           disabled={selected.size === 0}
           className="btn-primary w-full mb-4 disabled:opacity-40 disabled:cursor-not-allowed">
-          Comprobar respuesta ({selected.size}/{step.correctCount} seleccionadas)
+          {hasSolution
+            ? 'Submit and show solution'
+            : `Comprobar respuesta (${selected.size}/${step.correctCount} seleccionadas)`}
         </button>
       )}
 
-      {/* Result banner + continue */}
+      {/* Result banner + solution + continue */}
       {submitted && (
         <div className="animate-slide-up space-y-3">
           <div className={`rounded-xl p-4 border ${
@@ -127,6 +135,24 @@ export default function MultipleChoiceStep({ step, onNext, onComplete }) {
               <p className="text-sm leading-relaxed">{step.tutorExplanation}</p>
             )}
           </div>
+
+          {hasSolution && (
+            <div className="bg-white border border-slate-200 rounded-xl p-4 space-y-3">
+              <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Solución paso a paso</p>
+              {step.solution.map((s, i) => (
+                <div key={i} className="flex gap-3">
+                  <span className="w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold flex-shrink-0 flex items-center justify-center mt-0.5">
+                    {i + 1}
+                  </span>
+                  <div>
+                    <p className="font-mono text-sm text-slate-800">{s.expression}</p>
+                    <p className="text-xs text-slate-500 mt-0.5">{s.explanation}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
           <button onClick={handleContinue} className="btn-primary w-full">
             Continuar →
           </button>

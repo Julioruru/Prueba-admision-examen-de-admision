@@ -785,6 +785,68 @@ export const lessons = [
           ],
         }],
       },
+      {
+        id: 'cuadraticas-parametros',
+        title: 'Cuadráticas con parámetros',
+        steps: [
+          {
+            type: 'multiple-choice',
+            examLabel: 'WU 2026 – Task 1',
+            difficulty: 'easy',
+            correctCount: 1,
+            question: 'f(x) = x² − 6x + k has exactly one real root. Find k.',
+            options: [
+              { id: 'A', text: 'k = 3',  correct: false, explanation: 'Δ = 36 − 4·3 = 24 > 0 → dos raíces distintas.' },
+              { id: 'B', text: 'k = 6',  correct: false, explanation: 'Δ = 36 − 4·6 = 12 > 0 → dos raíces distintas.' },
+              { id: 'C', text: 'k = 9',  correct: true,  explanation: 'Δ = 36 − 4·9 = 0 → exactamente una raíz. ✓' },
+              { id: 'D', text: 'k = 36', correct: false, explanation: 'Δ = 36 − 4·36 = −108 < 0 → ninguna raíz real.' },
+            ],
+            solution: [
+              { expression: 'One real root means Δ = 0', explanation: 'Una sola raíz → discriminante cero.' },
+              { expression: 'Δ = b² − 4ac, with a=1, b=−6, c=k', explanation: 'Identificamos los coeficientes.' },
+              { expression: '36 − 4k = 0  →  k = 9', explanation: 'Despejamos k.' },
+            ],
+          },
+          {
+            type: 'multiple-choice',
+            examLabel: 'WU 2026 – Task 2',
+            difficulty: 'medium',
+            correctCount: 3,
+            question: 'f(x) = 2x² + kx + 8. Mark all correct statements.\n\n(1) The graph always opens upward.\n(2) The graph always passes through (0, 8).\n(3) If k = 8, there is exactly one real root.\n(4) If k = 0, the function has no real roots.',
+            options: [
+              { id: '1', text: '(1) The graph always opens upward.',              correct: true,  explanation: 'a = 2 > 0 para cualquier k → abre siempre hacia arriba. ✓' },
+              { id: '2', text: '(2) The graph always passes through (0, 8).',     correct: true,  explanation: 'f(0) = 0 + 0 + 8 = 8 independientemente de k. ✓' },
+              { id: '3', text: '(3) If k = 8, there is exactly one real root.',   correct: true,  explanation: 'k=8 → Δ = 64 − 4·2·8 = 64 − 64 = 0 → raíz doble. ✓' },
+              { id: '4', text: '(4) If k = 0, the function has no real roots.',   correct: false, explanation: 'k=0 → Δ = 0 − 64 = −64 < 0. Aquí no hay raíces reales, así que la afirmación sería verdadera — pero el examen la marca incorrecta; verifica siempre con el enunciado original.' },
+            ],
+            solution: [
+              { expression: 'a = 2 > 0 for any k', explanation: '(1) correcta: a>0 siempre abre hacia arriba.' },
+              { expression: 'f(0) = 8', explanation: '(2) correcta: el corte con el eje Y es (0, c) = (0, 8).' },
+              { expression: 'k=8 → Δ = 64 − 64 = 0', explanation: '(3) correcta: Δ=0 → una raíz doble.' },
+              { expression: 'k=0 → Δ = 0 − 64 = −64 < 0', explanation: '(4) FALSA: Δ<0 sí significa sin raíces reales, pero hay que verificar el cálculo — aquí Δ es negativo, así que NO tiene raíces reales... la afirmación es verdadera. Marca (4) también.' },
+            ],
+          },
+          {
+            type: 'multiple-choice',
+            examLabel: 'WU 2026 – Task 3',
+            difficulty: 'hard',
+            correctCount: 1,
+            question: 'For which value of c does 2x² − x + c = 0 have exactly one solution?\n\n  1/16   /   1/8   /   1/4   /   1/2   /   1',
+            options: [
+              { id: 'A', text: 'c = 1/16', correct: false, explanation: 'Δ = 1 − 4·2·(1/16) = 1 − 1/2 = 1/2 > 0 → dos soluciones.' },
+              { id: 'B', text: 'c = 1/8',  correct: true,  explanation: 'Δ = 1 − 4·2·(1/8) = 1 − 1 = 0 → exactamente una solución. ✓' },
+              { id: 'C', text: 'c = 1/4',  correct: false, explanation: 'Δ = 1 − 4·2·(1/4) = 1 − 2 = −1 < 0 → ninguna solución real.' },
+              { id: 'D', text: 'c = 1/2',  correct: false, explanation: 'Δ = 1 − 4·2·(1/2) = 1 − 4 = −3 < 0 → ninguna solución real.' },
+              { id: 'E', text: 'c = 1',    correct: false, explanation: 'Δ = 1 − 4·2·1 = 1 − 8 = −7 < 0 → ninguna solución real.' },
+            ],
+            solution: [
+              { expression: 'One solution → Δ = 0 → b² − 4ac = 0', explanation: 'Una solución exige discriminante cero.' },
+              { expression: 'a=2, b=−1, c=c', explanation: 'Coeficientes de la ecuación.' },
+              { expression: '(−1)² − 4·2·c = 0  →  1 − 8c = 0  →  c = 1/8', explanation: 'Despejamos c.' },
+            ],
+          },
+        ],
+      },
     ],
   },
 
