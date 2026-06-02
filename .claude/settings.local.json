@@ -4,7 +4,13 @@
       "Bash(npm run *)",
       "Bash(node -e \"const {lessons} = require\\('./src/data/lessons.js'\\); console.log\\('lessons count:', lessons.length\\); lessons.forEach\\(l => console.log\\(l.id, '-', l.topics.length, 'topics'\\)\\);\")",
       "Bash(git *)",
-      "Bash(node *)"
+      "Bash(node *)",
+      "Bash(Read C:\\\\Users\\\\julio\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-julio-wu-math-tutor\\\\4a84a091-cb1e-4131-a0d7-db86fef65ab9\\\\tasks\\\\b18tbhwop.output)",
+      "WebFetch(domain:localhost)",
+      "Bash(curl -s http://localhost:9333/json)",
+      "Bash(curl -s -X POST \"http://localhost:9333/json/new?http://localhost:4174\")",
+      "Bash(curl -s \"http://localhost:9333/json\")",
+      "Bash(curl -s -X PUT \"http://localhost:9333/json/new?http://localhost:4174\")"
     ]
   }
 }

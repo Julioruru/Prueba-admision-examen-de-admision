@@ -128,12 +128,8 @@ function GapInput({ gap, stepExplanation, onCorrect }) {
         <button
           onClick={() => {
             if (hintLevel === 2) {
-              setVal(gap.answer)
-              setHintLevel(3)
-              setTimeout(() => {
-                setStatus('correct')
-                onCorrect()
-              }, 700)
+              setStatus('correct')
+              onCorrect()
             } else {
               setHintLevel(h => h + 1)
             }
